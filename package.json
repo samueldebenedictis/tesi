@@ -8,9 +8,11 @@
     "start": "next start",
     "lint": "biome lint --write",
     "format": "biome format --write",
-    "biome": "biome check --write"
+    "biome": "biome check --write",
+    "prepare": "husky"
   },
   "dependencies": {
+    "husky": "^9.1.7",
     "next": "15.3.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
