@@ -13,6 +13,8 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "husky": "^9.1.7",
     "next": "15.3.4",
     "react": "^19.0.0",
