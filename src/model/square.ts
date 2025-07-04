@@ -6,4 +6,5 @@ export class Square {
   }
 
   getId = () => this.id;
+  getNumber = () => this.id + 1;
 }

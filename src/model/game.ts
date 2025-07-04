@@ -9,6 +9,8 @@ export class Game {
   private turn: number;
   private round: number;
   private dice: Dice;
+  private gameEnded: boolean;
+  private winner: Player | undefined;
 
   constructor(boardDimension: number, playersName: string[]) {
     this.boardSize = boardDimension;
@@ -21,6 +23,7 @@ export class Game {
     this.round = 1;
     this.turn = 0;
     this.dice = new Dice(6);
+    this.gameEnded = false;
   }
 
   getBoard = () => this.board;
@@ -32,19 +35,26 @@ export class Game {
    * Il giocatore attuale lancia il dado e aggiorna la sua posizione.
    */
   playTurn = () => {
-    const actualPlayer = this.players[this.turn];
-    const diceValue = this.dice.roll();
-    // TODO: refactor check sul dado e updatePlayer solo con valori > 0
-    const newPositionTemp = actualPlayer.getPosition() + diceValue;
-    const newPosition =
-      newPositionTemp > this.boardSize ? this.boardSize : newPositionTemp;
-    actualPlayer.setPosition(newPosition);
+    if (!this.gameEnded) {
+      const actualPlayer = this.players[this.turn];
+      const diceValue = this.dice.roll();
+      // TODO: refactor check sul dado e updatePlayer solo con valori > 0
+      const newPosition = actualPlayer.getPosition() + diceValue;
 
-    if (this.turn === this.players.length - 1) {
-      this.turn = 0;
-      this.round++;
-    } else {
-      this.turn++;
+      if (newPosition >= this.boardSize) {
+        actualPlayer.setPosition(this.boardSize);
+        this.winner = actualPlayer;
+        this.gameEnded = true;
+      } else {
+        actualPlayer.setPosition(newPosition);
+      }
+
+      if (this.turn === this.players.length - 1) {
+        this.turn = 0;
+        this.round++;
+      } else {
+        this.turn++;
+      }
     }
   };
 }
