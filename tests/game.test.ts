@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test, vi } from "vitest";
 import { Game } from "@/model/game";
 
 describe("Game", () => {
@@ -48,5 +48,24 @@ describe("Game", () => {
     game.playTurn();
 
     expect(game.getPlayers()[0].getPosition()).toBe(2);
+  });
+
+  test("If game ended players don't move", () => {
+    const game = new Game(2, ["Renzo", "Lucia"]);
+
+    // Mock once play turn in order to end game
+    const spy = vi.spyOn(game, "playTurn").mockImplementation(() => {
+      // biome-ignore lint: force private field
+      (game as any).gameEnded = true;
+    });
+    game.playTurn();
+    spy.mockRestore();
+
+    expect(game.getPlayers()[0].getPosition()).toBe(0);
+
+    game.playTurn();
+
+    expect(game.getPlayers()[0].getPosition()).toBe(0);
+    expect(game.getPlayers()[1].getPosition()).toBe(0);
   });
 });

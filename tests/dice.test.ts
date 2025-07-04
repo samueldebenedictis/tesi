@@ -1,4 +1,4 @@
-import { expect, test } from "vitest";
+import { expect, test, vi } from "vitest";
 import { Dice } from "@/model/dice";
 
 const RANDOM_TEST_NUMBER = 100;
@@ -19,4 +19,15 @@ test("Dice random roll", () => {
     expect(value).toBeLessThanOrEqual(6);
     expect(value).toBeGreaterThan(0);
   }
+});
+
+test("Mocked roll", () => {
+  const dice = new Dice(6);
+  const rollSpy = vi.spyOn(dice, "roll").mockReturnValue(1);
+
+  expect(dice.roll()).toBe(1);
+  expect(dice.roll()).toBe(1);
+  expect(rollSpy).toHaveBeenCalledTimes(2);
+
+  rollSpy.mockRestore();
 });
