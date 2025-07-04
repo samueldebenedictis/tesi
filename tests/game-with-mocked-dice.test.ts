@@ -1,4 +1,4 @@
-import { describe, expect, test, vi } from "vitest";
+import { afterAll, describe, expect, test, vi } from "vitest";
 
 vi.mock("@/model/dice", () => {
   const rollMock = vi.fn(() => 1);
@@ -21,6 +21,10 @@ import { Dice } from "@/model/dice";
 import { Game } from "@/model/game";
 
 describe("Mocked dice", () => {
+  afterAll(() => {
+    vi.resetAllMocks();
+  });
+
   test("Should always return 1 from mocked Dice", () => {
     const game = new Game(10, ["Lucia", "Tiziano"]);
     expect(Dice).toHaveBeenCalledWith(6);
