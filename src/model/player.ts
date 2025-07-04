@@ -11,4 +11,7 @@ export class Player {
 
   getName = () => this.name;
   getPosition = () => this.position;
+  setPosition = (n: number) => {
+    this.position = n;
+  };
 }
