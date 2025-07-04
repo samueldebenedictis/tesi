@@ -8,7 +8,7 @@ export class Game {
   constructor(boardDimension: number, playersName: string[]) {
     const squaresNumbers = Array.from(
       { length: boardDimension },
-      (_, i) => i + 1
+      (_, i) => i + 1,
     );
     this.board = squaresNumbers.map((n) => new Square(n));
 

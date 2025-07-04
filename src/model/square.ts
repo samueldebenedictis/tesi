@@ -5,5 +5,5 @@ export class Square {
     this.id = id;
   }
 
-  getId = () => this.id
+  getId = () => this.id;
 }
