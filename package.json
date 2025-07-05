@@ -11,7 +11,8 @@
     "format": "biome format --write",
     "biome": "biome check --write",
     "prepare": "husky",
-    "test": "vitest"
+    "test": "vitest",
+    "coverage": "vitest --coverage"
   },
   "dependencies": {
     "@commitlint/cli": "^19.8.1",
