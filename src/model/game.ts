@@ -31,8 +31,17 @@ export class Game {
   getTurn = () => this.turn;
   getRound = () => this.round;
 
+  getWinner = () => this.winner;
+
+  private endGameAndSetWinner = (player: Player) => {
+    this.winner = player;
+    this.gameEnded = true;
+  };
+
   /**
    * Il giocatore attuale lancia il dado e aggiorna la sua posizione.
+   * Il turno ed eventualmente il round vengono incrementati.
+   * Se un giocatore arriva all'ultima casella vince e il gioco termina.
    */
   playTurn = () => {
     if (!this.gameEnded) {
@@ -43,8 +52,7 @@ export class Game {
 
       if (newPosition >= this.boardSize) {
         actualPlayer.setPosition(this.boardSize);
-        this.winner = actualPlayer;
-        this.gameEnded = true;
+        this.endGameAndSetWinner(actualPlayer);
       } else {
         actualPlayer.setPosition(newPosition);
       }
@@ -55,6 +63,8 @@ export class Game {
       } else {
         this.turn++;
       }
+    } else {
+      throw new Error("playTurn not avalaible, the game is already ended");
     }
   };
 }

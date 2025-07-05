@@ -10,8 +10,12 @@ export class Player {
   }
 
   getName = () => this.name;
+  getId = () => this.id;
   getPosition = () => this.position;
   setPosition = (n: number) => {
+    if (n < 0) {
+      throw new Error("Invalid position");
+    }
     this.position = n;
   };
 }
