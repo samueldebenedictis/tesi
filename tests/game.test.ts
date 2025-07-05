@@ -1,4 +1,4 @@
-import { describe, expect, test, vi } from "vitest";
+import { describe, expect, test } from "vitest";
 import { Game } from "@/model/game";
 
 describe("Game", () => {
@@ -24,7 +24,7 @@ describe("Game", () => {
   });
 
   test("Turns and rounds", () => {
-    const game = new Game(10, ["Renzo", "Lucia"]);
+    const game = new Game(100, ["Renzo", "Lucia"]);
 
     expect(game.getTurn()).toBe(0);
     expect(game.getRound()).toBe(1);
@@ -42,30 +42,24 @@ describe("Game", () => {
   });
 
   test("Max position", () => {
-    const game = new Game(2, ["Renzo", "Lucia"]);
+    const game = new Game(1, ["Renzo", "Lucia"]);
 
     game.playTurn();
-    game.playTurn();
 
-    expect(game.getPlayers()[0].getPosition()).toBe(2);
+    expect(game.getPlayers()[0].getPosition()).toBe(1);
   });
 
   test("If game ended players don't move", () => {
-    const game = new Game(2, ["Renzo", "Lucia"]);
-
-    // Mock once play turn in order to end game
-    const spy = vi.spyOn(game, "playTurn").mockImplementation(() => {
-      // biome-ignore lint: force private field
-      (game as any).gameEnded = true;
-    });
-    game.playTurn();
-    spy.mockRestore();
-
-    expect(game.getPlayers()[0].getPosition()).toBe(0);
+    const game = new Game(1, ["Renzo", "Lucia"]);
 
     game.playTurn();
 
-    expect(game.getPlayers()[0].getPosition()).toBe(0);
+    expect(game.getPlayers()[0].getPosition()).toBe(1);
+
+    expect(() => game.playTurn()).toThrow();
+
+    expect(game.getPlayers()[0].getPosition()).toBe(1);
     expect(game.getPlayers()[1].getPosition()).toBe(0);
+    expect(game.getWinner()?.getName()).toBe("Renzo");
   });
 });
