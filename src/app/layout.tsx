@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "La Città degli imprevisti",
-  description: "La Città degli imprevisti",
+  title: "La Città degli Imprevisti",
+  description: "La Città degli Imprevisti",
 };
 
 export default function RootLayout({
