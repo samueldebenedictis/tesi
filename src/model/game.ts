@@ -49,13 +49,14 @@ export class Game {
       const diceValue = this.dice.roll();
       // TODO: refactor check sul dado e updatePlayer solo con valori > 0
       const newPosition = actualPlayer.getPosition() + diceValue;
+      const landingPosition =
+        newPosition >= this.boardSize ? this.boardSize : newPosition;
 
-      if (newPosition >= this.boardSize) {
-        actualPlayer.setPosition(this.boardSize);
+      if (landingPosition === this.boardSize) {
         this.endGameAndSetWinner(actualPlayer);
-      } else {
-        actualPlayer.setPosition(newPosition);
       }
+
+      actualPlayer.setPosition(landingPosition);
 
       if (this.turn === this.players.length - 1) {
         this.turn = 0;
