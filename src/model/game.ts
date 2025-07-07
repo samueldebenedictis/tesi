@@ -1,6 +1,6 @@
 import { Dice } from "./dice";
 import { Player } from "./player";
-import { Square } from "./square";
+import { SpecialSquare, Square } from "./square";
 
 export class Game {
   private boardSize: number;
@@ -38,6 +38,23 @@ export class Game {
     this.gameEnded = true;
   };
 
+  private movePlayer = (newPosition: number, actualPlayer: Player) => {
+    const landingPosition =
+      newPosition >= this.boardSize ? this.boardSize : newPosition;
+
+    if (landingPosition === this.boardSize) {
+      this.endGameAndSetWinner(actualPlayer);
+    }
+
+    if (this.board[landingPosition] instanceof SpecialSquare) {
+      const specialMoveValue = this.board[landingPosition].getValue();
+      this.movePlayer(newPosition + specialMoveValue, actualPlayer);
+      return;
+    }
+
+    return actualPlayer.setPosition(landingPosition);
+  };
+
   /**
    * Il giocatore attuale lancia il dado e aggiorna la sua posizione.
    * Il turno ed eventualmente il round vengono incrementati.
@@ -49,14 +66,7 @@ export class Game {
       const diceValue = this.dice.roll();
       // TODO: refactor check sul dado e updatePlayer solo con valori > 0
       const newPosition = actualPlayer.getPosition() + diceValue;
-      const landingPosition =
-        newPosition >= this.boardSize ? this.boardSize : newPosition;
-
-      if (landingPosition === this.boardSize) {
-        this.endGameAndSetWinner(actualPlayer);
-      }
-
-      actualPlayer.setPosition(landingPosition);
+      this.movePlayer(newPosition, actualPlayer);
 
       if (this.turn === this.players.length - 1) {
         this.turn = 0;

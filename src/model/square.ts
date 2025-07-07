@@ -10,7 +10,7 @@ export class Square {
   isSpecial = () => false;
 }
 
-abstract class SpecialSquare extends Square {
+export abstract class SpecialSquare extends Square {
   abstract getValue(): number;
   isSpecial = () => true;
 }
