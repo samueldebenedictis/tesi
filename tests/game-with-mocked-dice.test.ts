@@ -17,8 +17,9 @@ vi.mock("@/model/dice", () => {
   };
 });
 
+import { BoardBuilder } from "@/model/board";
 import { Dice } from "@/model/dice";
-import { BoardBuilder, Game } from "@/model/game";
+import { Game } from "@/model/game";
 
 describe("Mocked dice", () => {
   afterAll(() => {

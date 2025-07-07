@@ -1,54 +1,11 @@
+import type { BoardT } from "./board";
 import { Dice } from "./dice";
 import { Player } from "./player";
-import { SpecialSquare, Square } from "./square";
-
-class Board {
-  private squares: Square[];
-
-  constructor(board: Square[]) {
-    this.squares = board;
-  }
-
-  getSquares = () => this.squares;
-}
-
-export class BoardBuilder {
-  private board: Square[] | undefined;
-  private boardSize: number | undefined;
-
-  setBoard = (squareArray: Square[]) => {
-    this.board = squareArray;
-    return this;
-  };
-
-  setBoardSize = (size: number) => {
-    this.boardSize = size;
-    return this;
-  };
-
-  buildWithSpecificBoard() {
-    if (this.board === undefined) {
-      throw new Error("Board not defined");
-    }
-    return new Board(this.board);
-  }
-
-  buildWithSize() {
-    if (this.boardSize === undefined) {
-      throw new Error("Size not defined");
-    }
-    const squaresNumbers = Array.from(
-      { length: this.boardSize },
-      (_, i) => i + 1,
-    );
-    const b = squaresNumbers.map((n) => new Square(n));
-    return new Board(b);
-  }
-}
+import { SpecialSquare } from "./square";
 
 export class Game {
   private boardSize: number;
-  private board: Board;
+  private board: BoardT;
   private players: Player[];
   private turn: number;
   private round: number;
@@ -56,7 +13,7 @@ export class Game {
   private gameEnded: boolean;
   private winner: Player | undefined;
 
-  constructor(board: Board, playersName: string[]) {
+  constructor(board: BoardT, playersName: string[]) {
     this.boardSize = board.getSquares().length;
     this.board = board;
     this.players = playersName.map((name, i) => new Player(i, name));

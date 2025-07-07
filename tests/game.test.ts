@@ -1,5 +1,6 @@
 import { describe, expect, test } from "vitest";
-import { BoardBuilder, Game } from "@/model/game";
+import { BoardBuilder } from "@/model/board";
+import { Game } from "@/model/game";
 
 describe("Game", () => {
   test("Board", () => {
