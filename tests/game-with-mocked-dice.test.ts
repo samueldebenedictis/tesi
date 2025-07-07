@@ -18,7 +18,7 @@ vi.mock("@/model/dice", () => {
 });
 
 import { Dice } from "@/model/dice";
-import { Game } from "@/model/game";
+import { BoardBuilder, Game } from "@/model/game";
 
 describe("Mocked dice", () => {
   afterAll(() => {
@@ -26,7 +26,8 @@ describe("Mocked dice", () => {
   });
 
   test("Should always return 1 from mocked Dice", () => {
-    const game = new Game(10, ["Lucia", "Tiziano"]);
+    const b = new BoardBuilder().setBoardSize(10).buildWithSize();
+    const game = new Game(b, ["Lucia", "Tiziano"]);
     expect(Dice).toHaveBeenCalledWith(6);
 
     expect(game.getPlayers()[0].getPosition()).toBe(0);

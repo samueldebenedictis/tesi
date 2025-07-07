@@ -7,7 +7,6 @@ export class Square {
 
   getId = () => this.id;
   getNumber = () => this.id + 1;
-  isSpecial = () => false;
 }
 
 export abstract class SpecialSquare extends Square {

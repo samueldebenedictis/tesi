@@ -2,9 +2,53 @@ import { Dice } from "./dice";
 import { Player } from "./player";
 import { SpecialSquare, Square } from "./square";
 
+class Board {
+  private squares: Square[];
+
+  constructor(board: Square[]) {
+    this.squares = board;
+  }
+
+  getSquares = () => this.squares;
+}
+
+export class BoardBuilder {
+  private board: Square[] | undefined;
+  private boardSize: number | undefined;
+
+  setBoard = (squareArray: Square[]) => {
+    this.board = squareArray;
+    return this;
+  };
+
+  setBoardSize = (size: number) => {
+    this.boardSize = size;
+    return this;
+  };
+
+  buildWithSpecificBoard() {
+    if (this.board === undefined) {
+      throw new Error("Board not defined");
+    }
+    return new Board(this.board);
+  }
+
+  buildWithSize() {
+    if (this.boardSize === undefined) {
+      throw new Error("Size not defined");
+    }
+    const squaresNumbers = Array.from(
+      { length: this.boardSize },
+      (_, i) => i + 1,
+    );
+    const b = squaresNumbers.map((n) => new Square(n));
+    return new Board(b);
+  }
+}
+
 export class Game {
   private boardSize: number;
-  private board: Square[];
+  private board: Board;
   private players: Player[];
   private turn: number;
   private round: number;
@@ -12,13 +56,9 @@ export class Game {
   private gameEnded: boolean;
   private winner: Player | undefined;
 
-  constructor(boardDimension: number, playersName: string[]) {
-    this.boardSize = boardDimension;
-    const squaresNumbers = Array.from(
-      { length: boardDimension },
-      (_, i) => i + 1,
-    );
-    this.board = squaresNumbers.map((n) => new Square(n));
+  constructor(board: Board, playersName: string[]) {
+    this.boardSize = board.getSquares().length;
+    this.board = board;
     this.players = playersName.map((name, i) => new Player(i, name));
     this.round = 1;
     this.turn = 0;
@@ -26,7 +66,7 @@ export class Game {
     this.gameEnded = false;
   }
 
-  getBoard = () => this.board;
+  getBoard = () => this.board.getSquares();
   getPlayers = () => this.players;
   getTurn = () => this.turn;
   getRound = () => this.round;
@@ -46,8 +86,9 @@ export class Game {
       this.endGameAndSetWinner(actualPlayer);
     }
 
-    if (this.board[landingPosition] instanceof SpecialSquare) {
-      const specialMoveValue = this.board[landingPosition].getValue();
+    const landingSquare = this.board.getSquares()[landingPosition];
+    if (landingSquare instanceof SpecialSquare) {
+      const specialMoveValue = landingSquare.getValue();
       this.movePlayer(newPosition + specialMoveValue, actualPlayer);
       return;
     }

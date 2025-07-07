@@ -1,9 +1,10 @@
 import { describe, expect, test } from "vitest";
-import { Game } from "@/model/game";
+import { BoardBuilder, Game } from "@/model/game";
 
 describe("Game", () => {
   test("Board", () => {
-    const game = new Game(10, ["Renzo", "Lucia"]);
+    const b = new BoardBuilder().setBoardSize(10).buildWithSize();
+    const game = new Game(b, ["Renzo", "Lucia"]);
     const board = game.getBoard();
     expect(board).toHaveLength(10);
 
@@ -13,7 +14,8 @@ describe("Game", () => {
   });
 
   test("Players", () => {
-    const game = new Game(10, ["Renzo", "Lucia"]);
+    const b = new BoardBuilder().setBoardSize(10).buildWithSize();
+    const game = new Game(b, ["Renzo", "Lucia"]);
     const players = game.getPlayers();
     expect(players).toHaveLength(2);
 
@@ -24,7 +26,8 @@ describe("Game", () => {
   });
 
   test("Turns and rounds", () => {
-    const game = new Game(100, ["Renzo", "Lucia"]);
+    const b = new BoardBuilder().setBoardSize(10).buildWithSize();
+    const game = new Game(b, ["Renzo", "Lucia"]);
 
     expect(game.getTurn()).toBe(0);
     expect(game.getRound()).toBe(1);
@@ -42,7 +45,8 @@ describe("Game", () => {
   });
 
   test("Max position", () => {
-    const game = new Game(1, ["Renzo", "Lucia"]);
+    const b = new BoardBuilder().setBoardSize(1).buildWithSize();
+    const game = new Game(b, ["Renzo", "Lucia"]);
 
     game.playTurn();
 
@@ -50,7 +54,8 @@ describe("Game", () => {
   });
 
   test("If game ended players don't move", () => {
-    const game = new Game(1, ["Renzo", "Lucia"]);
+    const b = new BoardBuilder().setBoardSize(1).buildWithSize();
+    const game = new Game(b, ["Renzo", "Lucia"]);
 
     game.playTurn();
 
