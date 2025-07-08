@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "biome lint --write",
     "format": "biome format --write",
-    "biome": "biome check --write",
+    "biome": "biome check --write --unsafe",
     "prepare": "husky",
     "test": "vitest",
     "coverage": "vitest --coverage"
