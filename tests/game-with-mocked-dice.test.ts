@@ -20,15 +20,16 @@ vi.mock("@/model/dice", () => {
 import { BoardBuilder } from "@/model/board";
 import { Dice } from "@/model/dice";
 import { Game } from "@/model/game";
+import { MoveSquare, Square } from "@/model/square";
 
-describe("Mocked dice", () => {
+describe("Game with mocked dice", () => {
   afterAll(() => {
     vi.resetAllMocks();
   });
 
   test("Should always return 1 from mocked Dice", () => {
     const b = new BoardBuilder().setBoardSize(10).buildWithSize();
-    const game = new Game(b, ["Lucia", "Tiziano"]);
+    const game = new Game(b, ["Lucia", "Renzo"]);
     expect(Dice).toHaveBeenCalledWith(6);
 
     expect(game.getPlayers()[0].getPosition()).toBe(0);
@@ -48,5 +49,63 @@ describe("Mocked dice", () => {
 
     expect(game.getPlayers()[0].getPosition()).toBe(2);
     expect(game.getPlayers()[1].getPosition()).toBe(1);
+  });
+
+  test("Test special move square forward", () => {
+    const s = [
+      new Square(0),
+      new MoveSquare(1, 1),
+      new Square(2),
+      new Square(3),
+      new Square(4),
+    ];
+    const b = new BoardBuilder().setBoard(s).buildWithSpecificBoard();
+    const game = new Game(b, ["Lucia", "Renzo"]);
+    expect(Dice).toHaveBeenCalledWith(6);
+
+    expect(game.getPlayers()[0].getPosition()).toBe(0);
+    expect(game.getPlayers()[1].getPosition()).toBe(0);
+
+    game.playTurn();
+
+    expect(game.getPlayers()[0].getPosition()).toBe(2);
+    expect(game.getPlayers()[1].getPosition()).toBe(0);
+
+    game.playTurn();
+
+    expect(game.getPlayers()[0].getPosition()).toBe(2);
+    expect(game.getPlayers()[1].getPosition()).toBe(2);
+
+    game.playTurn();
+    game.playTurn();
+
+    expect(game.getPlayers()[0].getPosition()).toBe(3);
+    expect(game.getPlayers()[1].getPosition()).toBe(3);
+  });
+
+  test("Test special move square back", () => {
+    const s = [
+      new Square(0),
+      new MoveSquare(1, -1),
+      new Square(2),
+      new Square(3),
+      new Square(4),
+    ];
+    const b = new BoardBuilder().setBoard(s).buildWithSpecificBoard();
+    const game = new Game(b, ["Lucia", "Renzo"]);
+    expect(Dice).toHaveBeenCalledWith(6);
+
+    expect(game.getPlayers()[0].getPosition()).toBe(0);
+    expect(game.getPlayers()[1].getPosition()).toBe(0);
+
+    game.playTurn();
+
+    expect(game.getPlayers()[0].getPosition()).toBe(0);
+    expect(game.getPlayers()[1].getPosition()).toBe(0);
+
+    game.playTurn();
+
+    expect(game.getPlayers()[0].getPosition()).toBe(0);
+    expect(game.getPlayers()[1].getPosition()).toBe(0);
   });
 });
