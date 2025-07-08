@@ -10,7 +10,6 @@ export class Square {
 }
 
 export abstract class SpecialSquare extends Square {
-  abstract getValue(): number;
   isSpecial = () => true;
 }
 
@@ -24,3 +23,5 @@ export class MoveSquare extends SpecialSquare {
     return this.moveValue;
   }
 }
+
+export class ChanceSquare extends SpecialSquare {}

@@ -1,7 +1,7 @@
 import type { BoardT } from "./board";
 import { Dice } from "./dice";
 import { Player } from "./player";
-import { SpecialSquare } from "./square";
+import { MoveSquare } from "./square";
 
 export class Game {
   private boardSize: number;
@@ -44,7 +44,7 @@ export class Game {
     }
 
     const landingSquare = this.board.getSquares()[landingPosition];
-    if (landingSquare instanceof SpecialSquare) {
+    if (landingSquare instanceof MoveSquare) {
       const specialMoveValue = landingSquare.getValue();
       this.movePlayer(newPosition + specialMoveValue, actualPlayer);
       return;
