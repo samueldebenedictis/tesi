@@ -1,8 +1,8 @@
 import type { Card } from "./card";
 
 export class Deck {
-  cards: Card[];
-  usedCards: Card[];
+  private cards: Card[];
+  private usedCards: Card[];
 
   constructor(cards: Card[]) {
     this.cards = cards;
@@ -18,7 +18,9 @@ export class Deck {
     this.cards = shuffled.map((el) => el.card);
   };
 
-  updateCounter = () => {};
+  cardCount = () => {
+    return this.cards.length;
+  };
 
   draw = () => {
     if (this.cards.length === 0) {
@@ -27,6 +29,6 @@ export class Deck {
     }
     const card = this.cards.pop();
     this.usedCards.push(card as Card);
-    return card;
+    return card as Card;
   };
 }
