@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import Square from "@/app/components/square";
+import Square from "../src/app/components/square";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -20,5 +20,7 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     number: 1,
+    buildingIndex: 0,
+    backgroundColorGradient: "blue",
   },
 };
