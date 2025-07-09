@@ -41,7 +41,7 @@ export default function Square(props: SquareProps) {
           alt=""
         />
         <div className="w-full absolute top-0">
-          <span className="text-white font-extrabold text-6xl drop-shadow-[0_0_3px_rgba(0,0,0,0.8)]">
+          <span className="text-white font-extrabold text-6xl">
             {props.number}
           </span>
         </div>
