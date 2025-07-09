@@ -32,10 +32,16 @@ export default function Square(props: SquareProps) {
   const className = [classNameBase, colorClass].join(" ");
   return (
     <div className={className}>
-      <div className="relative">
-        <Image className="p-2" src={image} width={500} height={500} alt="" />
+      <div className="relative text-center">
+        <Image
+          className="pt-12 pr-6 pl-6"
+          src={image}
+          width={500}
+          height={500}
+          alt=""
+        />
         <div className="w-full absolute top-0">
-          <span className="text-white font-extrabold text-6xl drop-shadow-xl">
+          <span className="text-white font-extrabold text-6xl drop-shadow-[0_0_3px_rgba(0,0,0,0.8)]">
             {props.number}
           </span>
         </div>
