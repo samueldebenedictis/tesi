@@ -1,32 +1,33 @@
 import Image from "next/image";
-import { buildings } from "./assets/buildings";
+import { buildings } from "./building";
 
 type Color = "yellow" | "blue" | "green" | "red" | "white";
 
 type SquareProps = {
   number: number;
-  bgGradientColor?: Color;
-  buildingIndex: number;
+  backgroundColorGradient?: Color;
+  buildingIndex: keyof typeof buildings;
 };
 
 const squareColor = (color: Color) => {
+  const base = "bg-linear-to-b text-white outline-4 -outline-offset-8";
   switch (color) {
     case "yellow":
-      return `bg-linear-to-b from-amber-500 to-yellow-300 text-white outline-2 -outline-offset-4`;
+      return `${base} from-amber-500 to-yellow-300`;
     case "blue":
-      return `bg-linear-to-b from-sky-500 to-blue-300 text-white outline-2 -outline-offset-4`;
+      return `${base} from-sky-500 to-blue-300`;
     case "green":
-      return `bg-linear-to-b from-green-500 to-emerald-300 text-white outline-2 -outline-offset-4`;
+      return `${base} from-green-500 to-emerald-300`;
     case "red":
-      return `bg-linear-to-b from-red-500 to-orange-300 text-white outline-2 -outline-offset-4`;
+      return `${base} from-red-500 to-orange-300`;
     default:
-      return "bg-white";
+      return "bg-white text-black outline-4 -outline-offset-8";
   }
 };
 
 export default function Square(props: SquareProps) {
   const image = buildings[props.buildingIndex];
-  const colorClass = squareColor(props.bgGradientColor || "white");
+  const colorClass = squareColor(props.backgroundColorGradient || "white");
   const classNameBase =
     "rounded-xl size-48 p-4 m-2 grid content-center justify-items-center h-full";
   const className = [classNameBase, colorClass].join(" ");
@@ -38,7 +39,7 @@ export default function Square(props: SquareProps) {
           src={image}
           width={500}
           height={500}
-          alt=""
+          alt="building"
         />
         <div className="w-full absolute top-0">
           <span className="text-white font-extrabold text-6xl">
