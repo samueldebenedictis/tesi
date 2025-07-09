@@ -1,8 +1,12 @@
+import Image from "next/image";
+import { buildings } from "./assets/buildings";
+
 type Color = "yellow" | "blue" | "green" | "red" | "white";
 
 type SquareProps = {
   number: number;
-  color?: Color;
+  bgGradientColor?: Color;
+  buildingIndex: number;
 };
 
 const squareColor = (color: Color) => {
@@ -21,15 +25,21 @@ const squareColor = (color: Color) => {
 };
 
 export default function Square(props: SquareProps) {
-  const colorClass = squareColor(props.color || "white");
+  const image = buildings[props.buildingIndex];
+  const colorClass = squareColor(props.bgGradientColor || "white");
   const classNameBase =
-    "rounded-xl size-32 p-4 m-2 grid grid-cols-1 content-center justify-items-center";
+    "rounded-xl size-48 p-4 m-2 grid content-center justify-items-center h-full";
   const className = [classNameBase, colorClass].join(" ");
   return (
     <div className={className}>
-      <span className="text-white font-bold text-6xl drop-shadow-xl">
-        {props.number}
-      </span>
+      <div className="relative">
+        <Image className="p-2" src={image} width={500} height={500} alt="" />
+        <div className="w-full absolute top-0">
+          <span className="text-white font-extrabold text-6xl drop-shadow-xl">
+            {props.number}
+          </span>
+        </div>
+      </div>
     </div>
   );
 }
