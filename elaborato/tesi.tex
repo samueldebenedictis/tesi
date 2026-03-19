@@ -525,6 +525,7 @@ I componenti primitivi riutilizzabili (\texttt{Button}, \texttt{Input}, \texttt{
 \section{Scelte implementative rilevanti}
 
 \subsection{Il tipo \texttt{GameActionResult} e il Command Pattern}
+\label{sec:command}
 
 La comunicazione tra il domain model e il layer di stato avviene tramite il tipo \texttt{GameActionResult}, un oggetto TypeScript che \texttt{playTurn()} restituisce al termine di ogni turno.
 Questa scelta riflette il \textit{Command Pattern}: invece di eseguire direttamente un'azione sull'interfaccia, il domain model produce un oggetto che \textit{descrive} l'azione da compiere, lasciando al chiamante la responsabilità di decidere come gestirla.
@@ -609,9 +610,32 @@ export const useGameStore = create<GameStore>()(
 );
 \end{lstlisting}
 
+\section{Design pattern utilizzati}
+
+La progettazione dell'applicazione ha fatto uso di diversi design pattern consolidati \cite{gof1994}, applicati in modo coerente con le responsabilità dei moduli descritti nelle sezioni precedenti.
+
+\subsection{Command Pattern}
+Il pattern Command è applicato nella comunicazione tra il domain model e il layer di stato tramite il tipo \texttt{GameActionResult} (si veda la sezione~\ref{sec:command}): ogni turno produce un oggetto che \textit{descrive} l'azione da eseguire, disaccoppiando il mittente (il domain model) dal ricevente (lo store e l'interfaccia).
+
+\subsection{Facade Pattern}
+La classe \texttt{Game} agisce da \textit{Facade}: espone un'interfaccia semplice e coerente (\texttt{playTurn()}, \texttt{resolve*()}, \texttt{toJSON()}) nascondendo la complessità interna dei manager, dei mazzi e del tabellone. I componenti React e lo store non interagiscono mai direttamente con i sottosistemi interni.
+
+\subsection{Builder Pattern}
+Il modulo \texttt{square-builder.ts} implementa il pattern Builder per ricostruire le istanze delle caselle a partire dalla loro rappresentazione JSON durante il ripristino di una partita salvata. Poiché ogni tipologia di casella è una classe distinta, il Builder centralizza la logica di selezione del costruttore corretto in base al campo \texttt{type}.
+
+\subsection{Observer Pattern}
+Zustand adotta implicitamente il pattern Observer: i componenti React si \textit{sottoscrivono} a porzioni specifiche dello store tramite selettori, e vengono ri-renderizzati automaticamente solo quando i campi osservati cambiano. Questo evita aggiornamenti superflui dell'interfaccia e mantiene i componenti disaccoppiati dalla logica di aggiornamento dello stato.
+
+\subsection{Manager Pattern}
+La classe \texttt{Game} non implementa da sola tutta la logica di gioco, ma delega ciascuna responsabilità a un manager specializzato: \texttt{TurnManager} per la gestione dei turni, \texttt{MovementManager} per gli spostamenti e le collisioni, \texttt{GameStateManager} per la verifica della vittoria, \texttt{SpecialSquareProcessor} per l'attivazione delle sfide, e un manager dedicato per ogni tipologia di sfida (es.\ \texttt{MimeManager}, \texttt{QuizManager}).
+Questo approccio — talvolta chiamato \textit{Manager Pattern} o \textit{Specialist Pattern} — consente di mantenere la classe \texttt{Game} snella e leggibile, concentrando ciascuna regola di gioco nel modulo che ne è responsabile, con benefici diretti sulla testabilità e sulla manutenibilità del codice.
+
+\subsection{Model-View-Controller}
+L'architettura a tre strati dell'applicazione rispecchia il pattern architetturale \textit{Model-View-Controller} (MVC): il Domain Model (\texttt{src/model/}) corrisponde al \textit{Model}, i componenti React (\texttt{src/app/}) alla \textit{View} e gli store Zustand (\texttt{src/store/}) al \textit{Controller}, che media le interazioni dell'utente verso il modello e propaga gli aggiornamenti di stato verso l'interfaccia.
+
 %
 %			CAPITOLO 5: Test
-% 
+%
 
 \chapter{Test}
 \label{chap:test}
