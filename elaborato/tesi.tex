@@ -110,6 +110,32 @@
 \prefaceintoctrue
 % indice nell'indice (facoltativo)
 \tocintoctrue
+% Listings per snippet di codice
+\usepackage{listings}
+
+\lstdefinelanguage{TypeScript}{
+  keywords={const, let, var, function, return, if, else, new, class,
+            export, import, type, interface, extends, implements,
+            private, public, protected, static, null, undefined,
+            true, false, async, await, from, of, in},
+  morestring=[b]",
+  morestring=[b]',
+  morestring=[b]`,
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  sensitive=true,
+}
+
+\lstset{
+  frame=single,
+  numbers=left,
+  numberstyle=\tiny,
+  numbersep=8pt,
+  basicstyle=\ttfamily\small,
+  showstringspaces=false,
+  tabsize=2,
+}
+
 % --- FINE PREAMBOLO ----------------------------------------------------------
 
 \begin{document}
@@ -267,85 +293,323 @@ La varietà delle sfide garantisce che durante la partita vengano esercitate com
 \chapter{Tecnologie utilizzate}
 \label{cap3}
 
-Questo capitolo descrive gli strumenti tecnologici utilizzati nello sviluppo del progetto.
-L'applicazione sviluppata è scritta in linguaggio TypeScript col framework Next.js, a sua volta basato su React;
-una volta compilato e buildato restituisce una web app interpretabile dalla maggioranza dei browser sul mercato. 
-L'output del processo è un set di pagine web (con relativi file JavaScript e CSS) che possono essere navigate da
-browser e forniscono la view, i controlli e il modello del gioco da tavolo creato.
+L'applicazione è sviluppata in TypeScript con il framework Next.js, a sua volta basato su React.
+Il processo di build produce un insieme di file statici (HTML, JavaScript, CSS) interpretabili da qualsiasi browser moderno, senza necessità di un server applicativo.
+Gli strumenti adottati sono stati scelti per garantire qualità del codice, efficienza di sviluppo e manutenibilità nel lungo periodo.
 
-La maggior parte di questi framework e librerie è stata scelta per garantire qualità del codice,
-esperienza di sviluppo efficiente e manutenibilità a lungo termine.
+\section{Framework e librerie di sviluppo}
 
-\section{Next.js 15}
-Next.js è un framework React per applicazioni full-stack che offre rendering lato server (SSR), generazione di siti statici (SSG) e routing automatico. Fornisce un'infrastruttura completa per applicazioni web moderne, gestendo aspetti come routing, ottimizzazione delle immagini, gestione degli asset e deployment. La versione 15 introduce ulteriori ottimizzazioni delle performance e una migliore integrazione con gli strumenti di sviluppo.
+\subsection{Next.js}
+Next.js è un framework React per applicazioni web che integra nativamente routing basato su file, rendering lato server (SSR) e generazione di siti statici (SSG).
+\`{E} stato scelto come framework principale per la sua capacità di produrre output statici distribuibili su GitHub Pages senza necessità di un server, mantenendo al contempo un'esperienza di sviluppo moderna.
 
-\`{E} stato scelto come framework principale per la sua capacità di gestire in modo nativo sia applicazioni statiche che dinamiche, offrendo un'ottima esperienza di sviluppo e performance elevate per l'utente finale.
+\subsection{TypeScript}
+TypeScript è un superset di JavaScript che aggiunge tipizzazione statica al linguaggio, consentendo di individuare errori a tempo di compilazione anziché a runtime.
+Nel contesto di un progetto con un domain model articolato — composto da classi, manager e interfacce — la tipizzazione ha reso più sicuro il refactoring e ha ridotto significativamente la categoria di bug legati a tipi inattesi.
 
-\section{TypeScript}
-TypeScript è un superset di JavaScript che aggiunge tipizzazione statica al linguaggio. Questo strumento permette di identificare errori a tempo di compilazione, migliorando significativamente la qualità e la sicurezza del codice. La tipizzazione aiuta anche nel refactoring e nell'autocompletamento, rendendo lo sviluppo più rapido e meno soggetto a bug.
+\subsection{React}
+React è la libreria su cui si basa Next.js per la costruzione dell'interfaccia utente tramite componenti dichiarativi.
+Il modello a componenti consente di strutturare l'interfaccia in unità indipendenti e riutilizzabili, ciascuna responsabile del proprio stato visivo e del proprio ciclo di vita.
 
-La sua integrazione con Next.js è perfetta, permettendo di sfruttare tutti i vantaggi della tipizzazione statica in un progetto React complesso come un gioco da tavolo digitale.
+\subsection{Zustand}
+Zustand è una libreria leggera per la gestione dello stato globale dell'applicazione.
+A differenza di soluzioni più elaborate come Redux, non richiede boilerplate e si integra in modo naturale con TypeScript.
+Il middleware \texttt{persist} consente di sincronizzare automaticamente gli store con il localStorage del browser, rendendo lo stato della partita sopravvivente al ricaricamento della pagina senza codice aggiuntivo.
 
-\section{Zustand}
-Zustand è una libreria leggera per la gestione dello stato dell'applicazione che offre un'alternativa semplice e performante a soluzioni più complesse come Redux. Si basa su un approccio minimalista che permette di creare store di stato in modo intuitivo, senza bisogno di boilerplate e con un'ottima integrazione TypeScript.
+\subsection{Tailwind CSS}
+Tailwind CSS è un framework CSS \textit{utility-first}: invece di definire classi semantiche personalizzate, si compone l'aspetto visivo applicando direttamente nel markup classi predefinite di basso livello.
+Questo approccio ha velocizzato lo sviluppo dell'interfaccia, garantendo coerenza visiva e semplificando la gestione dei layout responsivi.
 
-\`{E} stato adottato per gestire lo stato globale del gioco, come la posizione dei giocatori, lo stato del turno e le informazioni sui mazzi di carte, semplificando notevolmente la gestione dello stato rispetto ad altre soluzioni più pesanti.
+\section{Strumenti di qualità del codice}
 
-\section{TailwindCSS}
-TailwindCSS è un framework CSS utility-first che fornisce classi CSS modulari e riutilizzabili. Invece di scrivere CSS personalizzato, si utilizzano classi predefinite direttamente nel markup HTML/JSX.
+\subsection{Biome}
+Biome è uno strumento che unifica in un unico pacchetto le funzionalità di linting, formattazione e organizzazione degli import, sostituendo la tradizionale combinazione ESLint + Prettier con una configurazione singola e tempi di esecuzione notevolmente inferiori.
+\`{E} configurato per essere eseguito automaticamente a ogni commit tramite Husky.
 
-Questa scelta ha permesso di velocizzare notevolmente lo sviluppo dell'interfaccia utente, garantendo coerenza visiva e semplificando la creazione di layout responsive senza dover scrivere codice CSS complesso.
+\subsection{Husky e Commitlint}
+Husky gestisce i Git hooks, permettendo di eseguire automaticamente controlli prima che un commit venga registrato.
+Nel progetto è configurato per eseguire Biome (linting e formattazione) e Commitlint (validazione del messaggio di commit) a ogni \texttt{git commit}.
+Commitlint verifica che i messaggi rispettino la convenzione \textit{Conventional Commits}, migliorando la leggibilità della cronologia del progetto.
 
-\section{Biome}
-Biome è uno strumento moderno che combina in un unico pacchetto le funzionalità di linting, formattazione del codice e type checking. Progettato per essere estremamente veloce e accurato, sostituisce tool tradizionali come ESLint e Prettier con un'unica configurazione. Offre un'esperienza di sviluppo più fluida grazie all'integrazione perfetta tra le diverse funzionalità.
+\section{Strumenti di testing e documentazione}
 
-La sua adozione ha migliorato significativamente l'esperienza di sviluppo con linting e formattazione istantanei, riducendo il tempo dedicato alla configurazione e manutenzione degli strumenti di qualità del codice.
+\subsection{Vitest}
+Vitest è un framework di test unitari progettato per integrarsi con l'ecosistema Vite/Next.js.
+Offre prestazioni superiori rispetto a Jest grazie all'esecuzione nativa dei moduli ES e supporta la misurazione della copertura del codice tramite Istanbul.
+Viene utilizzato per testare la logica del domain model in isolamento dall'interfaccia.
 
-\section{Vitest}
-Vitest è un framework di testing moderno e veloce, progettato per essere utilizzato con Vite. Offre un'esperienza di testing simile a Jest ma con prestazioni superiori grazie all'integrazione nativa con Vite. Supporta il testing unitario e l'analisi della copertura del codice.
+\subsection{Playwright}
+Playwright è un framework per test end-to-end che automatizza browser reali (Chromium, Firefox, WebKit).
+Permette di verificare il comportamento completo dell'applicazione simulando le interazioni di un utente reale, coprendo scenari che i test unitari non possono rilevare.
 
-Viene utilizzato per verificare il corretto funzionamento delle singole unità di codice in modo rapido ed efficiente, garantendo la qualità del software attraverso test automatizzati.
+\subsection{Storybook}
+Storybook è uno strumento per lo sviluppo e la documentazione dei componenti UI in isolamento.
+Ogni componente è associato a una o più \textit{stories} che ne mostrano i diversi stati e configurazioni, facilitando lo sviluppo visivo indipendente e costituendo una documentazione interattiva dell'interfaccia.
 
-\section{Playwright}
-Playwright è un framework per testing end-to-end che supporta multi-browser. Permette di automatizzare browser reali per testare il comportamento completo dell'applicazione dall'interfaccia utente fino alla logica di backend.
-
-\`{E} impiegato per simulare il comportamento reale degli utenti, verificando che tutte le funzionalità dell'applicazione funzionino correttamente insieme e su diversi browser.
-
-\section{Storybook}
-Storybook è uno strumento per lo sviluppo e la documentazione di componenti UI in isolamento. Permette di creare una libreria visiva dei componenti dell'applicazione, mostrandoli in diversi stati e configurazioni.
-
-Viene utilizzato per facilitare lo sviluppo dei componenti dell'interfaccia in modo indipendente, fornire documentazione visiva e permettere di verificare il corretto rendering in diversi contesti.
-
-\section{Husky}
-Husky è una libreria per la gestione dei Git hooks che permette di automatizzare operazioni come linting, testing e validazione del codice prima dei commit. Configurando hooks specifici, è possibile garantire che ogni modifica al codice rispetti gli standard di qualità stabiliti dal team di sviluppo.
-
-La sua integrazione con il flusso di lavoro Git automatizza i controlli di qualità del codice, prevenendo l'introduzione di errori e garantendo coerenza nello stile di codifica.
-
-\section{Commitlint}
-Commitlint è uno strumento per validare i messaggi di commit secondo convenzioni stabilite. Permette di definire regole per il formato, la lunghezza e il contenuto dei messaggi di commit, migliorando la qualità e la consistenza della cronologia del progetto. Si integra perfettamente con Husky per validare i commit in tempo reale.
-
-La sua adozione migliora la qualità della cronologia del progetto e facilita la generazione automatica di changelog, rendendo più semplice il tracciamento delle modifiche e la gestione delle versioni.
-
-\section{Considerazioni sull'architettura tecnologica}
-L'architettura tecnologica scelta combina strumenti moderni e ben collaudati che insieme garantiscono:
-
-\begin{itemize}
-\item \textbf{Qualità del codice} attraverso tipizzazione, linting e testing approfondito
-\item \textbf{Esperienza di sviluppo} efficiente con strumenti performanti e integrati
-\item \textbf{Manutenibilità} grazie a codice ben strutturato e documentato
-\item \textbf{Affidabilità} attraverso test multi-livello che coprono sia singole unità che flussi completi
-\end{itemize}
-
-Questa combinazione permette di sviluppare un'applicazione complessa come un gioco da tavolo digitale mantenendo alti standard di qualità e facilitando la collaborazione tra sviluppatori.
-
-% 
+%
 %			CAPITOLO 4: Il lavoro svolto
-% 
+%
 
-\chapter{Nome del Progetto}
+\chapter{Implementazione}
 \label{cap4}
 
-% 
+\section{Specifiche funzionali}
+
+L'applicazione implementa una versione digitale del gioco da tavolo \textit{La Città degli Imprevisti}, pensata per essere utilizzata in sessioni di gruppo guidate da un educatore o terapista del CFPIL di Varese.
+
+\subsection{Configurazione della partita}
+
+Prima di avviare una partita, il sistema consente di:
+
+\begin{itemize}
+    \item impostare il numero di giocatori (da 2 a 10), ciascuno identificato da un nome e un colore assegnato automaticamente;
+    \item definire il numero di caselle del tabellone (da 10 a 100);
+    \item scegliere quali tipologie di caselle speciali includere tra: Mimo, Quiz, Parole alle spalle, Disegno dettato, Emozioni in musica, Indovina l'emozione, Cosa faresti se\ldots, Test fisico, Battaglia, Caselle movimento;
+    \item regolare la percentuale di caselle speciali rispetto al totale delle caselle normali.
+\end{itemize}
+
+La configurazione viene persistita in locale tramite il middleware \texttt{persist} di Zustand, così da essere disponibile anche in caso di ricaricamento della pagina.
+
+\subsection{Svolgimento del turno}
+
+Il turno di ogni giocatore segue la sequenza:
+
+\begin{enumerate}
+    \item Il giocatore attivo lancia il dado (valore casuale 1--6).
+    \item La pedina si sposta lungo il tabellone del numero di caselle corrispondente al risultato del lancio.
+    \item Se la casella di arrivo è normale, il turno termina e passa al giocatore successivo.
+    \item Se la casella è speciale, viene mostrata una finestra modale con la sfida corrispondente.
+    \item L'educatore valuta l'esito e registra il risultato; il sistema applica le conseguenze (avanzamento, retrocessione o salto del turno).
+    \item In caso di collisione tra due pedine sulla stessa casella, si attiva automaticamente la meccanica di Battaglia.
+\end{enumerate}
+
+\subsection{Salvataggio e ripristino della partita}
+
+Lo stato completo della partita (posizioni delle pedine, turno corrente, stato dei mazzi) è serializzabile in formato JSON ed esportabile come file.
+Una partita interrotta può essere ripristinata caricando il file salvato dalla schermata dedicata.
+
+\section{Descrizione funzionale}
+
+L'applicazione si articola in sei schermate principali. La navigazione avviene tramite un header persistente che espone due elementi: un link diretto alla schermata delle istruzioni e un pulsante Menu che apre un overlay modale con i collegamenti a Nuova partita, Continua partita, Carica partita e Feedback.
+
+\subsection{Schermata Home --- Configurazione della partita}
+
+La schermata iniziale permette di configurare una nuova partita: numero e nomi dei giocatori, lunghezza del percorso, tipologie di caselle speciali da includere e relativa percentuale di distribuzione.
+
+È disponibile anche una \textbf{modalità avanzata} che consente di definire manualmente la disposizione delle caselle (descritta nella sezione successiva).
+
+Una volta completata la configurazione, il sistema genera il tabellone e avvia la partita.
+
+\subsection{Schermata di gioco}
+
+È la schermata principale, composta da tre aree:
+
+\begin{itemize}
+    \item \textbf{Tabellone}: griglia di caselle numerate, identificate visivamente per tipologia; le pedine si animano al momento dello spostamento.
+    \item \textbf{Barra laterale}: mostra il giocatore attivo, il numero del round e le posizioni di tutti i giocatori.
+    \item \textbf{Dado e modali}: un pulsante permette al giocatore attivo di lanciare il dado; se la casella di arrivo è speciale, si apre la finestra modale corrispondente alla sfida.
+\end{itemize}
+
+Le sfide attivabili sono:
+
+\begin{itemize}
+    \item \textbf{Mimo} --- Il giocatore mima una parola o frase senza parlare; allena la comunicazione non verbale e la capacità di decodificare i gesti altrui.
+    \item \textbf{Quiz} --- Viene posta una domanda a risposta aperta o a scelta multipla; stimola l'attenzione e il ragionamento.
+    \item \textbf{Parole alle spalle} --- Il giocatore traccia con il dito una parola sulla schiena di un compagno, che deve riconoscerla; promuove la comunicazione tattile.
+    \item \textbf{Disegno dettato} --- Un giocatore descrive a parole un'immagine che un compagno deve riprodurre graficamente; esercita la comunicazione verbale precisa e la collaborazione.
+    \item \textbf{Emozioni in musica} --- Il giocatore associa un brano musicale a un'emozione; sviluppa il riconoscimento e l'espressione emotiva.
+    \item \textbf{Indovina l'emozione} --- Viene mostrata l'immagine di un volto; il giocatore deve identificare l'emozione espressa, abilità spesso difficoltosa nei soggetti con autismo.
+    \item \textbf{Cosa faresti se\ldots} --- Il giocatore risponde a uno scenario ipotetico di vita quotidiana; stimola il ragionamento sociale e la prospettiva altrui.
+    \item \textbf{Test fisico} --- Viene proposta una prova motoria; favorisce la coordinazione e la gestione del corpo nello spazio condiviso.
+    \item \textbf{Battaglia} --- Si attiva quando due pedine si trovano sulla stessa casella; i due giocatori si sfidano e il perdente retrocede, introducendo la gestione regolamentata della competizione.
+    \item \textbf{Caselle movimento} --- Spostamento diretto senza sfida; replica la meccanica classica del Gioco dell'Oca, introducendo l'elemento della fortuna e dell'attesa.
+\end{itemize}
+
+\subsection{Schermata Istruzioni}
+
+Presenta le regole del gioco strutturate in sezioni (introduzione, configurazione, svolgimento del turno, caselle speciali, fine della partita), navigabili tramite un indice interno con link di ancoraggio.
+Ogni sezione è corredata da video dimostrativi che mostrano l'applicazione in funzione nei principali scenari di gioco.
+La schermata è raggiungibile direttamente dall'header in qualsiasi momento, senza perdere lo stato della partita in corso.
+
+\subsection{Schermata Modalità avanzata}
+
+Consente di assegnare manualmente il tipo a ogni singola casella del tabellone, sostituendo la distribuzione casuale.
+
+\subsection{Schermata Ripristina partita}
+
+Consente di caricare una partita precedentemente salvata tramite file JSON, ripristinando lo stato completo dal punto in cui era stata interrotta.
+
+\subsection{Schermata Feedback}
+
+Contiene un modulo per inviare segnalazioni o suggerimenti sull'applicazione.
+
+\section{Architettura dei moduli}
+
+L'applicazione segue un'architettura a tre strati con separazione netta tra logica di dominio, gestione dello stato e presentazione:
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Strato} & \textbf{Modulo} \\ \hline
+    Presentation Layer     & Componenti React (\texttt{src/app/}) \\ \hline
+    State Management Layer & Store Zustand (\texttt{src/store/}) \\ \hline
+    Domain Model Layer     & Logica di gioco (\texttt{src/model/}) \\ \hline
+    \end{tabular}
+    \caption{Architettura a strati dell'applicazione.}
+    \label{tab:architettura}
+\end{table}
+
+Questa separazione consente di testare la logica di gioco indipendentemente dall'interfaccia e di aggiornare i componenti visivi senza modificare le regole di gioco.
+
+\subsection{Domain Model}
+
+Il domain model contiene tutta la logica di gioco, completamente slegata da React e dal browser.
+La classe \texttt{Game} è l'orchestratore principale: mantiene i riferimenti a tutti i sottocomponenti (tabellone, giocatori, dado, mazzi, manager) ed espone i metodi pubblici che il layer di stato chiama per far avanzare la partita.
+Il metodo \texttt{playTurn()} esegue un turno completo — lancio del dado, spostamento della pedina, elaborazione della casella — e restituisce il tipo di azione da mostrare all'utente.
+I metodi \texttt{toJSON()} e \texttt{fromJSON()} gestiscono la serializzazione dello stato per il salvataggio su file.
+
+Ogni aspetto della partita è delegato a un manager specializzato:
+
+\begin{itemize}
+    \item \texttt{TurnManager} --- traccia il turno corrente, il round e il giocatore attivo;
+    \item \texttt{MovementManager} --- sposta le pedine, gestisce bonus/malus di movimento e collisioni;
+    \item \texttt{GameStateManager} --- verifica la condizione di vittoria;
+    \item \texttt{SpecialSquareProcessor} --- determina quale azione speciale si attiva su una casella;
+    \item \texttt{BattleManager} e i manager di ogni tipologia di sfida (es. \texttt{MimeManager}, \texttt{QuizManager}) --- applicano gli effetti dell'esito di ciascuna sfida.
+\end{itemize}
+
+Le caselle del tabellone sono modellate come classi distinte (es. \texttt{MimeSquare}, \texttt{QuizSquare}) che estendono la classe base \texttt{Square} e sono ricostruite tramite il pattern Builder al momento del ripristino di una partita salvata.
+
+Ogni tipologia di casella speciale dispone di un mazzo di carte dedicato (es. \texttt{MimeDeck}, \texttt{QuizDeck}), mescolato all'inizio della partita e consumato in sequenza per garantire varietà e non ripetizione dei contenuti nella stessa sessione.
+
+\subsection{State Management}
+
+Lo stato globale è gestito con Zustand, suddiviso in tre store indipendenti persistiti in localStorage:
+
+\begin{itemize}
+    \item \texttt{game-store} --- stato della partita in corso: istanza serializzata di \texttt{Game}, risultato del dado, tipo di azione corrente, stato delle finestre modali;
+    \item \texttt{config-store} --- configurazione della partita: nomi e numero dei giocatori, numero di caselle, tipologie e percentuale di caselle speciali;
+    \item \texttt{sound-store} --- preferenza dell'utente riguardo agli effetti sonori.
+\end{itemize}
+
+\subsection{Presentation Layer}
+
+Il presentation layer comprende sia le pagine che i componenti React.
+In Next.js le pagine (\texttt{page.tsx}) sono esse stesse componenti: la distinzione è strutturale — determinano il routing — ma non concettuale.
+
+Le pagine dell'applicazione sono:
+
+\begin{itemize}
+    \item \texttt{app/page.tsx} --- schermata di configurazione della partita;
+    \item \texttt{app/game/page.tsx} --- schermata principale di gioco;
+    \item \texttt{app/instructions/page.tsx} --- istruzioni di gioco con video dimostrativi;
+    \item \texttt{app/advanced-mode/page.tsx} --- configurazione avanzata del tabellone;
+    \item \texttt{app/restore-game/page.tsx} --- ripristino partita da file;
+    \item \texttt{app/feedback/page.tsx} --- modulo di feedback.
+\end{itemize}
+
+I componenti principali dell'interfaccia sono:
+
+\begin{itemize}
+    \item \texttt{board.tsx} --- tabellone come griglia CSS con numero di colonne variabile in base alla dimensione;
+    \item \texttt{square.tsx} --- singola casella con numero, tipo visivo e pedine presenti;
+    \item \texttt{pawn.tsx} --- pedina con colore assegnato e animazione al momento dello spostamento;
+    \item \texttt{dice.tsx} --- dado con animazione al momento del lancio;
+    \item \texttt{left-bar.tsx} --- barra laterale con turno attivo, round corrente e classifica;
+    \item \texttt{turn-result-modal.tsx} --- finestra modale delegata a un sottocomponente specifico per ogni tipo di sfida.
+\end{itemize}
+
+I componenti primitivi riutilizzabili (\texttt{Button}, \texttt{Input}, \texttt{Label}, \texttt{Select}) sono sviluppati e documentati in isolamento tramite Storybook.
+
+\section{Scelte implementative rilevanti}
+
+\subsection{Il tipo \texttt{GameActionResult} e il Command Pattern}
+
+La comunicazione tra il domain model e il layer di stato avviene tramite il tipo \texttt{GameActionResult}, un oggetto TypeScript che \texttt{playTurn()} restituisce al termine di ogni turno.
+Questa scelta riflette il \textit{Command Pattern}: invece di eseguire direttamente un'azione sull'interfaccia, il domain model produce un oggetto che \textit{descrive} l'azione da compiere, lasciando al chiamante la responsabilità di decidere come gestirla.
+
+Il campo \texttt{type} è un'unione discriminata di stringhe letterali — una per ogni tipologia di sfida più il valore \texttt{"none"} per i turni senza azione speciale. Il campo \texttt{data} trasporta i dati specifici dell'azione (ad esempio la carta estratta o i giocatori coinvolti in una battaglia). Lo store legge \texttt{type} per determinare quale finestra modale aprire, e \texttt{data} per popolarla con il contenuto corretto, senza che il domain model abbia alcuna dipendenza dall'interfaccia.
+Il ciclo si chiude quando l'educatore registra l'esito della sfida: lo store chiama il corrispondente metodo \texttt{resolve*()} su \texttt{Game}, che applica le conseguenze sul tabellone e aggiorna lo stato della partita.
+
+\begin{lstlisting}[language=TypeScript, caption={Tipo di ritorno di \texttt{playTurn()} (src/model/managers/types.ts)}]
+export type GameActionResult = {
+  type:
+    | "battle" | "mime"    | "quiz"
+    | "backwrite"          | "face-emotion"
+    | "music-emotion"      | "physical-test"
+    | "what-would-you-do"  | "dictation-draw"
+    | "none";
+  data?: Battle | Mime | Quiz | BackWrite | FaceEmotion
+       | MusicEmotion | PhysicalTest | WhatWouldYouDo
+       | DictationDraw;
+  diceResult: number;
+  actionType: string | null;
+};
+\end{lstlisting}
+
+Il metodo \texttt{playTurn()} in \texttt{Game} sfrutta questo tipo per incapsulare l'intera logica del turno — gestione del turno saltato, lancio del dado, movimento, rilevamento collisioni ed elaborazione della casella speciale — restituendo un valore strutturato che il layer di stato consuma senza dover conoscere i dettagli interni.
+
+\begin{lstlisting}[language=TypeScript, caption={Metodo \texttt{playTurn()} (src/model/game.ts)}]
+playTurn(): GameActionResult {
+  const currentPlayer = this.turnManager.getCurrentPlayer();
+
+  if (currentPlayer.mustSkipTurn()) {
+    this.turnManager.advanceTurn();
+    return { type: "none", diceResult: 0, actionType: null };
+  }
+
+  const diceValue = this.dice.roll();
+  const result = this.executePlayerTurn(currentPlayer, diceValue);
+  this.turnManager.advanceTurn();
+
+  return { ...result, diceResult: diceValue };
+}
+\end{lstlisting}
+
+\subsection{Gestione dello stato con Zustand e persistenza}
+
+Lo store \texttt{useGameStore} è il punto di raccordo tra il domain model e l'interfaccia utente.
+È definito tramite \texttt{create()} di Zustand, avvolto nel middleware \texttt{persist}, e si articola in due sezioni distinte: lo \textit{stato} e le \textit{azioni}.
+
+La sezione di stato contiene due categorie di campi: quelli che riflettono la partita in corso (\texttt{game}, istanza della classe \texttt{Game}, e \texttt{gameData}, la sua rappresentazione JSON) e quelli che descrivono la situazione dell'interfaccia (\texttt{isModalOpen}, \texttt{isDiceModalOpen}, \texttt{diceResult}, \texttt{actionType}, \texttt{actionData} e altri).
+
+Le azioni sono funzioni che i componenti React chiamano in risposta agli eventi dell'utente. La più importante è \texttt{playTurn()}: recupera l'istanza di \texttt{Game} dallo store, invoca il metodo omonimo del domain model, riceve il \texttt{GameActionResult} e aggiorna lo stato dell'interfaccia di conseguenza — impostando il risultato del dado, il tipo di azione attiva e aprendo la finestra modale appropriata. Analogamente, ciascuna azione \texttt{resolve*()} delega la risoluzione al metodo corrispondente di \texttt{Game} e, al termine, aggiorna la serializzazione JSON della partita tramite \texttt{toJSON()}.
+
+Il middleware \texttt{persist} sincronizza automaticamente lo store con il localStorage del browser. L'opzione \texttt{partialize} limita la persistenza al solo campo \texttt{gameData}: in questo modo lo stato della partita sopravvive al ricaricamento della pagina, mentre i campi transitori dell'interfaccia vengono reinizializzati ai valori di default.
+
+\begin{lstlisting}[language=TypeScript, caption={Store di gioco con persistenza selettiva (src/store/game-store.ts)}]
+export const useGameStore = create<GameStore>()(
+  persist(
+    (set, get) => ({
+      game: null,
+      gameData: null,
+      isModalOpen: false,
+      // ...altri campi UI...
+
+      actions: {
+        playTurn: () => {
+          const { game } = get();
+          if (!game) return;
+
+          const { diceResult, actionType, data } = game.playTurn();
+          // aggiorna lo stato UI in base al risultato...
+        },
+        // ...altri metodi...
+      },
+    }),
+    {
+      name: "game-store",
+      partialize: (state) => ({
+        gameData: state.gameData,
+        hasSavedGame: !!state.gameData,
+      }),
+    },
+  ),
+);
+\end{lstlisting}
+
+%
 %			CAPITOLO 5: Test
 % 
 
