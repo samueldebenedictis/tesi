@@ -134,7 +134,13 @@
   basicstyle=\ttfamily\small,
   showstringspaces=false,
   tabsize=2,
+  breaklines=true,
+  breakatwhitespace=true,
+  commentstyle=\upshape,
 }
+
+\tolerance=9999
+\hbadness=9999
 
 % --- FINE PREAMBOLO ----------------------------------------------------------
 
@@ -200,21 +206,17 @@
 \label{cap:introduzione}
 
 \section{L'autismo}
-\textit{"Autistico"} è un aggettivo coniato dallo psichiatra svizzero Eugen Bleuler per descrivere la chiusura in sé stessi di alcuni suoi pazienti (dal greco \textit{autos}) e in seguito viene utilizzato da molti autori per descrivere difficoltà osservate in pazienti bambini e adolescenti.
+Il termine \textit{"autistico"} nasce come aggettivo descrittivo: lo psichiatra svizzero Eugen Bleuler lo coniò per indicare la chiusura in sé stessi di alcuni suoi pazienti (dal greco \textit{autos}). Solo in seguito fu adottato da altri autori per descrivere difficoltà simili osservate in bambini e adolescenti.
 
-La psichiatra Grunya Efimovna Sukhareva nel 1926 descrive dettagliatamente le caratteristiche autistiche di sei bambini, che tuttavia vengono diagnosticati come affetti da psicopatia schizoide.
+Già nel 1926 la psichiatra Grunya Efimovna Sukhareva aveva documentato con grande dettaglio le caratteristiche autistiche di sei bambini --- eppure la diagnosi rimase quella di psicopatia schizoide. Ci vollero altri vent'anni prima che l'autismo venisse riconosciuto come condizione a sé.
 
-Solo nel 1943 viene proposta una distinzione dell'autismo da altre sindromi.
-Il pediatra Hans Asperger, nella sua tesi di dottorato, utilizza il termine \textit{"psicopatia autistica"} e descrive accuratamente la condizione di alcuni ragazzi basandosi sull'osservazione di circa duecento pazienti.
-Leo Kanner, nello stesso anno, riporta le osservazioni compiute su undici bambini caratterizzate da \textit{"marcate difficoltà nelle relazioni sociali e nella comunicazione}", e in un lavoro successivo propone di chiamare questa sindrome \textit{"autismo infantile"}.
+Nel 1943, in modo indipendente, due ricercatori arrivarono a conclusioni simili. Hans Asperger, nella sua tesi di dottorato, descrisse la condizione di alcuni ragazzi basandosi sull'osservazione di circa duecento pazienti, usando il termine \textit{"psicopatia autistica"}. Nello stesso anno Leo Kanner riportò le osservazioni su undici bambini con \textit{"marcate difficoltà nelle relazioni sociali e nella comunicazione"} e, in un lavoro successivo, propose il nome \textit{"autismo infantile"}.
 
-Negli anni Settanta, Lorna Wing fornisce le prime prove riguardo alla natura composita dell'autismo e l'impossibilità di descriverlo in base a criteri diagnostici univoci ed introduce l'espressione "disturbo dello spettro autistico".
+Negli anni Settanta Lorna Wing mise in discussione l'idea che l'autismo potesse essere ricondotto a criteri diagnostici univoci: fornì le prime prove sistematiche della sua natura composita e introdusse l'espressione \textit{"disturbo dello spettro autistico"}.
 
-Come riportato da Luca Surian, il termine \textit{"spettro"} mette in risalto la concezione dimensionale che era stata proposta da Asperger, questa prospettiva sottolinea la variabilità quantitativa e graduale, piuttosto che la differenza qualitativa e categoriale; secondo questa prospettiva, la differenza tra persone con o senza autismo va pensata come una differenza di grado, non di qualità. \cite{surian2021}
+Il termine \textit{"spettro"} non è neutro. Come sottolinea Surian \cite{surian2021}, riprende la concezione dimensionale già implicita nel lavoro di Asperger: la differenza tra persone con o senza autismo va pensata come una differenza di grado, non di qualità.
 
-L'autismo viene diagnosticato quando una costellazione di tratti è presente nello stesso individuo e si manifesta in forma molto accentuata.
-Alcuni di questi tratti sono: propensione per la ripetizione di alcune attività, spiccata attenzione ai dettagli e difficoltà nell'accettare cambiamenti.
-Queste caratteristiche, pur variando per intensità e manifestazione, rendono il potenziamento delle competenze sociali un obiettivo prioritario, al quale il presente elaborato intende contribuire attraverso l'implementazione digitale di un gioco da tavolo strutturato.
+Nella pratica, la diagnosi viene posta quando una costellazione di tratti si manifesta nello stesso individuo in forma molto accentuata: propensione per la ripetizione di alcune attività, spiccata attenzione ai dettagli, difficoltà nell'accettare cambiamenti. È proprio su uno di questi versanti --- quello delle competenze sociali --- che il presente lavoro intende intervenire.
 
 \section{Il CFPIL di Varese}
 
@@ -243,38 +245,44 @@ Per molti adolescenti con disturbo dello spettro autistico le competenze sociali
 
 Il CFPIL persegue questo obiettivo principalmente attraverso laboratori pratici a carattere professionalizzante, nei quali l'attività manuale diventa il mezzo attraverso cui esercitare e consolidare abilità relazionali in contesti strutturati e realistici, con ruoli definiti e procedure sequenziali che riproducono le dinamiche del mondo del lavoro.
 
-Questo approccio laboratoriale permette di sviluppare le competenze sociali non attraverso esercizi astratti ma in situazioni autentiche e motivanti, favorendo la generalizzazione degli apprendimenti al di fuori del contesto scolastico o terapeutico.
+Lavorare in contesti reali e motivanti, con ruoli definiti e una logica procedurale, permette di sviluppare le competenze sociali in modo più efficace rispetto agli esercizi astratti --- e favorisce la generalizzazione di quanto appreso al di fuori del contesto scolastico o terapeutico.
+A questo si aggiunge un dato non scontato: gli adolescenti autistici esprimono interesse per la socializzazione, e il gioco è uno dei contesti in cui questo interesse emerge con più facilità \cite{walsh2024}. Il formato ludico diventa quindi un canale di intervento, non un ripiego.
 
 \section{Il gioco da tavolo}
 
 Per i bambini e gli adolescenti con disturbo dello spettro autistico, il gioco riveste un'importanza terapeutica significativa: rappresenta una cornice educativa motivante in cui sperimentare abilità, consolidare comportamenti e relazionarsi con le persone circostanti.
+Qualsiasi gioco, indipendentemente dal suo grado di serietà, insegna implicitamente ai partecipanti come comportarsi in un contesto di gruppo; i meccanismi di avanzamento e ricompensa integrati lo rendono inoltre particolarmente motivante rispetto ad altre forme di intervento educativo \cite{atherton2021}.
 Tra le varie forme di gioco, quella che raggiunge il più alto livello di strutturazione è il gioco da tavolo, caratterizzato dall'utilizzo di elementi fisici definiti (pedine, carte, tabelloni, dadi) e da un insieme di regole esplicite che delimitano uno spazio e un tempo di gioco ben determinati.
-Questa natura di sistema chiuso e altamente strutturato lo rende particolarmente adatto al contesto autistico, poiché presenta caratteristiche analoghe a quelle delle attività di lavoro indipendente previste dalla metodologia \textit{Treatment and Education of Autistic and related Communication handicapped Children} (TEACCH): entrambe si svolgono seduti al tavolo, sono strutturate nel tempo e nello spazio, hanno una fine prestabilita al raggiungimento di condizioni note e privilegiano il codice visivo rispetto a quello verbale \cite{mari2018}.
+Questa struttura chiusa e ben delimitata lo rende particolarmente adatto al contesto autistico. Le analogie con le attività di lavoro indipendente previste dalla metodologia \textit{Treatment and Education of Autistic and related Communication handicapped Children} (TEACCH) non sono casuali: entrambe si svolgono seduti al tavolo, sono strutturate nel tempo e nello spazio, hanno una fine prestabilita e privilegiano il codice visivo rispetto a quello verbale \cite{mari2018}.
 
-A differenza delle attività di lavoro individuale, tuttavia, il gioco da tavolo richiede la partecipazione di almeno due soggetti: si configura quindi come un'interazione focalizzata faccia a faccia, con implicazioni relazionali ed educative di rilievo.
+A differenza delle attività di lavoro individuale, tuttavia, il gioco da tavolo richiede la partecipazione di almeno due soggetti: si configura quindi come un'interazione focalizzata faccia a faccia, offrendo opportunità di interazione sociale più ricche rispetto alle alternative esclusivamente digitali \cite{atherton2021}. Anche nella versione digitale oggetto del presente elaborato, il gioco rimane un'esperienza condivisa che si svolge fisicamente attorno a uno schermo comune.
 
-Il progetto descritto nel presente elaborato si inserisce in questa prospettiva: l'implementazione digitale di un gioco da tavolo consente di integrare meccanismi di adattamento direttamente nell'interfaccia, senza modificare fisicamente i componenti, e offre al contempo uno strumento di interazione sociale strutturata per gli adolescenti del CFPIL di Varese.
+Una revisione sistematica della letteratura ha riscontrato esiti positivi in tutti gli studi analizzati sull'uso dei giochi come strumento di \textit{social skills training} per persone autistiche \cite{walsh2024}. La ricerca in questo ambito ha privilegiato strumenti digitali sviluppati appositamente --- ambienti virtuali, robot, agenti conversazionali --- mentre le implementazioni digitali di giochi da tavolo strutturati rimangono un approccio ancora poco esplorato.
+
+L'implementazione digitale descritta in questo elaborato si colloca in questo spazio ancora poco esplorato. Rispetto alla versione fisica, il formato digitale consente di adattare parametri come il numero di caselle, la tipologia delle sfide o il numero di giocatori direttamente dall'interfaccia --- senza dover riprogettare e ristampare i componenti. L'interazione, però, rimane quella del gioco da tavolo: faccia a faccia, attorno a uno schermo condiviso.
 
 \section{\textit{La Città degli Imprevisti}}
 
-Nel contesto delle attività del CFPIL di Varese, utenti e docenti hanno collaborato alla progettazione di un gioco da tavolo originale denominato \textit{La Città degli Imprevisti}.
-Il gioco si ispira alla struttura del Gioco dell'Oca, un percorso lineare con caselle numerate su cui i giocatori avanzano lanciando un dado, arricchendola però con caselle speciali che attivano minigiochi a carattere sociale ed emotivo.
-L'obiettivo di ogni partita è raggiungere l'ultima casella del tabellone prima degli avversari; lungo il percorso i giocatori si trovano a fronteggiare situazioni che richiedono comunicazione, collaborazione e riconoscimento delle emozioni.
+\textit{La Città degli Imprevisti} nasce da una collaborazione diretta tra utenti e docenti del CFPIL di Varese, che hanno progettato insieme un gioco centrato sulle competenze sociali.
+La struttura di base è quella del Gioco dell'Oca --- un percorso lineare, un dado, le pedine --- arricchita con caselle speciali che attivano minigiochi a carattere sociale ed emotivo.
+L'obiettivo è arrivare per primi all'ultima casella, ma lungo il percorso i giocatori si trovano a dover comunicare, collaborare, riconoscere emozioni --- non come esercizio isolato, ma come parte del gioco stesso.
 
 Le caselle speciali costituiscono il cuore educativo del gioco e sono progettate per sollecitare competenze diverse:
 
 \begin{itemize}
-    \item \textbf{Mimo}: il giocatore deve mimare una parola o una frase; allena la comunicazione non verbale e la capacità di decodificare i gesti altrui.
-    \item \textbf{Quiz}: viene posta una domanda a risposta aperta o a scelta multipla; stimola l'attenzione e il ragionamento.
-    \item \textbf{Parole alle spalle}: il giocatore scrive una parola sulla schiena di un compagno, che deve riconoscerla; promuove il contatto fisico guidato e la comunicazione tattile.
-    \item \textbf{Disegno dettato}: un giocatore descrive a parole un'immagine che un compagno deve riprodurre graficamente; esercita la comunicazione verbale precisa e la collaborazione.
-    \item \textbf{Emozioni in musica}: il giocatore esprime un'emozione attraverso una canzone; sviluppa il riconoscimento e l'espressione delle emozioni.
-    \item \textbf{Indovina l'emozione}: viene mostrato un volto e il giocatore deve identificare l'emozione espressa; allena la lettura delle espressioni facciali, spesso difficoltosa nei soggetti con autismo.
-    \item \textbf{Cosa faresti se\dots}: il giocatore risponde a uno scenario ipotetico e gli altri valutano la risposta; stimola il ragionamento sociale e la prospettiva altrui.
-    \item \textbf{Test fisico}: viene proposta una prova motoria da eseguire; favorisce la coordinazione e la gestione del corpo nello spazio condiviso.
-    \item \textbf{Battaglia}: quando due giocatori si trovano sulla stessa casella devono sfidarsi; introduce la competizione regolamentata e la gestione dell'esito (vittoria e sconfitta).
-    \item \textbf{Caselle movimento}: alcune caselle fanno avanzare o retrocedere il giocatore; replicano la meccanica classica del Gioco dell'Oca, introducendo l'elemento della fortuna e dell'attesa.
+    \item \textbf{Mimo} --- Il giocatore deve mimare una parola o una frase; allena la comunicazione non verbale e la capacità di decodificare i gesti altrui.
+    \item \textbf{Quiz} --- Viene posta una domanda a risposta aperta o a scelta multipla; stimola l'attenzione e il ragionamento.
+    \item \textbf{Parole alle spalle} --- Il giocatore scrive una parola sulla schiena di un compagno, che deve riconoscerla; promuove il contatto fisico guidato e la comunicazione tattile.
+    \item \textbf{Disegno dettato} --- Un giocatore descrive a parole un'immagine che un compagno deve riprodurre graficamente; esercita la comunicazione verbale precisa e la collaborazione.
+    \item \textbf{Emozioni in musica} --- Il giocatore esprime un'emozione attraverso una canzone; sviluppa il riconoscimento e l'espressione delle emozioni.
+    \item \textbf{Indovina l'emozione} --- Viene mostrato un volto e il giocatore deve identificare l'emozione espressa; allena la lettura delle espressioni facciali, spesso difficoltosa nei soggetti con autismo.
+    \item \textbf{Cosa faresti se\dots} --- Il giocatore risponde a uno scenario ipotetico e gli altri valutano la risposta; stimola il ragionamento sociale e la prospettiva altrui.
+    \item \textbf{Test fisico} --- Viene proposta una prova motoria da eseguire; favorisce la coordinazione e la gestione del corpo nello spazio condiviso.
+    \item \textbf{Battaglia} --- Quando due giocatori si trovano sulla stessa casella devono sfidarsi; introduce la competizione regolamentata e la gestione dell'esito (vittoria e sconfitta).
+    \item \textbf{Caselle movimento} --- Alcune caselle fanno avanzare o retrocedere il giocatore; replicano la meccanica classica del Gioco dell'Oca, introducendo l'elemento della fortuna e dell'attesa.
 \end{itemize}
+
+Alcune di queste tipologie trovano riscontro nella letteratura empirica: come riportato da Atherton e Cross \cite{atherton2021}, giochi di riconoscimento delle espressioni facciali hanno prodotto miglioramenti significativi in bambini con disturbo dello spettro autistico (Tanaka et al., 2010); attività di mimica con contenuto emotivo hanno dimostrato di allenare la decodifica del linguaggio non verbale (Dell'Angela et al., 2020); il gioco di ruolo da tavolo con adolescenti autistici ha prodotto miglioramenti nel benessere emotivo e nelle amicizie (Katō, 2019).
 
 La varietà delle sfide garantisce che durante la partita vengano esercitate competenze eterogenee, riducendo la ripetitività e mantenendo alto il coinvolgimento dei partecipanti.
 
@@ -301,11 +309,11 @@ Gli strumenti adottati sono stati scelti per garantire qualità del codice, effi
 
 \subsection{Next.js}
 Next.js è un framework React per applicazioni web che integra nativamente routing basato su file, rendering lato server (SSR) e generazione di siti statici (SSG).
-\`{E} stato scelto come framework principale per la sua capacità di produrre output statici distribuibili su GitHub Pages senza necessità di un server, mantenendo al contempo un'esperienza di sviluppo moderna.
+È stato scelto come framework principale per la sua capacità di produrre output statici distribuibili su GitHub Pages senza necessità di un server, mantenendo al contempo un'esperienza di sviluppo moderna.
 
 \subsection{TypeScript}
 TypeScript è un superset di JavaScript che aggiunge tipizzazione statica al linguaggio, consentendo di individuare errori a tempo di compilazione anziché a runtime.
-Nel contesto di un progetto con un domain model articolato — composto da classi, manager e interfacce — la tipizzazione ha reso più sicuro il refactoring e ha ridotto significativamente la categoria di bug legati a tipi inattesi.
+Nel contesto di un progetto con un domain model articolato --- composto da classi, manager e interfacce --- la tipizzazione ha reso più sicuro il refactoring e ha ridotto significativamente la categoria di bug legati a tipi inattesi.
 
 \subsection{React}
 React è la libreria su cui si basa Next.js per la costruzione dell'interfaccia utente tramite componenti dichiarativi.
@@ -313,8 +321,8 @@ Il modello a componenti consente di strutturare l'interfaccia in unità indipend
 
 \subsection{Zustand}
 Zustand è una libreria leggera per la gestione dello stato globale dell'applicazione.
-A differenza di soluzioni più elaborate come Redux, non richiede boilerplate e si integra in modo naturale con TypeScript.
-Il middleware \texttt{persist} consente di sincronizzare automaticamente gli store con il localStorage del browser, rendendo lo stato della partita sopravvivente al ricaricamento della pagina senza codice aggiuntivo.
+A differenza di soluzioni più elaborate come Redux, non richiede \textit{boilerplate} e si integra in modo naturale con TypeScript.
+Il middleware \texttt{persist} consente di sincronizzare automaticamente gli store con il \texttt{localStorage} del browser, rendendo lo stato della partita sopravvivente al ricaricamento della pagina senza codice aggiuntivo.
 
 \subsection{Tailwind CSS}
 Tailwind CSS è un framework CSS \textit{utility-first}: invece di definire classi semantiche personalizzate, si compone l'aspetto visivo applicando direttamente nel markup classi predefinite di basso livello.
@@ -324,7 +332,7 @@ Questo approccio ha velocizzato lo sviluppo dell'interfaccia, garantendo coerenz
 
 \subsection{Biome}
 Biome è uno strumento che unifica in un unico pacchetto le funzionalità di linting, formattazione e organizzazione degli import, sostituendo la tradizionale combinazione ESLint + Prettier con una configurazione singola e tempi di esecuzione notevolmente inferiori.
-\`{E} configurato per essere eseguito automaticamente a ogni commit tramite Husky.
+È configurato per essere eseguito automaticamente a ogni commit tramite Husky.
 
 \subsection{Husky e Commitlint}
 Husky gestisce i Git hooks, permettendo di eseguire automaticamente controlli prima che un commit venga registrato.
@@ -390,7 +398,7 @@ Una partita interrotta può essere ripristinata caricando il file salvato dalla 
 
 \section{Descrizione funzionale}
 
-L'applicazione si articola in sei schermate principali. La navigazione avviene tramite un header persistente che espone due elementi: un link diretto alla schermata delle istruzioni e un pulsante Menu che apre un overlay modale con i collegamenti a Nuova partita, Continua partita, Carica partita e Feedback.
+L'applicazione si articola in sei schermate principali. La navigazione avviene tramite un header persistente che espone due elementi: un link diretto alla schermata delle istruzioni e un pulsante Menu che apre una finestra modale con i collegamenti a Nuova partita, Continua partita, Carica partita e Feedback.
 
 \subsection{Schermata Home --- Configurazione della partita}
 
@@ -405,9 +413,9 @@ Una volta completata la configurazione, il sistema genera il tabellone e avvia l
 È la schermata principale, composta da tre aree:
 
 \begin{itemize}
-    \item \textbf{Tabellone}: griglia di caselle numerate, identificate visivamente per tipologia; le pedine si animano al momento dello spostamento.
-    \item \textbf{Barra laterale}: mostra il giocatore attivo, il numero del round e le posizioni di tutti i giocatori.
-    \item \textbf{Dado e modali}: un pulsante permette al giocatore attivo di lanciare il dado; se la casella di arrivo è speciale, si apre la finestra modale corrispondente alla sfida.
+    \item \textbf{Tabellone} --- Griglia di caselle numerate, identificate visivamente per tipologia; le pedine si animano al momento dello spostamento.
+    \item \textbf{Barra laterale} --- Mostra il giocatore attivo, il numero del round e le posizioni di tutti i giocatori.
+    \item \textbf{Dado e modali} --- Un pulsante permette al giocatore attivo di lanciare il dado; se la casella di arrivo è speciale, si apre la finestra modale corrispondente alla sfida.
 \end{itemize}
 
 Le sfide attivabili sono:
@@ -434,14 +442,25 @@ La schermata è raggiungibile direttamente dall'header in qualsiasi momento, sen
 \subsection{Schermata Modalità avanzata}
 
 Consente di assegnare manualmente il tipo a ogni singola casella del tabellone, sostituendo la distribuzione casuale.
+L'interfaccia presenta un elenco scorrevole di tutte le caselle: ciascuna è identificata da un badge numerico il cui colore riflette il tipo attualmente assegnato.
+La prima e l'ultima casella (Start e Fine) sono bloccate e non modificabili.
+Per ogni casella intermedia è disponibile un menu a tendina con tutte le tipologie disponibili; selezionando il tipo \textit{movimento} compare un campo numerico aggiuntivo per specificare il numero di caselle di avanzamento o retrocessione (da $-5$ a $+5$).
+I pulsanti in fondo alla schermata permettono di azzerare la configurazione, applicarla tornando alla schermata principale o annullare le modifiche.
 
 \subsection{Schermata Ripristina partita}
 
-Consente di caricare una partita precedentemente salvata tramite file JSON, ripristinando lo stato completo dal punto in cui era stata interrotta.
+Consente di riprendere una sessione interrotta attraverso due modalità distinte.
+La prima permette di caricare un file JSON esportato in precedenza: l'utente seleziona il file dal proprio dispositivo e avvia il ripristino; il sistema valida il contenuto e, in caso di file non valido, mostra un messaggio di errore.
+La seconda modalità è disponibile quando il browser ha conservato automaticamente una partita nel \texttt{localStorage}: in tal caso compare un pulsante aggiuntivo per riprendere la sessione senza bisogno di alcun file.
+In entrambi i casi, al termine del ripristino l'utente viene reindirizzato direttamente alla schermata di gioco.
 
 \subsection{Schermata Feedback}
 
-Contiene un modulo per inviare segnalazioni o suggerimenti sull'applicazione.
+Contiene un modulo strutturato per raccogliere valutazioni sull'applicazione da parte di docenti e alunni del CFPIL.
+Il modulo richiede il nome del compilatore, il ruolo (docente, alunno o altro) e il tipo di esperienza maturata con il gioco (versione fisica, digitale o entrambe).
+Una sezione di valutazione numerica (scala 1--5) raccoglie giudizi su accessibilità, fedeltà della versione digitale rispetto a quella fisica, chiarezza visiva e comfort sonoro.
+Tre campi di testo libero permettono infine di descrivere gli aspetti positivi, le difficoltà riscontrate e i suggerimenti per miglioramenti futuri.
+Le risposte sono inviate tramite il servizio Formspree e archiviate per analisi successive.
 
 \section{Architettura dei moduli}
 
@@ -466,7 +485,7 @@ Questa separazione consente di testare la logica di gioco indipendentemente dall
 
 Il domain model contiene tutta la logica di gioco, completamente slegata da React e dal browser.
 La classe \texttt{Game} è l'orchestratore principale: mantiene i riferimenti a tutti i sottocomponenti (tabellone, giocatori, dado, mazzi, manager) ed espone i metodi pubblici che il layer di stato chiama per far avanzare la partita.
-Il metodo \texttt{playTurn()} esegue un turno completo — lancio del dado, spostamento della pedina, elaborazione della casella — e restituisce il tipo di azione da mostrare all'utente.
+Il metodo \texttt{playTurn()} esegue un turno completo --- lancio del dado, spostamento della pedina, elaborazione della casella --- e restituisce il tipo di azione da mostrare all'utente.
 I metodi \texttt{toJSON()} e \texttt{fromJSON()} gestiscono la serializzazione dello stato per il salvataggio su file.
 
 Ogni aspetto della partita è delegato a un manager specializzato:
@@ -485,7 +504,7 @@ Ogni tipologia di casella speciale dispone di un mazzo di carte dedicato (es. \t
 
 \subsection{State Management}
 
-Lo stato globale è gestito con Zustand, suddiviso in tre store indipendenti persistiti in localStorage:
+Lo stato globale è gestito con Zustand, suddiviso in tre store indipendenti persistiti in \texttt{localStorage}:
 
 \begin{itemize}
     \item \texttt{game-store} --- stato della partita in corso: istanza serializzata di \texttt{Game}, risultato del dado, tipo di azione corrente, stato delle finestre modali;
@@ -496,7 +515,7 @@ Lo stato globale è gestito con Zustand, suddiviso in tre store indipendenti per
 \subsection{Presentation Layer}
 
 Il presentation layer comprende sia le pagine che i componenti React.
-In Next.js le pagine (\texttt{page.tsx}) sono esse stesse componenti: la distinzione è strutturale — determinano il routing — ma non concettuale.
+In Next.js le pagine (\texttt{page.tsx}) sono esse stesse componenti: la distinzione è strutturale --- determinano il routing --- ma non concettuale.
 
 Le pagine dell'applicazione sono:
 
@@ -530,7 +549,7 @@ I componenti primitivi riutilizzabili (\texttt{Button}, \texttt{Input}, \texttt{
 La comunicazione tra il domain model e il layer di stato avviene tramite il tipo \texttt{GameActionResult}, un oggetto TypeScript che \texttt{playTurn()} restituisce al termine di ogni turno.
 Questa scelta riflette il \textit{Command Pattern}: invece di eseguire direttamente un'azione sull'interfaccia, il domain model produce un oggetto che \textit{descrive} l'azione da compiere, lasciando al chiamante la responsabilità di decidere come gestirla.
 
-Il campo \texttt{type} è un'unione discriminata di stringhe letterali — una per ogni tipologia di sfida più il valore \texttt{"none"} per i turni senza azione speciale. Il campo \texttt{data} trasporta i dati specifici dell'azione (ad esempio la carta estratta o i giocatori coinvolti in una battaglia). Lo store legge \texttt{type} per determinare quale finestra modale aprire, e \texttt{data} per popolarla con il contenuto corretto, senza che il domain model abbia alcuna dipendenza dall'interfaccia.
+Il campo \texttt{type} è un'unione discriminata di stringhe letterali --- una per ogni tipologia di sfida più il valore \texttt{"none"} per i turni senza azione speciale. Il campo \texttt{data} trasporta i dati specifici dell'azione (ad esempio la carta estratta o i giocatori coinvolti in una battaglia). Lo store legge \texttt{type} per determinare quale finestra modale aprire, e \texttt{data} per popolarla con il contenuto corretto, senza che il domain model abbia alcuna dipendenza dall'interfaccia.
 Il ciclo si chiude quando l'educatore registra l'esito della sfida: lo store chiama il corrispondente metodo \texttt{resolve*()} su \texttt{Game}, che applica le conseguenze sul tabellone e aggiorna lo stato della partita.
 
 \begin{lstlisting}[language=TypeScript, caption={Tipo di ritorno di \texttt{playTurn()} (src/model/managers/types.ts)}]
@@ -549,7 +568,7 @@ export type GameActionResult = {
 };
 \end{lstlisting}
 
-Il metodo \texttt{playTurn()} in \texttt{Game} sfrutta questo tipo per incapsulare l'intera logica del turno — gestione del turno saltato, lancio del dado, movimento, rilevamento collisioni ed elaborazione della casella speciale — restituendo un valore strutturato che il layer di stato consuma senza dover conoscere i dettagli interni.
+Il metodo \texttt{playTurn()} in \texttt{Game} sfrutta questo tipo per incapsulare l'intera logica del turno --- gestione del turno saltato, lancio del dado, movimento, rilevamento collisioni ed elaborazione della casella speciale --- restituendo un valore strutturato che il layer di stato consuma senza dover conoscere i dettagli interni.
 
 \begin{lstlisting}[language=TypeScript, caption={Metodo \texttt{playTurn()} (src/model/game.ts)}]
 playTurn(): GameActionResult {
@@ -575,9 +594,9 @@ Lo store \texttt{useGameStore} è il punto di raccordo tra il domain model e l'i
 
 La sezione di stato contiene due categorie di campi: quelli che riflettono la partita in corso (\texttt{game}, istanza della classe \texttt{Game}, e \texttt{gameData}, la sua rappresentazione JSON) e quelli che descrivono la situazione dell'interfaccia (\texttt{isModalOpen}, \texttt{isDiceModalOpen}, \texttt{diceResult}, \texttt{actionType}, \texttt{actionData} e altri).
 
-Le azioni sono funzioni che i componenti React chiamano in risposta agli eventi dell'utente. La più importante è \texttt{playTurn()}: recupera l'istanza di \texttt{Game} dallo store, invoca il metodo omonimo del domain model, riceve il \texttt{GameActionResult} e aggiorna lo stato dell'interfaccia di conseguenza — impostando il risultato del dado, il tipo di azione attiva e aprendo la finestra modale appropriata. Analogamente, ciascuna azione \texttt{resolve*()} delega la risoluzione al metodo corrispondente di \texttt{Game} e, al termine, aggiorna la serializzazione JSON della partita tramite \texttt{toJSON()}.
+Le azioni sono funzioni che i componenti React chiamano in risposta agli eventi dell'utente. La più importante è \texttt{playTurn()}: recupera l'istanza di \texttt{Game} dallo store, invoca il metodo omonimo del domain model, riceve il \texttt{GameActionResult} e aggiorna lo stato dell'interfaccia di conseguenza --- impostando il risultato del dado, il tipo di azione attiva e aprendo la finestra modale appropriata. Analogamente, ciascuna azione \texttt{resolve*()} delega la risoluzione al metodo corrispondente di \texttt{Game} e, al termine, aggiorna la serializzazione JSON della partita tramite \texttt{toJSON()}.
 
-Il middleware \texttt{persist} sincronizza automaticamente lo store con il localStorage del browser. L'opzione \texttt{partialize} limita la persistenza al solo campo \texttt{gameData}: in questo modo lo stato della partita sopravvive al ricaricamento della pagina, mentre i campi transitori dell'interfaccia vengono reinizializzati ai valori di default.
+Il middleware \texttt{persist} sincronizza automaticamente lo store con il \texttt{localStorage} del browser. L'opzione \texttt{partialize} limita la persistenza al solo campo \texttt{gameData}: in questo modo lo stato della partita sopravvive al ricaricamento della pagina, mentre i campi transitori dell'interfaccia vengono reinizializzati ai valori di default.
 
 \begin{lstlisting}[language=TypeScript, caption={Store di gioco con persistenza selettiva (src/store/game-store.ts)}]
 export const useGameStore = create<GameStore>()(
@@ -628,7 +647,7 @@ Zustand adotta implicitamente il pattern Observer: i componenti React si \textit
 
 \subsection{Manager Pattern}
 La classe \texttt{Game} non implementa da sola tutta la logica di gioco, ma delega ciascuna responsabilità a un manager specializzato: \texttt{TurnManager} per la gestione dei turni, \texttt{MovementManager} per gli spostamenti e le collisioni, \texttt{GameStateManager} per la verifica della vittoria, \texttt{SpecialSquareProcessor} per l'attivazione delle sfide, e un manager dedicato per ogni tipologia di sfida (es.\ \texttt{MimeManager}, \texttt{QuizManager}).
-Questo approccio — talvolta chiamato \textit{Manager Pattern} o \textit{Specialist Pattern} — consente di mantenere la classe \texttt{Game} snella e leggibile, concentrando ciascuna regola di gioco nel modulo che ne è responsabile, con benefici diretti sulla testabilità e sulla manutenibilità del codice.
+Questo approccio --- talvolta chiamato \textit{Manager Pattern} o \textit{Specialist Pattern} --- consente di mantenere la classe \texttt{Game} snella e leggibile, concentrando ciascuna regola di gioco nel modulo che ne è responsabile, con benefici diretti sulla testabilità e sulla manutenibilità del codice.
 
 \subsection{Model-View-Controller}
 L'architettura a tre strati dell'applicazione rispecchia il pattern architetturale \textit{Model-View-Controller} (MVC): il Domain Model (\texttt{src/model/}) corrisponde al \textit{Model}, i componenti React (\texttt{src/app/}) alla \textit{View} e gli store Zustand (\texttt{src/store/}) al \textit{Controller}, che media le interazioni dell'utente verso il modello e propaga gli aggiornamenti di stato verso l'interfaccia.
