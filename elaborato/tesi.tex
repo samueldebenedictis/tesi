@@ -264,6 +264,7 @@ Una revisione sistematica della letteratura ha riscontrato esiti positivi in tut
 L'implementazione digitale descritta in questo elaborato si colloca in questo spazio. Rispetto alla versione fisica, il formato digitale consente di adattare parametri come il numero di caselle, la tipologia delle sfide o il numero di giocatori direttamente dall'interfaccia --- senza dover riprogettare e ristampare i componenti. L'interazione, però, rimane quella del gioco da tavolo: faccia a faccia, attorno a uno schermo condiviso.
 
 \section{\textit{La Città degli Imprevisti}}
+\label{sec:lcdi}
 
 \textit{La Città degli Imprevisti} nasce da una collaborazione diretta tra utenti e docenti del CFPIL di Varese, che hanno progettato insieme un gioco centrato sulle competenze sociali.
 La struttura di base è quella del Gioco dell'Oca --- un percorso lineare, un dado, le pedine --- arricchita con caselle speciali che attivano minigiochi a carattere sociale ed emotivo.
@@ -280,7 +281,7 @@ Le caselle speciali costituiscono il cuore educativo del gioco e sono progettate
     \item \textbf{Indovina l'emozione} --- Viene mostrato un volto e il giocatore deve identificare l'emozione espressa; allena il riconoscimento delle emozioni attraverso il volto.
     \item \textbf{Cosa faresti se\dots} --- Il giocatore risponde a uno scenario ipotetico e gli altri valutano la risposta; allena la prospettiva altrui, una delle abilità più difficili da sviluppare nel ASD.
     \item \textbf{Test fisico} --- Viene proposta una prova motoria da eseguire; favorisce la coordinazione e la gestione del corpo nello spazio condiviso.
-    \item \textbf{Battaglia} --- Quando due giocatori si trovano sulla stessa casella devono sfidarsi; introduce la competizione regolamentata e la gestione dell'esito (vittoria e sconfitta).
+    \item \textbf{Battaglia} --- Quando due giocatori si trovano sulla stessa casella devono sfidarsi a morra cinese (carta-forbice-sasso); introduce la competizione regolamentata e la gestione dell'esito (vittoria e sconfitta).
     \item \textbf{Caselle movimento} --- Alcune caselle fanno avanzare o retrocedere il giocatore; replicano la meccanica classica del Gioco dell'Oca, introducendo l'elemento della fortuna e dell'attesa.
 \end{itemize}
 
@@ -483,22 +484,7 @@ Una volta completata la configurazione, il sistema genera il tabellone e avvia l
     \label{fig:dice-roll}
 \end{figure}
 
-Le sfide attivabili sono:
-
-\begin{itemize}
-    \item \textbf{Mimo} --- Il giocatore mima una parola o frase senza parlare; allena la comunicazione non verbale e la capacità di decodificare i gesti altrui.
-    \item \textbf{Quiz} --- Viene posta una domanda a risposta aperta o a scelta multipla; stimola l'attenzione e il ragionamento.
-    \item \textbf{Parole alle spalle} --- Il giocatore traccia con il dito una parola sulla schiena di un compagno, che deve riconoscerla; promuove la comunicazione tattile.
-    \item \textbf{Disegno dettato} --- Un giocatore descrive a parole un'immagine che un compagno deve riprodurre graficamente; esercita la comunicazione verbale precisa e la collaborazione.
-    \item \textbf{Emozioni in musica} --- Viene proposta un'emozione e il giocatore deve scegliere una canzone che la rappresenti; allena l'espressione emotiva.
-    \item \textbf{Indovina l'emozione} --- Viene mostrata l'immagine di un volto; il giocatore deve identificare l'emozione espressa, abilità spesso difficoltosa nei soggetti con autismo.
-    \item \textbf{Cosa faresti se\ldots} --- Il giocatore risponde a uno scenario ipotetico di vita quotidiana; stimola il ragionamento sociale e la prospettiva altrui.
-    \item \textbf{Test fisico} --- Viene proposta una prova motoria; favorisce la coordinazione e la gestione del corpo nello spazio condiviso.
-    \item \textbf{Battaglia} --- Si attiva quando due pedine si trovano sulla stessa casella; i due giocatori si sfidano e il perdente retrocede, introducendo la gestione regolamentata della competizione.
-    \item \textbf{Caselle movimento} --- Spostamento diretto senza sfida; replica la meccanica classica del Gioco dell'Oca, introducendo l'elemento della fortuna e dell'attesa.
-\end{itemize}
-
-Le figure~\ref{fig:modali-1} e~\ref{fig:modali-2} mostrano le finestre modali corrispondenti a ciascuna sfida, così come appaiono durante la partita.
+Le sfide attivabili sono le dieci descritte nella sezione~\ref{sec:lcdi}: Mimo, Quiz, Parole alle spalle, Disegno dettato, Emozioni in musica, Indovina l'emozione, Cosa faresti se\ldots, Test fisico, Battaglia e Caselle movimento. Ciascuna viene presentata attraverso una finestra modale sovrapposta al tabellone al momento dell'attivazione, come mostrato nelle figure~\ref{fig:modali-1} e~\ref{fig:modali-2}.
 
 \begin{figure}[htbp]
     \centering
@@ -596,7 +582,7 @@ Contiene un modulo strutturato per raccogliere valutazioni sull'applicazione da 
 Il modulo richiede il nome del compilatore, il ruolo (docente, alunno o altro) e il tipo di esperienza maturata con il gioco (versione fisica, digitale o entrambe).
 Una sezione di valutazione numerica (scala 1--5) raccoglie giudizi su accessibilità, fedeltà della versione digitale rispetto a quella fisica, chiarezza visiva e comfort sonoro.
 Tre campi di testo libero permettono infine di descrivere gli aspetti positivi, le difficoltà riscontrate e i suggerimenti per miglioramenti futuri.
-Le risposte sono inviate tramite il servizio Formspree e archiviate per analisi successive.
+Le risposte sono inviate a un servizio esterno e archiviate per analisi successive.
 
 \begin{figure}[htbp]
     \centering
