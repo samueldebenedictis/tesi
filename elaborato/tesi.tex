@@ -392,7 +392,7 @@ La scelta di adottare un dispositivo condiviso anziché assegnare uno schermo a 
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\textwidth]{immagini/screenshots/game-board-chromium-linux}
+    \includegraphics[width=\textwidth]{immagini/screenshots/game-board}
     \caption{Schermata di gioco: tabellone, barra laterale e dado.}
     \label{fig:game-board}
 \end{figure}
@@ -413,7 +413,7 @@ Il modulo di \textbf{gioco} gestisce lo svolgimento turno per turno fino a quand
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\textwidth]{immagini/screenshots/home-filled-chromium-linux}
+    \includegraphics[width=\textwidth]{immagini/screenshots/home-filled}
     \caption{Modulo di configurazione: impostazione del numero di giocatori, lunghezza del percorso e tipologie di caselle.}
     \label{fig:home}
 \end{figure}
@@ -479,7 +479,7 @@ Una volta completata la configurazione, il sistema genera il tabellone e avvia l
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\textwidth]{immagini/screenshots/dice-roll-chromium-linux}
+    \includegraphics[width=\textwidth]{immagini/screenshots/dice-roll}
     \caption{Animazione del lancio del dado durante il turno del giocatore attivo.}
     \label{fig:dice-roll}
 \end{figure}
@@ -490,13 +490,13 @@ Le sfide attivabili sono le dieci descritte nella sezione~\ref{sec:lcdi}: Mimo, 
     \centering
     \begin{minipage}[b]{0.48\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/mime-modal-topic-chromium-linux}
+        \includegraphics[width=\textwidth]{immagini/screenshots/mime-modal-topic}
         \par\smallskip\small Mimo.
     \end{minipage}
     \hfill
     \begin{minipage}[b]{0.48\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/quiz-modal-answer-chromium-linux}
+        \includegraphics[width=\textwidth]{immagini/screenshots/quiz-modal-answer}
         \par\smallskip\small Quiz.
     \end{minipage}
 
@@ -504,13 +504,13 @@ Le sfide attivabili sono le dieci descritte nella sezione~\ref{sec:lcdi}: Mimo, 
 
     \begin{minipage}[b]{0.48\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/backwrite-modal-word-chromium-linux}
+        \includegraphics[width=\textwidth]{immagini/screenshots/backwrite-modal-word}
         \par\smallskip\small Parole alle spalle.
     \end{minipage}
     \hfill
     \begin{minipage}[b]{0.48\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/dictation-draw-modal-image-chromium-linux}
+        \includegraphics[width=\textwidth]{immagini/screenshots/dictation-draw-modal-image}
         \par\smallskip\small Disegno dettato.
     \end{minipage}
     \caption{Finestre modali delle sfide (1/2): Mimo, Quiz, Parole alle spalle, Disegno dettato.}
@@ -521,13 +521,13 @@ Le sfide attivabili sono le dieci descritte nella sezione~\ref{sec:lcdi}: Mimo, 
     \centering
     \begin{minipage}[b]{0.48\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/music-emotion-modal-chromium-linux}
+        \includegraphics[width=\textwidth]{immagini/screenshots/music-emotion-modal}
         \par\smallskip\small Emozioni in musica.
     \end{minipage}
     \hfill
     \begin{minipage}[b]{0.48\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/face-emotion-modal-answer-chromium-linux}
+        \includegraphics[width=\textwidth]{immagini/screenshots/face-emotion-modal-answer}
         \par\smallskip\small Indovina l'emozione.
     \end{minipage}
 
@@ -535,17 +535,39 @@ Le sfide attivabili sono le dieci descritte nella sezione~\ref{sec:lcdi}: Mimo, 
 
     \begin{minipage}[b]{0.48\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/what-would-you-do-modal-chromium-linux}
+        \includegraphics[width=\textwidth]{immagini/screenshots/what-would-you-do-modal}
         \par\smallskip\small Cosa faresti se\ldots
     \end{minipage}
     \hfill
     \begin{minipage}[b]{0.48\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/physical-test-modal-chromium-linux}
+        \includegraphics[width=\textwidth]{immagini/screenshots/physical-test-modal}
         \par\smallskip\small Test fisico.
     \end{minipage}
     \caption{Finestre modali delle sfide (2/2): Emozioni in musica, Indovina l'emozione, Cosa faresti se\ldots, Test fisico.}
     \label{fig:modali-2}
+\end{figure}
+
+\subsection{Menu di navigazione}
+
+Il menu è accessibile in qualsiasi momento tramite il pulsante \textbf{MENU} nell'header, indipendentemente dalla schermata corrente.
+L'apertura sovrappone una finestra modale al contenuto sottostante senza interrompere lo stato della partita.
+
+Il menu espone quattro collegamenti:
+\begin{itemize}
+    \item \textbf{Continua partita} --- reindirizza alla schermata di gioco, riprendendo la sessione in corso.
+    \item \textbf{Nuova partita} --- reindirizza alla schermata Home per configurare una partita da zero.
+    \item \textbf{Carica partita} --- reindirizza alla schermata Ripristina partita.
+    \item \textbf{Dai un feedback!} --- reindirizza alla schermata Feedback.
+\end{itemize}
+
+Una sezione dedicata alle impostazioni audio consente di abilitare o disabilitare gli effetti sonori dell'applicazione tramite una casella di spunta; la modifica è immediata e persistente per tutta la sessione.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{immagini/screenshots/menu}
+    \caption{Menu di navigazione: collegamenti alle schermate principali e controllo audio.}
+    \label{fig:menu}
 \end{figure}
 
 \subsection{Schermata Istruzioni}
@@ -564,7 +586,7 @@ I pulsanti in fondo alla schermata permettono di azzerare la configurazione, app
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.85\textwidth]{immagini/screenshots/advanced-mode-chromium-linux}
+    \includegraphics[width=\textwidth]{immagini/screenshots/advanced-mode}
     \caption{Schermata modalità avanzata: assegnazione manuale del tipo a ogni casella del tabellone.}
     \label{fig:advanced-mode}
 \end{figure}
@@ -586,7 +608,7 @@ Le risposte sono inviate a un servizio esterno e archiviate per analisi successi
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\textwidth]{immagini/screenshots/end-game-chromium-linux}
+    \includegraphics[width=\textwidth]{immagini/screenshots/end-game}
     \caption{Schermata di fine partita con classifica finale dei giocatori.}
     \label{fig:end-game}
 \end{figure}
