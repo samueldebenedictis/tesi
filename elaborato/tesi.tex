@@ -37,7 +37,7 @@
 \unilogo{immagini/loghi/unimi}
 \faculty{Facoltà di Scienze e Tecnologie}
 \department{Dipartimento di Informatica\\Giovanni Degli Antoni}
-\cdl{Corso di Laurea Triennale in\\Corso di Laurea}
+\cdl{Corso di Laurea Triennale in\\Informatica}
 
 %   TITOLO TESI:
 \title{Implementazione digitale di un gioco da tavolo con grafica interattiva per il potenziamento delle competenze sociali di adolescenti autistici}
@@ -53,7 +53,7 @@
 \typeofthesis{Elaborato Finale}
 
 %   RELATORE E CORRELATORE:
-\relatore{Prof. Alberto Borghese}
+\relatore{Prof. Nunzio Alberto Borghese}
 
 %   LABORATORIO:
 % Questa sezione crea una pagina di chiusura della tesi con
@@ -85,10 +85,10 @@
 % Esempio di personalizzazione della pagina di chiusura
 % (non consegnate con questo esempio!)
 % (da commentare in caso sia sufficiente una delle macro precedenti)
-\lab{Laboratorio di Ricerca}
-\lab[in collaborazione con l']{Azienda Specifica}
-\laburl{https://di.unimi.it/it/ricerca/risorse-e-luoghi-della-ricerca/laboratori-di-ricerca}
-\lablogo{immagini/redqmark}
+% \lab{Laboratorio di Ricerca}
+% \lab[in collaborazione con l']{Azienda Specifica}
+% \laburl{https://di.unimi.it/it/ricerca/risorse-e-luoghi-della-ricerca/laboratori-di-ricerca}
+% \lablogo{immagini/redqmark}
 
 % Con questo comando si può cambiare la dimensione (massima
 % altezza e larghezza consentite) dei loghi
@@ -99,7 +99,7 @@
 % per specificare manualmente un anno accademico
 % NON inserire nel formato 1970-1971, ma
 % inserire solo 1970
-\academicyear{2024} 
+\academicyear{2025} 
 
 %   INDICI:
 % elenco delle figure (facoltativo)
@@ -110,6 +110,38 @@
 \prefaceintoctrue
 % indice nell'indice (facoltativo)
 \tocintoctrue
+% Listings per snippet di codice
+\usepackage{listings}
+
+\lstdefinelanguage{TypeScript}{
+  keywords={const, let, var, function, return, if, else, new, class,
+            export, import, type, interface, extends, implements,
+            private, public, protected, static, null, undefined,
+            true, false, async, await, from, of, in},
+  morestring=[b]",
+  morestring=[b]',
+  morestring=[b]`,
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  sensitive=true,
+}
+
+\lstset{
+  frame=single,
+  numbers=left,
+  numberstyle=\tiny,
+  numbersep=8pt,
+  basicstyle=\ttfamily\small,
+  showstringspaces=false,
+  tabsize=2,
+  breaklines=true,
+  breakatwhitespace=true,
+  commentstyle=\upshape,
+}
+
+\tolerance=9999
+\hbadness=9999
+
 % --- FINE PREAMBOLO ----------------------------------------------------------
 
 \begin{document}
@@ -125,23 +157,23 @@
 %			facoltativa, questa è l'unica cosa che dovete formattare a mano, un po' come vi pare
 %
 
-{\raggedleft \large \sl Questo lavoro \`{e} dedicato ai miei genitori\\
+% {\raggedleft \large \sl Questo lavoro \`{e} dedicato ai miei genitori\\
 	
-	\vspace{2cm}
+% 	\vspace{2cm}
 	
-	``What I cannot create, I do not understand''
+% 	``What I cannot create, I do not understand''
 	
-	\bigskip
+% 	\bigskip
 	
-	\--- Richard Feynman\\
+% 	\--- Richard Feynman\\
   
-	\vspace{2cm}
+% 	\vspace{2cm}
 	
-	``It's not only powerful,\\but it's also inadequate''
+% 	``It's not only powerful,\\but it's also inadequate''
 	
-	\bigskip
+% 	\bigskip
 	
-	\--- Miller Puckette\\}
+% 	\--- Miller Puckette\\}
 
 \clearpage
 \beforepreface
@@ -157,8 +189,8 @@
 %			RINGRAZIAMENTI (facoltativi)
 %
 
-\prefacesection{Ringraziamenti}
-Questa sezione, facoltativa, contiene i ringraziamenti.
+% \prefacesection{Ringraziamenti}
+% Questa sezione, facoltativa, contiene i ringraziamenti.
 
 %
 %			Creazione automatica dell'indice
@@ -173,95 +205,89 @@ Questa sezione, facoltativa, contiene i ringraziamenti.
 \chapter{Introduzione}
 \label{cap:introduzione}
 
-Questo documento ha una duplice funzione: da un lato mostra un esempio completo di tesi redatto in \LaTeX\ e conforme allo standard PDF/A, e dall'altro contiene suggerimenti e risposte a domande frequenti poste dagli studenti. Se ne raccomanda, pertanto, un'attenta lettura.
+\section{L'autismo}
+Il termine \textit{"autistico"} nasce come aggettivo descrittivo: lo psichiatra svizzero Eugen Bleuler lo coniò per indicare la chiusura in sé stessi di alcuni suoi pazienti (dal greco \textit{autos}). Solo in seguito fu adottato da altri autori per descrivere difficoltà simili osservate in bambini e adolescenti.
 
-\section{Il template}
-Se questo documento è stato ottenuto tramite condivisione diretta di file, è consigliabile accedere alla versione continuamente aggiornata e disponibile su Overleaf. \begin{center}
-    \url{https://www.overleaf.com/read/hmffzxzhhdqn}
-\end{center}
+Già nel 1926 la psichiatra Grunya Efimovna Sukhareva aveva documentato con grande dettaglio le caratteristiche autistiche di sei bambini --- eppure la diagnosi rimase quella di psicopatia schizoide. Ci vollero altri vent'anni prima che l'autismo venisse riconosciuto come condizione a sé.
 
-Questo template è stato sviluppato, negli anni, dai membri del Laboratorio di Informatica Musicale dell'Università degli Studi di Milano, in particolare da: Giorgio Presti, Luca Andrea Ludovico, Federico Avanzini, e Marco Tiraboschi.
+Nel 1943, in modo indipendente, due ricercatori arrivarono a conclusioni simili. Hans Asperger, nella sua tesi di dottorato, descrisse la condizione di alcuni ragazzi basandosi sull'osservazione di circa duecento pazienti, usando il termine \textit{"psicopatia autistica"}. Nello stesso anno Leo Kanner riportò le osservazioni su undici bambini con \textit{"marcate difficoltà nelle relazioni sociali e nella comunicazione"} e, in un lavoro successivo, propose il nome \textit{"autismo infantile"}.
 
-È stato principalmente inteso per gli elaborati finali del corso di laurea triennale in Informatica Musicale, e poi esteso anche agli altri CdL del Dipartimento di Informatica, ma può essere riadattato anche per altri corsi cambiando i metadati nel preambolo. Nel resto del documento, dove non specificato, useremo il termine \textit{tesi} nella sua accezione generica che include anche gli elaborati triennali.
+Negli anni Settanta Lorna Wing mise in discussione l'idea che l'autismo potesse essere ricondotto a criteri diagnostici univoci: fornì le prime prove sistematiche della sua natura composita e introdusse l'espressione \textit{"disturbo dello spettro autistico"} (ASD, dall'inglese \textit{Autism Spectrum Disorder}).
 
-\section{I contenuti}
-\label{sec:contenuti}
+Il termine \textit{"spettro"} non è neutro. Come sottolinea Surian \cite{surian2021}, riprende la concezione dimensionale già implicita nel lavoro di Asperger: la differenza tra persone con o senza autismo va pensata come una differenza di grado, non di qualità.
 
-Alcune volte, le tesi possono avere forti connotazioni interdisciplinari. \`{E} però fondamentale ricordarsi che si tratta di lavori in area informatica, e questo aspetto deve emergere con chiarezza. Anche gli elaborati di contenuto più umanistico devono mostrare rigore scientifico e uno sforzo di formalizzazione nel loro svolgimento. In concreto, sono molto apprezzati schemi, tabelle, formalismi grafici e/o matematici, presenza di parti significative di codice (ove possibile).
+Nella pratica, la diagnosi viene posta quando una costellazione di tratti si manifesta nello stesso individuo in forma molto accentuata: propensione per la ripetizione di alcune attività, spiccata attenzione ai dettagli, difficoltà nell'accettare cambiamenti. È proprio su uno di questi versanti --- quello delle competenze sociali --- che il presente lavoro intende intervenire.
 
-Uno scritto di questa estensione parte sempre da un punto pregresso, tipicamente l'analisi dello stato dell'arte e della letteratura. \`{E} poi richiesto un contributo personale (e originale, nel caso delle tesi magistrali) per giungere a una conclusione formulata dall'autore, eventualmente anche in contrasto con il pensiero corrente o con quanto ci si prefigge all'inizio dell'opera.
+\section{Il CFPIL di Varese}
 
-Le tre fasi devono emergere con chiarezza:
+Il \textit{Centro Formazione Professionale Integrazione Lavorativa} (CFPIL), istituito dalla Provincia di Varese, rappresenta un punto di riferimento consolidato da oltre trent'anni per l'utenza con disabilità intellettiva, fisica e sensoriale. Nel 2002, il centro è stato integrato all'interno dell'"Agenzia Formativa della Provincia di Varese", divenuta successivamente Azienda Speciale nel dicembre 2009.
+
+I progetti del CFPIL costituiscono una risposta strutturata alle esigenze specifiche di adolescenti, giovani e adulti con disabilità, offrendo percorsi formativi mirati e successivi inserimenti lavorativi.
+
+L'attività formativa è progettata e monitorata attraverso équipe multidisciplinari composte da educatori professionali, psicologi e assistenti sociali. Questo approccio consente di predisporre curricoli formativi personalizzati, alcuni dei quali si realizzano in contesti lavorativi all'interno di realtà produttive, aziende private ed enti pubblici.
+
+Il CFPIL svolge una funzione di mediazione tra le persone con disabilità e il mondo del lavoro, erogando un sistema integrato di servizi che comprende:
+
 \begin{itemize}
-	\item analisi dello stato dell'arte e/o della letteratura;
-	\item contributo personale alla ricerca;
-	\item conclusioni raggiunte, ed eventuali sviluppi futuri.
+    \item Informazione, valutazione e orientamento professionale;
+    \item Formazione professionale specializzata;
+    \item Integrazione lavorativa;
+    \item Monitoraggio post-assunzione.
 \end{itemize}
 
-Nel loro complesso queste tre componenti devono rendere evidente la {\em rilevanza} del lavoro, in termini di
+Il centro promuove relazioni sistemiche con il tessuto sociale, scolastico, produttivo e istituzionale del territorio, al fine di definire e realizzare progetti formativi condivisi. Attraverso questa rete collaborativa, il CFPIL intende contribuire alla diffusione del principio della diversità come risorsa individuale e allo sviluppo di una "cultura della diversità" fondata sul rispetto e sull'inclusione. \cite{cfpil}
+
+\section{Competenze sociali negli adolescenti autistici}
+
+Il potenziamento delle competenze sociali degli utenti del CFPIL costituisce uno degli obiettivi primari dell'istituto, riconosciuto come condizione imprescindibile per favorire l'inserimento lavorativo e la partecipazione attiva alla vita comunitaria.
+
+Per molti adolescenti con disturbo dello spettro autistico le competenze sociali rappresentano un'area di significativa difficoltà. Con questo termine si fa riferimento alla capacità di interagire in modo adeguato al contesto, di comunicare bisogni e intenzioni, di rispettare turni e ruoli e di gestire situazioni di conflitto: abilità che risultano spesso più determinanti delle competenze tecniche ai fini dell'integrazione lavorativa.
+
+Sul piano neuropsicologico, queste difficoltà derivano da una combinazione di fattori tra loro correlati: bassa motivazione spontanea a iniziare interazioni sociali; tendenza a interazioni routinizzate anziché reciproche; difficoltà nella lettura di regole sociali implicite, come il linguaggio del corpo, il tono della voce o i segnali di disinteresse dell'interlocutore; deficit di teoria della mente, ovvero la capacità di inferire pensieri e intenzioni altrui \cite{mesibov2005}. Quest'ultimo deficit può portare, ad esempio, a prolungare una conversazione su un argomento di interesse personale senza percepire il disinteresse del proprio interlocutore, o a non cogliere il significato di un commento sarcastico.
+
+Il CFPIL persegue questo obiettivo principalmente attraverso laboratori pratici a carattere professionalizzante, nei quali l'attività manuale diventa il mezzo attraverso cui esercitare e consolidare abilità relazionali in contesti strutturati e realistici, con ruoli definiti e procedure sequenziali che riproducono le dinamiche del mondo del lavoro.
+
+Lavorare in contesti reali e motivanti, con una logica procedurale, permette di sviluppare le competenze sociali in modo più efficace rispetto agli esercizi astratti --- e favorisce la generalizzazione di quanto appreso al di fuori del contesto scolastico o terapeutico.
+A questo si aggiunge un dato non scontato: gli adolescenti autistici esprimono interesse per la socializzazione, e il gioco è uno dei contesti in cui questo interesse emerge con più facilità \cite{walsh2024}. Il formato ludico diventa quindi un canale di intervento, non un ripiego.
+
+\section{Il gioco da tavolo}
+
+Per i bambini e gli adolescenti con disturbo dello spettro autistico, il gioco riveste un'importanza terapeutica significativa: rappresenta una cornice educativa motivante in cui sperimentare abilità, consolidare comportamenti e relazionarsi con le persone circostanti.
+Qualsiasi gioco, indipendentemente dal suo grado di serietà, insegna implicitamente ai partecipanti come comportarsi in un contesto di gruppo; i meccanismi di avanzamento e ricompensa integrati lo rendono inoltre particolarmente motivante rispetto ad altre forme di intervento educativo \cite{atherton2021}.
+Tra le varie forme di gioco, quella che raggiunge il più alto livello di strutturazione è il gioco da tavolo, caratterizzato dall'utilizzo di elementi fisici definiti (pedine, carte, tabelloni, dadi) e da un insieme di regole esplicite che delimitano uno spazio e un tempo di gioco ben determinati.
+Questa struttura chiusa e ben delimitata lo rende particolarmente adatto al contesto autistico. Le analogie con le attività di lavoro indipendente previste dalla metodologia \textit{Treatment and Education of Autistic and related Communication handicapped Children} (TEACCH) non sono casuali: entrambe si svolgono seduti al tavolo, sono strutturate nel tempo e nello spazio, hanno una fine prestabilita e privilegiano il codice visivo rispetto a quello verbale \cite{mari2018, mesibov2005}. Non a caso, tra le attività raccomandate dall'approccio TEACCH per il lavoro sulle competenze sociali di adolescenti figurano esplicitamente giochi da tavolo in gruppo e videogiochi \cite{mesibov2005}.
+
+A differenza delle attività di lavoro individuale, tuttavia, il gioco da tavolo richiede la partecipazione di almeno due soggetti: si configura quindi come un'interazione focalizzata faccia a faccia, offrendo opportunità di interazione sociale più ricche rispetto alle alternative esclusivamente digitali \cite{atherton2021}. Anche nella versione digitale oggetto del presente elaborato, il gioco rimane un'esperienza condivisa che si svolge fisicamente attorno a uno schermo comune.
+
+Una revisione sistematica della letteratura ha riscontrato esiti positivi in tutti gli studi analizzati sull'uso dei giochi come strumento di \textit{social skills training} per persone autistiche \cite{walsh2024}. La ricerca in questo ambito ha privilegiato strumenti digitali sviluppati appositamente --- ambienti virtuali, robot, agenti conversazionali --- mentre le implementazioni digitali di giochi da tavolo strutturati rimangono un approccio ancora poco esplorato.
+
+L'implementazione digitale descritta in questo elaborato si colloca in questo spazio. Rispetto alla versione fisica, il formato digitale consente di adattare parametri come il numero di caselle, la tipologia delle sfide o il numero di giocatori direttamente dall'interfaccia --- senza dover riprogettare e ristampare i componenti. L'interazione, però, rimane quella del gioco da tavolo: faccia a faccia, attorno a uno schermo condiviso.
+
+\section{\textit{La Città degli Imprevisti}}
+\label{sec:lcdi}
+
+\textit{La Città degli Imprevisti} nasce da una collaborazione diretta tra utenti e docenti del CFPIL di Varese, che hanno progettato insieme un gioco centrato sulle competenze sociali.
+La struttura di base è quella del Gioco dell'Oca --- un percorso lineare, un dado, le pedine --- arricchita con caselle speciali che attivano minigiochi a carattere sociale ed emotivo.
+L'obiettivo è arrivare per primi all'ultima casella, ma lungo il percorso i giocatori si trovano a dover comunicare, collaborare, riconoscere emozioni --- non come esercizio isolato, ma come parte del gioco stesso.
+
+Le caselle speciali costituiscono il cuore educativo del gioco e sono progettate per sollecitare competenze diverse:
+
 \begin{itemize}
-\item chiarezza nella definizione del problema, delle motivazioni e degli obiettivi della tesi; 
-\item connessione con la letteratura (cos\`i da mostrare che la tematica oggetto della tesi \`e di interesse per la comunit\`a scientifica);
-\item rilevanza della tematica nell'ambito delle discipline informatiche.
+    \item \textbf{Mimo} --- Il giocatore deve mimare una parola o una frase; allena la comunicazione non verbale.
+    \item \textbf{Quiz} --- Viene posta una domanda a risposta aperta o a scelta multipla; stimola l'attenzione e il ragionamento.
+    \item \textbf{Parole alle spalle} --- Il giocatore traccia con il dito una parola sulla schiena di un compagno, che deve riconoscerla; promuove il contatto fisico guidato e la comunicazione tattile.
+    \item \textbf{Disegno dettato} --- Un giocatore descrive a parole un'immagine che un compagno deve riprodurre graficamente; esercita la comunicazione verbale precisa e la collaborazione.
+    \item \textbf{Emozioni in musica} --- Viene proposta un'emozione e il giocatore deve scegliere una canzone che la rappresenti; allena l'espressione emotiva.
+    \item \textbf{Indovina l'emozione} --- Viene mostrato un volto e il giocatore deve identificare l'emozione espressa; allena il riconoscimento delle emozioni attraverso il volto.
+    \item \textbf{Cosa faresti se\dots} --- Il giocatore risponde a uno scenario ipotetico e gli altri valutano la risposta; allena la prospettiva altrui, una delle abilità più difficili da sviluppare nel ASD.
+    \item \textbf{Test fisico} --- Viene proposta una prova motoria da eseguire; favorisce la coordinazione e la gestione del corpo nello spazio condiviso.
+    \item \textbf{Battaglia} --- Quando due giocatori si trovano sulla stessa casella devono sfidarsi a morra cinese (carta-forbice-sasso); introduce la competizione regolamentata e la gestione dell'esito (vittoria e sconfitta).
+    \item \textbf{Caselle movimento} --- Alcune caselle fanno avanzare o retrocedere il giocatore; replicano la meccanica classica del Gioco dell'Oca, introducendo l'elemento della fortuna e dell'attesa.
 \end{itemize}
 
+Alcune di queste tipologie trovano riscontro nella letteratura empirica: come riportato da Atherton e Cross \cite{atherton2021}, giochi di riconoscimento delle espressioni facciali hanno prodotto miglioramenti significativi in bambini con disturbo dello spettro autistico (Tanaka et al., 2010); attività di mimica con contenuto emotivo hanno dimostrato di allenare la decodifica del linguaggio non verbale (Dell'Angela et al., 2020); il gioco di ruolo da tavolo con adolescenti autistici ha prodotto miglioramenti nel benessere emotivo e nelle amicizie (Katō, 2019).
 
-\section{Organizzazione della tesi}
-\label{sec:organizzazione}
-
-La scelta di come strutturare un lavoro esteso, quale un elaborato finale o una tesi, non è semplice n\`{e} univoca, pertanto quelli sotto elencati vanno presi come suggerimenti generici e attualizzati alla propria situazione personale.
-
-\begin{figure}[t]
-	\centering
-	\includegraphics[width = \textwidth, trim={0 25mm 0 0}, clip]{immagini/ideas2text}
-	\caption{Il processo di trasformazione delle idee in testo~\cite{hamalainen2019web}.}
-	\label{fig:ideas2text}
-\end{figure}
-
-Prima di cominciare a scrivere testo \`e fondamentale creare un indice dei contenuti organizzato in maniera gerarchica (tesi, capitoli, sezioni, sottosezioni, ecc.). Una volta ottenuto un indice soddisfacente, questo potr\`a essere riempito dal testo della tesi. 
-Un approccio informatico alla questione \`e il seguente: scrivere una tesi significa partire da un grafo di idee~\cite{hamalainen2019web} e arrivare a creare un albero di contenuti testuali (un \textit{minimum spanning tree} del grafo delle idee!). L'albero rappresenta la struttura del testo, dove il nodo radice \`e la tesi stessa, i suoi figli sono i capitoli, ecc. Le foglie dell'albero rappresentano le sottosezioni di livello pi\`u fine.  
-%
-Idealmente l'albero dei contenuti dovrebbe avere le seguenti caratteristiche:
-\begin{itemize}
-\item essere bilanciato;
-\item avere un'altezza $h=4$ o $5$; 
-\item essere un albero $n$-ario con $2\leq n \leq 7$
-\end{itemize}
-Anche i contenuti testuali di tutti i nodi allo stesso livello dell'albero dovrebbero essere il pi\`u possibile bilanciati (ad esempio, sarebbe sbagliato avere un capitolo di una pagina e un altro di $30$ pagine).
-%I capitoli in cui il lavoro sarà suddiviso dovrebbero tendenzialmente occupare un numero omogeneo di pagine. 
-\`{E} tollerato uno sbilanciamento a favore del capitolo che descrive il proprio lavoro specifico e i  contributi innovativi.
-
-Limitatamente al secondo livello dell'albero (capitoli), un esempio puramente indicativo di scaletta per una tesi di natura sperimentale è quello che segue:
-\begin{itemize}
-    \item Indice
-    \item Introduzione
-    \item Capitolo sullo stato dell'arte
-    \item Capitolo sulle tecnologie utilizzate\footnote{Questo capitolo si può omettere se le sole tecnologie utilizzate sono strumenti standard come Python, JavaScript, C++, Matlab, ecc.}
-    \item Capitolo sul caso di studio o sul software realizzato
-    \item Capitolo sui test effettuati
-    \item Breve capitolo su conclusioni e sviluppi futuri
-    \item Bibliografia ed eventuale Sitografia
-    \item Eventuali appendici (ad esempio, listati completi di codice, manuale utente, dimostrazioni, ecc.)
-\end{itemize}
-Sarà dunque opportuno prevedere, nel capitolo introduttivo, un esplicito richiamo alla struttura del documento. Ad esempio: ``Il presente lavoro \`{e} organizzato come segue: nel Capitolo 1 \dots''.
-
-
-
-\section{Stile e forma}
-\label{sec:forma}
-
-
-Lo stile di una tesi scientifica deve essere esatto, chiaro, compatto, oggettivo~\cite{strunk1999style}.
-
-{\em Esatto} vuol dire che ogni parola utilizzata significa solo ci\`o che deve esprimere. \`E opportuno cercare di evitare sinonimi per riferirsi a concetti importanti. Ove possibile si definiscano variabili (la frequenza $f$, il tempo $n$, ecc.) e le si usino in maniera sistematica. Vanno evitate il pi\`u possibile espressioni vaghe e non quantitative (``abbastanza grande'', ``praticamente tutti'', ``molto pochi'', \ldots). Si usino i pronomi con parsimonia, meglio ripetere qualche sostantivo nel testo piuttosto che lasciare delle ambiguit\`a.
-
-{\em Chiaro} significa che la struttura e la forma devono essere funzionali a trasmettere l'informazione nel modo pi\`u immediato e comprensibile. I titoli di capitoli e sezioni devono essere illustrativi dei contenuti (\`e anche utile avere un breve testo all'inizio di un capitolo o una sezione, prima di passare alle sottosezioni). Il testo deve essere diviso logicamente in frasi, paragrafi, capoversi: sono preferibili paragrafi brevi, diretti e dichiarativi, limitando le subordinate e gli incisi, e i capoversi devono essere coerenti con la logica del discorso. L'uso di termini tecnici va limitato solo ai casi necessari. Anche gli acronimi devono essere usati con parsimonia, e vanno spiegati la prima volta che vengono usati. 
-
-{\em Compatto} significa che si deve scrivere solo ci\`o che \`e necessario scrivere. Bisogna evitare ripetizioni di concetti e osservazioni. Bisogna limitare descrizioni e dettagli che non siano necessari alla comprensione del discorso generale. In particolare vanno evitate osservazioni banali, che risultino ovvie al lettore. Tra una forma verbosa (``in considerazione del fatto che\ldots'') e una equivalente pi\`u sintetica (``perch\'e\ldots'') si preferisca la seconda.
-
-{\em Oggettivo} significa che ci\`o che si scrive deve essere privo di elementi soggettivi e di elementi che possono influenzare la valutazione. Vanno accuratamente evitate considerazioni personali (``Questa idea mi \`e venuta per la prima volta in occasione\ldots''), nonch\'e affermazioni opinabili il cui giudizio sia lasciato al parere personale dell'autore. L'unico modo per supportare tali prese di posizione è fornire dati scientifici a riprova della propria tesi, o riferirsi in modo esplicito a un antecedente bibliografico (``ipse dixit'') citandone la provenienza in bibliografia. Infine, l'elaborato deve essere steso in forma impersonale. Frasi quali ``Durante la mia esperienza ho approfondito i temi\dots'' sono facilmente sostituibili con locuzioni quali ``Durante la fase di analisi sono stati approfonditi i temi\dots''.
-
-Un uso appropriato di figure e tabelle \`e essenziale per supportare i punti appena discussi. Figure e tabelle devono avere delle didascalie autoesplicative (che non richiedano di leggere il testo principale per capirne il significato). Il testo principale deve per\`o sempre contenere un riferimento alla figura o alla tabella (``Come mostrato in Fig.1, \ldots''). L'uso di schemi grafici (uno schema a blocchi di algoritmo di elaborazione audio, uno schema concettuale di progetto software, ecc.) \`e particolarmente utile a supportare la chiarezza e la compattezza dell'esposizione. 
+Le caselle speciali non sono scelte in modo arbitrario: nel loro insieme, coprono le aree di difficoltà strutturale che la letteratura individua come caratteristiche del ASD --- lettura delle espressioni facciali e del linguaggio non verbale, decodifica dei gesti, assunzione della prospettiva altrui, comunicazione verbale precisa, gestione delle emozioni, collaborazione e competizione regolamentata \cite{mesibov2005}. La varietà delle sfide garantisce che durante la partita vengano esercitate competenze eterogenee, mantenendo alto il coinvolgimento dei partecipanti.
 
 % 
 %			CAPITOLO 2: Stato dell'arte
@@ -270,423 +296,543 @@ Un uso appropriato di figure e tabelle \`e essenziale per supportare i punti app
 \chapter{Stato dell'arte}
 \label{chap:stato_arte}
 
+\section{Approcci al social skills training nell'ASD}
 
-Una delle domande più ricorrenti da parte degli studenti \`e cosa si intenda per ``stato dell'arte''. Concretamente, si tratta di individuare la situazione corrente riguardo la tematica trattata nell'elaborato. A titolo di esempio, se il lavoro di tesi si concentra su un (presunto) innovativo algoritmo per suggerire i brani di una playlist, è necessario verificare che tale approccio sia veramente innovativo e, in ogni caso, studiare gli approcci alternativi già disponibili in letteratura.
+Il \textit{social skills training} (SST) per persone con disturbo dello spettro autistico comprende un insieme eterogeneo di approcci: dall'istruzione individuale basata su tecniche di modifica del comportamento, ai programmi di gruppo strutturati, fino agli interventi mediati da pari e alle metodologie basate sulla routine visiva, come TEACCH \cite{mesibov2005}. Nonostante la varietà degli approcci e il numero crescente di studi empirici, non si è ancora affermata una pratica ampiamente condivisa \cite{carneiro2024}: i risultati tendono a essere positivi nel contesto di intervento, ma faticano a generalizzarsi ad altri ambienti. Una variabile critica trasversale a tutti gli approcci è la motivazione del partecipante: perché un intervento funzioni, il soggetto deve trovare nelle attività proposte uno stimolo sufficiente a volersi impegnare \cite{mesibov2005}.
 
-Per ottenere tale risultato, è necessario condurre ricerche approfondite a livello bibliografico (testi di riferimento, articoli scientifici, ecc.) e implementativo (sul web, sugli store, ecc.) \textbf{prima} di iniziare il proprio lavoro.
+\section{Il gioco come strumento di intervento}
 
-\section{Risorse}
+Negli ultimi anni il gioco ha acquisito centralità come canale di intervento per le competenze sociali nelle persone con ASD. Atherton e Cross \cite{atherton2021} hanno documentato una vasta gamma di applicazioni --- dai giochi analogici a quelli digitali --- evidenziando come il formato ludico offra un contesto motivante in cui comportamenti sociali complessi possono essere esercitati in modo naturale, grazie ai meccanismi di avanzamento e ricompensa integrati nella struttura del gioco. Walsh, Linehan e Ryan \cite{walsh2024} hanno analizzato specificamente l'uso del gioco come strumento di SST per bambini e adolescenti autistici: tutti gli studi inclusi nella revisione riportano esiti positivi, sebbene gli autori segnalino la necessità di un approccio teoricamente più fondato nella definizione degli obiettivi comportamentali. Un dato rilevante emerso dalla revisione è che tutti gli studi includevano una componente tecnologica, a conferma di come la ricerca si sia orientata prevalentemente verso strumenti digitali.
 
-Riguardo gli articoli scientifici, si caldeggia l'uso del motore di ricerca specializzato Google Scholar.\footnote{\url{https://scholar.google.it/}.} Esistono, poi, numerosi repository che consentono di accedere gratuitamente a pubblicazioni scientifiche, tra cui ResearchGate,\footnote{\url{https://www.researchgate.net/}} Zenodo,\footnote{\url{https://zenodo.org/}} e SBA - Sistema Bibliotecario di Ateneo.\footnote{\url{http://www.sba.unimi.it/index.html} con contenuti scaricabili solo dalla rete interna all'ateneo.} In particolare quest'ultimo permette agli studenti dell'Ateneo di accedere gratuitamente a molte pubblicazioni altrimenti accessibili solo a pagamento.
+\section{Serious games digitali: stato delle evidenze}
 
-\`E importante riconoscere, nella grande mole di letteratura scientifica disponibile, i lavori pi\`u autorevoli e affidabili. Un primo elemento per orientarsi \`e che non tutte le sedi di pubblicazione sono uguali. In particolora una regola generale (per quanto non assoluta) \`e che gli articoli pubblicati su {\em rivista} sono tipicamente pi\`u completi e rigorosi di quelli pubblicati su atti di {\em convegno}. Un secondo elemento correlato all'autorevolezza della pubblicazione \`e il numero di citazioni che questa ha raccolto da parte di altri ricercatori (dato visibile ad esempio su Google Scholar). Infine, \`e opportuno riconoscere le sedi di pubblicazione (riviste e convegni) rilevanti per il settore: per questo, si consiglia di confrontarsi con i propri relatori e di consultare indicatori di qualità come Scimago JR\footnote{\url{https://www.scimagojr.com}} per le riviste e il GII-GRIN-SCIE Conference Rating\footnote{\url{https://scie.lcc.uma.es:8443}} per le conferenze.
+Nell'ambito degli strumenti digitali, i \textit{serious games} --- giochi il cui scopo primario non è l'intrattenimento ma la trasmissione di conoscenze o competenze \cite{carneiro2024} --- hanno ricevuto attenzione crescente come intervento per il ASD. Una revisione sistematica di Carneiro et al. \cite{carneiro2024}, condotta su 149 studi iniziali e selezionandone 9 secondo criteri PICO e linee guida PRISMA, ha analizzato l'efficacia di serious games progettati per il potenziamento delle competenze sociali in bambini e adolescenti con ASD.
 
-\section{Buone pratiche}
+I giochi inclusi nella revisione erano tutti strumenti software sviluppati appositamente, centrati su domini come il riconoscimento delle emozioni, la decodifica delle espressioni facciali, il contatto visivo, la joint attention e la regolazione emotiva. Il cento per cento degli studi analizzati riporta miglioramenti significativi in almeno uno dei costrutti misurati; l'ottantacinque per cento mostra miglioramenti nelle competenze sociali generali, e tutti gli studi riportano effetti positivi sul riconoscimento delle emozioni, sulla prospettiva altrui e sulle abilità comportamentali \cite{carneiro2024}.
 
-Alcuni consigli di buone pratiche per l'analisi dello stato dell'arte.
-\begin{itemize}
-\item Imparare a leggere in maniera {\em efficace}. Ci sono migliaia di articoli potenzialmente interessanti, quindi \`e essenziale riuscire a estrarre in breve tempo gli elementi rilevanti di un articolo senza perdersi nei dettagli (fino a che non sia strettamente necessario), nonch\'e annotare in maniera ordinata tali elementi.
-\item Imparare a leggere in maniera {\em critica}. Raramente un articolo scientifico \`e perfetto, gli aspetti tecnici e gli eventuali punti deboli (metodologie, ripetibilit\`a dei risultati, ecc.) vanno valutati e annotati con attenzione.
-\item Imparare a seguire le ``piste'' interessanti. Una volta trovato un articolo rilevante, \`e utile esaminare
-\begin{itemize}
-\item gli articoli che esso cita (i suoi riferimenti bibliografici): questo permette di rintracciare riferimenti autorevoli a cui l'articolo si appoggia;
-\item gli articoli che lo citano (ad esempio Google Scholar offre questa funzionalit\`a): questo permette di rintracciare riferimenti pi\`u recenti che hanno proseguito nella stessa direzione di ricerca.
-\end{itemize}
-\item Imparare a lavorare iterativamente.
-\begin{itemize}
-\item Aggiungere alla propria bibliografia gli articoli considerati rilevanti, a mano a mano che vengono trovati.
-\item Raggrupparli iterativamente in sottotematiche.
-\item Usare inizialmente un approccio ``inclusivo'' (nel dubbio, aggiungere un articolo in bibliografia piuttosto che scartarlo), e solo in un secondo tempo decidere cosa tenere e cosa scartare.
-\end{itemize}
-\end{itemize}
+La revisione segnala tuttavia alcune limitazioni: campioni ridotti, eterogeneità nei protocolli, rischio di bias elevato nella maggior parte degli studi, e una copertura quasi esclusiva della fascia 7--10 anni. Nessuno degli studi analizzati riguardava implementazioni digitali di giochi da tavolo strutturati.
 
+\section{Posizionamento del presente lavoro}
 
+La letteratura si è concentrata quasi esclusivamente su software sviluppati ex novo, lasciando inesplorato il gioco da tavolo in versione digitale. A differenza dei serious games recensiti da Carneiro et al. \cite{carneiro2024}, progettati per uso individuale o mediato dallo schermo, \textit{La Città degli Imprevisti} mantiene l'interazione faccia a faccia attorno a un tavolo condiviso e richiede la mediazione di un educatore. I domini che esercita --- riconoscimento delle emozioni, comunicazione non verbale, prospettiva altrui, collaborazione, gestione della competizione --- coincidono con le aree di intervento prioritarie nel ASD identificate dalla letteratura.
 
-\section{Bibliografia e sitografia}
-\label{sec:biblio}
-
-La bibliografia di un lavoro scientifico deve necessariamente essere ricca. Tutti i testi in bibliografia devono essere citati almeno una volta nel corso dell'elaborato. 
-
-Nella valutazione della bibliografia da parte della commissione, i testi cartacei sono considerati significativamente più validi dei siti consultati. Ne consegue che la bibliografia debba essere ricca di testi pubblicati, siano essi libri, articoli, al limite tesi di laurea o di dottorato o rapporti tecnici. Si suggerisce di evitare citazioni a fonti di dubbia valenza scientifica, quali Wikipedia, W3Schools, ecc.
-
-Se è necessario citare siti Web, esistono tre strade ugualmente accettabili:
-\begin{enumerate}
-	\item se il numero di siti non è preponderante rispetto ai testi ``tradizionali'', è possibile inserirli parimenti in bibliografia;
-	\item se i siti da citare sono numerosi, è più opportuno creare una sorta di bibliografia parallela e separata, detta \textit{sitografia};
-	\item infine, se la citazione dei siti serve a individuare un prodotto e non una fonte di informazioni, la soluzione più opportuna è quella delle note a piè di pagina.
-\end{enumerate}
-
-
-
-
-
-% 
+%
 %			CAPITOLO 3: Tecnologie utilizzate
 %			(omettere questo capitolo se non necessario)
-% 
+%
 
 \chapter{Tecnologie utilizzate}
 \label{cap3}
 
-In questo capitolo vengono presentati alcuni suggerimenti utili per un utente \LaTeX\ alle prime armi.
+L'applicazione è sviluppata in TypeScript con il framework Next.js, a sua volta basato su React.
+Il processo di build produce un insieme di file statici (HTML, JavaScript, CSS) interpretabili da qualsiasi browser moderno, senza necessità di un server applicativo.
+Gli strumenti adottati sono stati scelti per garantire qualità del codice, efficienza di sviluppo e manutenibilità nel lungo periodo.
 
+\section{Framework e librerie di sviluppo}
 
-\section{Generalit\`a}
+\subsection{Next.js}
+Next.js è un framework React per applicazioni web che integra nativamente routing basato su file, rendering lato server (SSR) e generazione di siti statici (SSG).
+È stato scelto come framework principale per la sua capacità di produrre output statici distribuibili su GitHub Pages senza necessità di un server, mantenendo al contempo un'esperienza di sviluppo moderna.
 
-\subsection{La scrittura WYSIWYG vs.\ WYSIWYM}
+\subsection{TypeScript}
+TypeScript è un superset di JavaScript che aggiunge tipizzazione statica al linguaggio, consentendo di individuare errori a tempo di compilazione anziché a runtime.
+Nel contesto di un progetto con un domain model articolato --- composto da classi, manager e interfacce --- la tipizzazione ha reso più sicuro il refactoring e ha ridotto significativamente la categoria di bug legati a tipi inattesi.
 
-L'acronimo WYSIWYG sta per ``What You See is What You Get'', e si riferisce al concetto di ottenere sulla carta testo e immagini che abbiano una disposizione grafica equivalente a quella visualizzata a schermo dal software di videoscrittura. Un esempio classico di WYSIWYG è Microsoft Word, che mostra il testo impaginato e formattato come ci si aspetta di vederlo una volta stampato.
+\subsection{React}
+React è la libreria su cui si basa Next.js per la costruzione dell'interfaccia utente tramite componenti dichiarativi.
+Il modello a componenti consente di strutturare l'interfaccia in unità indipendenti e riutilizzabili, ciascuna responsabile del proprio stato visivo e del proprio ciclo di vita.
 
-L'acronimo WYSIWYM sta per ``What You See is What You Mean'', ed è il paradigma per la creazione di testi strutturati. \LaTeX\ è un ambiente che supporta tale paradigma. In realtà, anche Microsoft Word avrebbe la possibilità di strutturare il testo, principalmente attraverso il meccanismo degli stili, ma pochissimi utenti sfruttano tale funzionalità (ovviamente se sceglierete di scrivere la tesi in Word raccomandiamo caldamente l'uso di tali funzioni, così come le funzioni di gestione automatica dei riferimenti e della bibliografia).
+\subsection{Zustand}
+Zustand è una libreria leggera per la gestione dello stato globale dell'applicazione.
+A differenza di soluzioni più elaborate come Redux, non richiede \textit{boilerplate} e si integra in modo naturale con TypeScript.
+Il middleware \texttt{persist} consente di sincronizzare automaticamente gli store con il \texttt{localStorage} del browser, rendendo lo stato della partita persistente al ricaricamento della pagina senza codice aggiuntivo.
 
-I principali svantaggi di un sistema WYSIWYM sono il tempo di apprendimento, dovuto a una minore intuitività degli strumenti software, e la necessità di invocare la compilazione del documento per vederne l'aspetto definitivo. Ad esempio, in \LaTeX\ l'intero documento viene scritto in testo semplice, che all'interno contiene ambienti e comandi con informazioni di layout, e solo la compilazione permette di scoprire eventuali errori di sintassi e giungere, infine, alla creazione del PDF. 
+\subsection{Tailwind CSS}
+Tailwind CSS è un framework CSS \textit{utility-first}: invece di definire classi semantiche personalizzate, si compone l'aspetto visivo applicando direttamente nel markup classi predefinite di basso livello.
+Questo approccio ha velocizzato lo sviluppo dell'interfaccia, garantendo coerenza visiva e semplificando la gestione dei layout responsivi.
 
-Le difficoltà iniziali, però, sono ampiamente compensate dai vantaggi a medio e lungo termine. Infatti, il lavoro risulterà perfettamente impaginato e strutturato, e dunque avrà un aspetto professionale. Questo riguarda non solo gli stili, che vengono applicati al testo in modo coerente con il template prescelto, ma anche aspetti tipicamente spinosi di Word, quali il posizionamento delle immagini e delle tabelle, la creazione di una bibliografia con relative citazioni nel testo, la creazione di un sommario. Diventa automatico e molto semplice, ad esempio, aggiungere un indice delle figure o delle tabelle, oppure numerare le formule espresse nel testo. Un altro aspetto su cui \LaTeX\ è nettamente superiore a Word è proprio la scrittura di formule matematiche, come mostrato nell'esempio qui riportato:
-\begin{equation}
-x_i(n) = a_{i1}u_1(n) + a_{i2}u_2(n) + \cdots + a_{iJ}u_J(n) \, .
-\label{eq:multimix}
-\end{equation}
+\section{Strumenti di qualità del codice}
 
-\subsection{Risorse e strumenti}
+\subsection{Biome}
+Biome è uno strumento che unifica in un unico pacchetto le funzionalità di linting, formattazione e organizzazione degli import, sostituendo la tradizionale combinazione ESLint + Prettier con una configurazione singola e tempi di esecuzione notevolmente inferiori.
+È configurato per essere eseguito automaticamente a ogni commit tramite Husky.
 
-Esiste una vastissima gamma di risorse online per avvicinarsi a \LaTeX. Un buon punto di partenza \`e la lista messa a disposizione sul sito del \TeX\ Users Group (TUG).\footnote{\url{http://www.tug.org/interest.html}}
-Tra queste si consiglia in particolare la ``Not so Short Introduction to LaTeX2e'',\footnote{\url{http://mirrors.ibiblio.org/CTAN/info/lshort/}}. Per chi volesse approfondire, uno dei riferimenti bibliografici pi\`u completi \`e il libro di Mittelbach {\em et al.}~\cite{mittelbach2004latex}.
+\subsection{Husky e Commitlint}
+Husky gestisce i Git hooks, permettendo di eseguire automaticamente controlli prima che un commit venga registrato.
+Nel progetto è configurato per eseguire Biome (linting e formattazione) e Commitlint (validazione del messaggio di commit) a ogni \texttt{git commit}.
+Commitlint verifica che i messaggi rispettino la convenzione \textit{Conventional Commits}, migliorando la leggibilità della cronologia del progetto.
 
-In alternativa a un'installazione locale sul proprio pc, \`e possibile utilizzare un editor \LaTeX\ online, con il vantaggio di avere immediatamente a disposizione l'ambiente di sviluppo e tutti i package necessari, nonch\'e di potere condividere il proprio progetto con il relatore di tesi. Il pi\`u diffuso editor \LaTeX\ online \`e Overleaf,\footnote{\url{http://www.overleaf.com}} dove si pu\`o trovare anche ulteriore documentazione (in particolare la guida ``Learn \LaTeX\ in 30 minutes'').\footnote{\url{https://www.overleaf.com/learn}}
+\section{Strumenti di testing e documentazione}
 
-Qualunque sia la risorsa utilizzata, ecco un elenco non esaustivo di argomenti di base nei quali con tutta probabilit\`a ci si imbatter\`a durante la stesura della tesi.
-\begin{itemize}
-\item Formattazione del testo (grassetto, italics, dimensioni font, ecc.) e del documento (paragrafi, comandi \verb|\chapter|, \verb|\section|, \verb|\tableofcontents|, ecc.).
-\item Elenchi: ambienti {\em itemize} e {\em enumerate}, pacchetti rilevanti ({\em paralist})
-\item Riferimenti incrociati: comandi \verb|\ref|, \verb|\pageref| e \verb|\label|, etichette.
-\item Matematica: equazioni, modalit\`a {\em inline} e {\em displayed}, pacchetti rilevanti ({\em amssymb}, {\em amsmath}).
-\item Figure: formati grafici, ambiente {\em figure}, pacchetti rilevanti ({\em graphicx}, {\em subfloats} per figure multiple).
-\item Tabelle: ambienti {\em table} e {\em tabular}, pacchetti rilevanti ({\em array}, {\em multirow}, {\em longtable}).
-\item Riferimenti e bibliografie (si veda pi\`u sotto la sezione~\ref{sec:bibtex}).
-\end{itemize}
+\subsection{Vitest}
+Vitest è un framework di test unitari progettato per integrarsi con l'ecosistema Vite/Next.js.
+Offre prestazioni superiori rispetto a Jest grazie all'esecuzione nativa dei moduli ES e supporta la misurazione della copertura del codice tramite Istanbul.
+Viene utilizzato per testare la logica del domain model in isolamento dall'interfaccia.
 
-\section{Suggerimenti sull'uso di \LaTeX}
-\label{sec:consigli_latex}
+\subsection{Playwright}
+Playwright è un framework per test end-to-end che automatizza browser reali (Chromium, Firefox, WebKit).
+Permette di verificare il comportamento completo dell'applicazione simulando le interazioni di un utente reale, coprendo scenari che i test unitari non possono rilevare.
 
-Fatte salve le indicazioni generali fornite nella sezione precedente, di seguito si riportano alcune osservazioni puntuali sulle domande e gli errori pi\`u tipici degli studenti alle prime armi con \LaTeX.
+\subsection{Storybook}
+Storybook è uno strumento per lo sviluppo e la documentazione dei componenti UI in isolamento.
+Ogni componente è associato a una o più \textit{stories} che ne mostrano i diversi stati e configurazioni, facilitando lo sviluppo visivo indipendente e costituendo una documentazione interattiva dell'interfaccia.
 
-\subsection{Riferimenti incrociati}
-
-Uno dei principali vantaggi di \LaTeX\ è la possibilità di impostare riferimenti automatici a molti elementi del documento, tra cui capitoli, sezioni, sottosezioni, tabelle, figure, equazioni, riferimenti bibliografici, e via dicendo.
-
-Quindi il modo corretto per riferirsi, ad esempio, al secondo capitolo non è scrivere ``Capitolo 2'' bensì ``Capitolo~\ref{chap:stato_arte}''. Il risultato apparente (nel PDF) è lo stesso, mentre ci sono differenze sostanziali a livello di codice. Il vantaggio è che, se il secondo capitolo diventasse il terzo, il riferimento incrociato continuerebbe a puntare alla posizione corretta. Si pensi, per estensione, alla numerazione delle immagini, o ai riferimenti alla bibliografia.
-
-Sintatticamente, questo richiede di inserire dei comandi \verb|\label{mia_label}| all'interno degli elementi cui ci si vuole riferire, e dei comandi \verb|\ref{mia_label}| dove si vuole creare il riferimento. Fa eccezione la bibliografia (si veda pi\`u sotto la sezione~\ref{sec:bibtex}).
-
-
-\subsection{Ritorni a capo}
-
-I ritorni a capo in \LaTeX\ possono essere effettuati in due modi: con la sintassi \verb|\\| o con una doppia pressione del tasto di ritorno a capo. In generale, la soluzione corretta è la seconda, che equivale a usare il tasto Enter in Word. Il doppio Backslash, che corrisponde a Shift+Enter in Word, crea una nuova riga senza interruzione del paragrafo. Questo va usato solo in casi molto specifici, come nella frase seguente.
-
-Il sito web ufficiale dell'Università degli Studi di Milano è:\\
-\url{https://www.unimi.it}.
-
-In molti stili di \LaTeX, un nuovo paragrafo (dopo un doppio a capo) crea un rientro della prima riga. Non c'\`e nulla di male nel rientro, ma se proprio lo si vuole evitare la soluzione \textbf{non} \`e usare il doppio BackSlash! Esistono molte soluzioni pi\`u appropriate (ad esempio, dare una dimensione nulla al rientro tramite il comando \verb|\setlength{\parindent}{0ex}|, da inserire nel preambolo della tesi).
-
-\subsection{Accenti}
-
-Scrivendo la tesi in italiano, l'uso di lettere accentate \`e frequente. I caratteri accentati immessi da tastiera non vengono per\`o riconosciuti nativamente. Invece l'accento grave e acuto in \LaTeX\ si ottengono rispettivamente con i comandi \verb|\`{a}| e \verb|\'{a}.| 
-
-In alternativa \`e possibile specificare che si usa la codifica UTF-8, usando il comando \verb|\usepackage[utf8]{inputenc}| nel preambolo del documento (già incluso in questo template). In questo modo i caratteri accentati immessi da tastiera verranno riconosciuti.
-
-Nota ortografica: attenzione a non sbagliare gli accenti: si scrive ``\`e'', ma si scrive ``perch\'e''.
-
-\subsection{Spazi tra parole}
-
-Riguardo la gestione della spaziatura tra parole, \LaTeX\ adotta una strategia molto elegante, che lascia uno spazio maggiorato dopo il punto di fine periodo. Un potenziale problema è che questo spazio extra viene introdotto dopo qualsiasi occorrenza del punto, indipendentemente dalla funzione sintattica, e dunque anche dopo i nomi puntati, quali ``R. Schumann'', o dopo le formule ``ad es.'', ``Fig. n'', ``ecc.'' e via dicendo. Per evitarlo, questi spazi da non aumentare vanno sostituiti con alternative, quali un Backslash seguito da uno spazio (che immette un \textit{control space}) o una tilde \verb|~| (che introduce un \textit{unbreakable space}, utile a impedire ritorni a capo intermedi).\footnote{Per una trattazione completa delle numerose varianti, si veda \url{https://tex.stackexchange.com/questions/74353/what-commands-are-there-for-horizontal-spacing}}
-
-\subsection{Interlinea}
-
-Per aumentare la leggibilit\`a della tesi pu\`o essere utile usare un'interlinea maggiore di 1. Un modo per ottenerlo \`e usare il comando \verb|\linespread{1.6}| nel preambolo del documento (il valore $1.6$ indica interlinea doppia, il valore $1.3$ indica interlinea 1.5. Don't ask why).
-
-
-\subsection{Doppie virgolette}
-
-L'uso dell'unico carattere di doppie virgolette presente sulla tastiera è assolutamente sconsigliato, in quanto non viene correttamente interpretato da \LaTeX, soprattutto riguardo l'apertura delle virgolette.
-
-La combinazione giusta da utilizzare è \verb|``| per l'apertura e \verb|''| per la chiusura. Si noti che in entrambi i casi si tratta di doppi apostrofi ravvicinati, e non di singoli caratteri. Se si utilizza come editor TeXstudio, c'è un'opzione per sostituire automaticamente le doppie virgolette con la versione corretta in \LaTeX: Opzioni $\rightarrow$ Configura TeXstudio... $\rightarrow$ Editore $\rightarrow$ Sostituisci i doppi apici: Inglesi.
-
-Le virgolette caporali, o francesi, si ottengono con i comandi \verb|\guillemotleft| e \break\verb|\guillemotright|, il cui risultato è \guillemotleft questo\guillemotright.
-
-
-\subsection{Ambienti per scrivere codice}
-
-Il codice all'interno dell'elaborato va scritto con carattere monospaziato e rispettando, nell'ambito del possibile, le originali regole (o buone pratiche) di indentazione.
-
-Per farlo, esiste innanzi tutto l'ambiente verbatim, che va aperto e chiuso con i comandi \verb|\begin{verbatim}| ed \verb|\end{verbatim}|.
-
-Tra le alternative, si segnala l'ambiente lstlisting, che richiede innanzi tutto di aggiungere nel preambolo \verb|\usepackage{listings}|, e quindi di aprire e chiudere l'ambiente con i comandi \verb|\begin{lstlisting}| ed \verb|\end{lstlisting}|. Un esempio, relativo al calcolo del massimo comun divisore attraverso l'algoritmo di Euclide in Python, è:
-
-\begin{lstlisting}
-def MCD(a,b):
-	while b != 0:
-		a, b = b, a % b
-	return a
-\end{lstlisting}
-
-Se dopo l'apertura dell'ambiente si specifica tra parentesi quadrate il linguaggio adottato, ad esempio con la sintassi \verb|\begin{lstlisting}[language=Python]|, si ottiene automaticamente l'evidenziazione del codice:
-
-\begin{lstlisting}[language=Python]
-def MCD(a,b):
-	while b != 0:
-		a, b = b, a % b
-	return a
-\end{lstlisting}
-
-L'elenco dei linguaggi supportati e le opzioni avanzate per personalizzare la visualizzazione del codice si trovano all'indirizzo \url{https://www.overleaf.com/learn/latex/Code_listing#Reference_guide}.
-
-Si consideri anche la possibilità di importare interi file di codice attraverso la sintassi \verb|\lstinputlisting[language=nomelinguaggio]{filesorgente}|.
-
-In fine, se lstlisting non dovesse incontrare il vostro gusto, si segnala che in alternativa è possibile usare il package minted.
-
-\subsection{Figure}
-
-In tutti i casi in cui sia possibile (schemi a blocchi, plot di dati, ecc.), \`e opportuno che le figure siano in formato vettoriale (eps, pdf) per aumentarne la leggibilit\`a.
-Nel caso di figure prodotte da software esterno (ad esempio, grafici esportati in eps o pdf da Matlab), \`e consigliabile conservare tutti i sorgenti e i dati utilizzati per generarle: in questo modo sarà possibile ricreare le figure quando necessario.
-
-Le figure devono sempre avere riferimenti nel testo, realizzati assegnando un'etichetta alla figura mediante il comando \verb|\label{nomeEtichetta}| subito prima della chiusura dell'ambiente \verb|figure|, e utilizzandola nel testo mediante il comando \verb|\ref{nomeEtichetta}|. Il medesimo discorso vale anche per Tabelle ed Equazioni.
-
-Si evitino espressioni del tipo ``come visibile nella figura seguente'' in favore di riferimenti esatti del tipo ``come visibile in Fig~\ref{fig:ideas2text}'' in quanto \LaTeX posiziona le immagini sulla pagina seguendo regole tipografiche, che non corrispondono necessariamente alla posizione di inserimento nel sorgente del documento.
-
-\subsection{Commenti e revisione}
-
-Overleaf mette a disposizione delle funzionalità di revisione, come ad esempio la possibilità di inserire commenti relativi a punti specifici del sorgente, senza che questi intacchino il sorgente stesso o il file compilato. Alcuni professori preferiscono usare questo strumento, altri invece preferiscono lasciare traccia dei commenti direttamente nel codice, in modo che vengano versionati insieme al sorgente e compaiano sul PDF compilato.
-
-In caso si preferisca commentare il codice nel sorgente invece che usare le funzioni di review di Overleaf è necessario aumentare i margini del documento per permettere alle note di stare accanto al corpo del testo, e successivamente importare il package todonotes. Per fare ciò è necessario aggiungere nel preambolo i seguenti comandi (su due righe ed in questo ordine) \verb|\setlength {\marginparwidth }{2cm}| e \verb|\usepackage{todonotes}|. A tesi completata è possibile nascondere i commenti senza doverli eliminare manualmente modificando l'inclusione del package come segue: \verb|\usepackage[disable]{todonotes}|.
-
-
-\section{\hologo{BibTeX}}
-\label{sec:bibtex}
-
-\subsection{Generalit\`a}
-
-Esistono più modi per inserire una bibliografia in \LaTeX. Si consiglia fortemente l'utilizzo del sistema \hologo{BibTeX}. Questo consente di aggiungere, rimuovere e modificare voci di bibliografia in maniera efficiente, di formattarle, di riordinarle a piacere e aggiornare automaticamente i corrispondenti riferimenti nel testo, ecc.
-
-Una guida introduttiva e completa \`e ``Tame the BeaST''.\footnote{Accessibile da \url{http://www.tug.org/interest.html}} 
-In estrema sintesi, i passi per gestire una bibliografia tramite \hologo{BibTeX} sono essenzialmente tre.
-\begin{enumerate}
-\item Salvare i riferimenti bibliografici come entry di uno o pi\`u file con l'estensione .bib (si veda ad esempio il file \texttt{bibliografia.bib}, parte di questo template). Gli entry sono scritti in un formato specifico, in particolare ogni entry ha una propria etichetta testuale che lo identifica univocamente.
-\item Creare la bibliografia alla fine del documento o dove desiderato, usando il comando \verb|\bibliography{file1.bib,file2.bib,...}|. \`E possibile inoltre specificare uno stile bibliografico attraverso il comando \verb|\biblographystyle{...}|.
-\item All'interno del testo, riferirsi a una voce di bibliografia tramite il comando\\ \verb|\cite{etichetta_entry}|. Si noti che una voce bibliografica non viene inclusa in bibliografia in assenza di una citazione all'interno del testo (coerentemente con quanto discusso nella sezione~\ref{sec:biblio}).
-\end{enumerate}
-
-\`E consigliabile cominciare a costruire la propria bibliografia in formato bib a mano a mano che si analizza lo stato dell'arte, invece che rimandare alla stesura finale della tesi.
-
-\subsection{Strumenti}
-
-Un file .bib \`e un file di testo e pu\`o quindi essere gestito con un qualsiasi text editor. Esistono comunque molti tool pi\`u evoluti per gestire bibliografie in formato bib. Un'applicazione installabile localmente sul proprio pc \`e JabRef.\footnote{\url{http://www.jabref.org}}. Oppure esistono tool online, come Zotero,\footnote{\url{http://www.zotero.org}} che forniscono molte funzionalità tra cui l'esportazione di bibliografie in formato bib.
-
-Peraltro, anche Google Scholar esporta automaticamente citazioni in formato bib cliccando sul link Cita (icona con doppie virgolette) e scegliendo l'opzione \hologo{BibTeX} nella parte bassa della finestra che si apre. \textbf{Attenzione} per\`o: spesso i bib esportati da Scholar sono incompleti o sporchi, \`e sempre consigliabile controllarne la correttezza.
-
-Infatti, si preferiscono, in generale, i metadati raccolti dalla sorgente primaria della risorsa (es. sito ufficiale della pubblicazione) rispetto a quelli presentati dai motori di ricerca. Nel caso in cui i siti ufficiali non propongano il formato \hologo{BibTeX}, esistono convertitori, facilmente reperibili e utilizzabili via web, per convertire in \hologo{BibTeX} la maggior parte dei formati (es. RIS). Nei rari casi in cui non siano disponibili i dati in alcun formato machine readable, potete compilare manualmente l'entry \hologo{BibTeX} voi stessi. Per un riferimento su tipi di entry e i relativi campi, potete consultare \url{https://bibtex.eu}.
-
-I pi\`u ``smanettoni'' possono addentrarsi a piacere in funzionalit\`a avanzate. Ad esempio \`e possibile creare bibliografie multiple.\footnote{Un possibile modo viene illustrato qui: \url{https://bit.ly/2wI3Y7p}}
-Esiste anche il pacchetto \texttt{biblatex}, che fornisce una reimplementazione completa delle funzionalit\`a bibliografiche di \LaTeX-\hologo{BibTeX}, offrendo maggiore flessibilit\`a e mantenendo compatibilit\`a all'indietro con il formato bib.
-
-
-
-
-
-% 
+%
 %			CAPITOLO 4: Il lavoro svolto
-% 
+%
 
-\chapter{Nome del Progetto}
+\chapter{Implementazione}
 \label{cap4}
 
-In genere il capitolo più corposo dell'elaborato è quello in cui si parla del lavoro svolto. Esistono alcune buone pratiche per rendere l'esposizione efficace, eccone alcune.
+\section{Contesto d'uso e scelte progettuali}
 
-\section{Panoramica del progetto}
+L'applicazione è progettata per sessioni di gruppo in presenza, guidate da un educatore. Tutti i partecipanti si trovano nella stessa stanza e condividono un unico dispositivo --- tipicamente un tablet o un PC con schermo sufficientemente grande da essere visibile a tutti i giocatori seduti attorno al tavolo. Non vengono utilizzati dadi fisici: il lancio avviene premendo un pulsante sullo schermo, e il risultato viene animato e visualizzato dall'applicazione. Anche l'avanzamento delle pedine è gestito interamente dal software: dopo ogni lancio, la pedina del giocatore attivo si sposta automaticamente lungo il tabellone fino alla casella di destinazione.
 
-Prima di addentrarsi nei dettagli è bene fornire una panoramica (anche molto schematica, corredata da un diagramma) del lavoro svolto, in modo che il lettore abbia una mappa concettuale con cui orientarsi.
+La scelta di adottare un dispositivo condiviso anziché assegnare uno schermo a ciascun giocatore è deliberata: preserva la natura faccia a faccia del gioco da tavolo originale, mantiene l'attenzione del gruppo centrata su un unico punto di riferimento e riduce la complessità infrastrutturale. Il ruolo dell'educatore rimane centrale: è lui a facilitare le sfide delle caselle speciali, a valutare le risposte dei giocatori e a registrare l'esito nell'applicazione, che ne applica gli effetti sul tabellone.
 
-\section{Implementazione}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{immagini/screenshots/game-board}
+    \caption{Schermata di gioco: tabellone, barra laterale e dado.}
+    \label{fig:game-board}
+\end{figure}
 
-Una volta fornita una panoramica, è possibile addentrarsi nei dettagli, ricordando che si sta scrivendo un articolo scientifico e non un testo di narrativa. Vanno dunque evitate domande retoriche quali ``\textit{ma come è stato possibile risolvere questo problema? Ebbene \ldots}''.
+\section{Architettura generale}
 
-Vale la pena riportare nel testo solo le parti di codice più importanti, demandando all'appendice il codice completo e altri extra come il manuale utente.
+L'applicazione è una \textit{single-page application} (SPA) prodotta come insieme di file statici (HTML, JavaScript, CSS) tramite la funzionalità di esportazione statica di Next.js. Non richiede un server applicativo: i file vengono distribuiti su GitHub Pages e caricati direttamente dal browser. Tutta la logica di gioco --- compresa la gestione dello stato, il salvataggio della partita e la generazione del tabellone --- risiede ed è eseguita nel browser dell'utente.
 
-% 
+Poiché non vi è comunicazione di rete durante la partita, l'applicazione funziona su qualsiasi dispositivo dotato di un browser moderno: PC, laptop, tablet o qualsiasi altro terminale in grado di eseguire JavaScript. Non è richiesta alcuna installazione.
+
+\section{Struttura ad alto livello}
+
+L'applicazione si articola in due moduli funzionali principali, corrispondenti alle due fasi distinte dell'esperienza d'uso.
+
+Il modulo di \textbf{configurazione} permette di definire i parametri della partita e genera il tabellone al termine.
+
+Il modulo di \textbf{gioco} gestisce lo svolgimento turno per turno fino a quando un giocatore raggiunge l'ultima casella.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{immagini/screenshots/home-filled}
+    \caption{Modulo di configurazione: impostazione del numero di giocatori, lunghezza del percorso e tipologie di caselle.}
+    \label{fig:home}
+\end{figure}
+
+\section{Specifiche funzionali}
+
+Di seguito sono descritte le funzionalità implementate, organizzate per fase d'uso.
+
+\subsection{Configurazione della partita}
+
+Prima di avviare una partita, il sistema consente di:
+
+\begin{itemize}
+    \item impostare il numero di giocatori (da 2 a 10), ciascuno identificato da un nome e un colore assegnato automaticamente;
+    \item definire il numero di caselle del tabellone (da 10 a 100);
+    \item scegliere quali tipologie di caselle speciali includere tra: Mimo, Quiz, Parole alle spalle, Disegno dettato, Emozioni in musica, Indovina l'emozione, Cosa faresti se\ldots, Test fisico, Caselle movimento;
+    \item regolare la percentuale di caselle speciali rispetto al totale.
+\end{itemize}
+
+La tipologia \textbf{Battaglia} non è selezionabile: si attiva automaticamente in caso di collisione tra pedine. Per le \textbf{Caselle movimento}, la modalità avanzata consente di specificare il valore esatto di avanzamento o retrocessione per ogni singola casella.
+
+La configurazione viene persistita in locale tramite il middleware \texttt{persist} di Zustand, così da essere disponibile anche in caso di ricaricamento della pagina.
+
+\subsection{Svolgimento del turno}
+
+Il turno di ogni giocatore segue la sequenza:
+
+\begin{enumerate}
+    \item Il giocatore attivo lancia il dado (valore casuale 1--6).
+    \item La pedina si sposta lungo il tabellone del numero di caselle corrispondente al risultato del lancio.
+    \item Se la casella di arrivo è normale, il turno termina e passa al giocatore successivo.
+    \item Se la casella è speciale, viene mostrata una finestra modale con la sfida corrispondente.
+    \item L'educatore valuta l'esito e registra il risultato; il sistema applica le conseguenze (avanzamento, retrocessione o salto del turno).
+    \item In caso di collisione tra due pedine sulla stessa casella, si attiva automaticamente la meccanica di Battaglia.
+\end{enumerate}
+
+\subsection{Salvataggio e ripristino della partita}
+
+Lo stato completo della partita (posizioni delle pedine, turno corrente, stato dei mazzi) è serializzabile in formato JSON ed esportabile come file.
+Una partita interrotta può essere ripristinata caricando il file salvato dalla schermata dedicata.
+
+\section{Descrizione funzionale}
+
+L'applicazione si articola in sei schermate principali. La navigazione avviene tramite un header persistente che espone due elementi: un link diretto alla schermata delle istruzioni e un pulsante Menu che apre una finestra modale con i collegamenti a Nuova partita, Continua partita, Carica partita e Feedback.
+
+\subsection{Schermata Home --- Configurazione della partita}
+
+La schermata iniziale permette di configurare una nuova partita: numero e nomi dei giocatori, lunghezza del percorso, tipologie di caselle speciali da includere e relativa percentuale di distribuzione.
+
+È disponibile anche una \textbf{modalità avanzata} che consente di definire manualmente la disposizione delle caselle (descritta nella sezione successiva).
+
+Una volta completata la configurazione, il sistema genera il tabellone e avvia la partita.
+
+\subsection{Schermata di gioco}
+
+È la schermata principale, composta da tre aree:
+
+\begin{itemize}
+    \item \textbf{Tabellone} --- Griglia di caselle numerate, identificate visivamente per tipologia; le pedine si animano al momento dello spostamento.
+    \item \textbf{Barra laterale} --- Mostra il giocatore attivo, il numero del round e le posizioni di tutti i giocatori.
+    \item \textbf{Dado e modali} --- Un pulsante permette al giocatore attivo di lanciare il dado; se la casella di arrivo è speciale, si apre la finestra modale corrispondente alla sfida.
+\end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{immagini/screenshots/dice-roll}
+    \caption{Animazione del lancio del dado durante il turno del giocatore attivo.}
+    \label{fig:dice-roll}
+\end{figure}
+
+Le sfide attivabili sono le dieci descritte nella sezione~\ref{sec:lcdi}: Mimo, Quiz, Parole alle spalle, Disegno dettato, Emozioni in musica, Indovina l'emozione, Cosa faresti se\ldots, Test fisico, Battaglia e Caselle movimento. Ciascuna viene presentata attraverso una finestra modale sovrapposta al tabellone al momento dell'attivazione, come mostrato nelle figure~\ref{fig:modali-1} e~\ref{fig:modali-2}.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{immagini/screenshots/mime-modal-topic}
+        \par\smallskip\small Mimo.
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{immagini/screenshots/quiz-modal-answer}
+        \par\smallskip\small Quiz.
+    \end{minipage}
+
+    \vspace{0.8em}
+
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{immagini/screenshots/backwrite-modal-word}
+        \par\smallskip\small Parole alle spalle.
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{immagini/screenshots/dictation-draw-modal-image}
+        \par\smallskip\small Disegno dettato.
+    \end{minipage}
+    \caption{Finestre modali delle sfide (1/2): Mimo, Quiz, Parole alle spalle, Disegno dettato.}
+    \label{fig:modali-1}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{immagini/screenshots/music-emotion-modal}
+        \par\smallskip\small Emozioni in musica.
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{immagini/screenshots/face-emotion-modal-answer}
+        \par\smallskip\small Indovina l'emozione.
+    \end{minipage}
+
+    \vspace{0.8em}
+
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{immagini/screenshots/what-would-you-do-modal}
+        \par\smallskip\small Cosa faresti se\ldots
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{immagini/screenshots/physical-test-modal}
+        \par\smallskip\small Test fisico.
+    \end{minipage}
+    \caption{Finestre modali delle sfide (2/2): Emozioni in musica, Indovina l'emozione, Cosa faresti se\ldots, Test fisico.}
+    \label{fig:modali-2}
+\end{figure}
+
+\subsection{Menu di navigazione}
+
+Il menu è accessibile in qualsiasi momento tramite il pulsante \textbf{MENU} nell'header, indipendentemente dalla schermata corrente.
+L'apertura sovrappone una finestra modale al contenuto sottostante senza interrompere lo stato della partita.
+
+Il menu espone quattro collegamenti:
+\begin{itemize}
+    \item \textbf{Continua partita} --- reindirizza alla schermata di gioco, riprendendo la sessione in corso.
+    \item \textbf{Nuova partita} --- reindirizza alla schermata Home per configurare una partita da zero.
+    \item \textbf{Carica partita} --- reindirizza alla schermata Ripristina partita.
+    \item \textbf{Dai un feedback!} --- reindirizza alla schermata Feedback.
+\end{itemize}
+
+Una sezione dedicata alle impostazioni audio consente di abilitare o disabilitare gli effetti sonori dell'applicazione tramite una casella di spunta; la modifica è immediata e persistente per tutta la sessione.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{immagini/screenshots/menu}
+    \caption{Menu di navigazione: collegamenti alle schermate principali e controllo audio.}
+    \label{fig:menu}
+\end{figure}
+
+\subsection{Schermata Istruzioni}
+
+Presenta le regole del gioco strutturate in sezioni (introduzione, configurazione, svolgimento del turno, caselle speciali, fine della partita), navigabili tramite un indice interno con link di ancoraggio.
+Ogni sezione è corredata da video dimostrativi che mostrano l'applicazione in funzione nei principali scenari di gioco.
+La schermata è raggiungibile direttamente dall'header in qualsiasi momento, senza perdere lo stato della partita in corso.
+
+\subsection{Schermata Modalità avanzata}
+
+Consente di assegnare manualmente il tipo a ogni singola casella del tabellone, sostituendo la distribuzione casuale.
+L'interfaccia presenta un elenco scorrevole di tutte le caselle: ciascuna è identificata da un badge numerico il cui colore riflette il tipo attualmente assegnato.
+La prima e l'ultima casella (Start e Fine) sono bloccate e non modificabili.
+Per ogni casella intermedia è disponibile un menu a tendina con tutte le tipologie disponibili; selezionando il tipo \textit{movimento} compare un campo numerico aggiuntivo per specificare il numero di caselle di avanzamento o retrocessione (da $-5$ a $+5$).
+I pulsanti in fondo alla schermata permettono di azzerare la configurazione, applicarla tornando alla schermata principale o annullare le modifiche.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{immagini/screenshots/advanced-mode}
+    \caption{Schermata modalità avanzata: assegnazione manuale del tipo a ogni casella del tabellone.}
+    \label{fig:advanced-mode}
+\end{figure}
+
+\subsection{Schermata Ripristina partita}
+
+Consente di riprendere una sessione interrotta attraverso due modalità distinte.
+La prima permette di caricare un file JSON esportato in precedenza: l'utente seleziona il file dal proprio dispositivo e avvia il ripristino; il sistema valida il contenuto e, in caso di file non valido, mostra un messaggio di errore.
+La seconda modalità è disponibile quando il browser ha conservato automaticamente una partita nel \texttt{localStorage}: in tal caso compare un pulsante aggiuntivo per riprendere la sessione senza bisogno di alcun file.
+In entrambi i casi, al termine del ripristino l'utente viene reindirizzato direttamente alla schermata di gioco.
+
+\subsection{Schermata Feedback}
+
+Contiene un modulo strutturato per raccogliere valutazioni sull'applicazione da parte di docenti e alunni del CFPIL.
+Il modulo richiede il nome del compilatore, il ruolo (docente, alunno o altro) e il tipo di esperienza maturata con il gioco (versione fisica, digitale o entrambe).
+Una sezione di valutazione numerica (scala 1--5) raccoglie giudizi su accessibilità, fedeltà della versione digitale rispetto a quella fisica, chiarezza visiva e comfort sonoro.
+Tre campi di testo libero permettono infine di descrivere gli aspetti positivi, le difficoltà riscontrate e i suggerimenti per miglioramenti futuri.
+Le risposte sono inviate a un servizio esterno e archiviate per analisi successive.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{immagini/screenshots/end-game}
+    \caption{Schermata di fine partita con classifica finale dei giocatori.}
+    \label{fig:end-game}
+\end{figure}
+
+\section{Architettura dei moduli}
+
+L'applicazione segue un'architettura a tre strati con separazione netta tra logica di dominio, gestione dello stato e presentazione:
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Strato} & \textbf{Modulo} \\ \hline
+    Presentation Layer     & Componenti React (\texttt{src/app/}) \\ \hline
+    State Management Layer & Store Zustand (\texttt{src/store/}) \\ \hline
+    Domain Model Layer     & Logica di gioco (\texttt{src/model/}) \\ \hline
+    \end{tabular}
+    \caption{Architettura a strati dell'applicazione.}
+    \label{tab:architettura}
+\end{table}
+
+Questa separazione consente di testare la logica di gioco indipendentemente dall'interfaccia e di aggiornare i componenti visivi senza modificare le regole di gioco.
+
+\subsection{Domain Model}
+
+Il domain model contiene tutta la logica di gioco, completamente slegata da React e dal browser.
+La classe \texttt{Game} è l'orchestratore principale: mantiene i riferimenti a tutti i sottocomponenti (tabellone, giocatori, dado, mazzi, manager) ed espone i metodi pubblici che il layer di stato chiama per far avanzare la partita.
+Il metodo \texttt{playTurn()} esegue un turno completo --- lancio del dado, spostamento della pedina, elaborazione della casella --- e restituisce il tipo di azione da mostrare all'utente.
+I metodi \texttt{toJSON()} e \texttt{fromJSON()} gestiscono la serializzazione dello stato per il salvataggio su file.
+
+Ogni aspetto della partita è delegato a un manager specializzato:
+
+\begin{itemize}
+    \item \texttt{TurnManager} --- traccia il turno corrente, il round e il giocatore attivo;
+    \item \texttt{MovementManager} --- sposta le pedine, gestisce bonus/malus di movimento e collisioni;
+    \item \texttt{GameStateManager} --- verifica la condizione di vittoria;
+    \item \texttt{SpecialSquareProcessor} --- determina quale azione speciale si attiva su una casella;
+    \item \texttt{BattleManager} e i manager di ogni tipologia di sfida (es. \texttt{MimeManager}, \texttt{QuizManager}) --- applicano gli effetti dell'esito di ciascuna sfida.
+\end{itemize}
+
+Le caselle del tabellone sono modellate come classi distinte (es. \texttt{MimeSquare}, \texttt{QuizSquare}) che estendono la classe base \texttt{Square} e sono ricostruite tramite il pattern Builder al momento del ripristino di una partita salvata.
+
+Ogni tipologia di casella speciale dispone di un mazzo di carte dedicato (es. \texttt{MimeDeck}, \texttt{QuizDeck}), mescolato all'inizio della partita e consumato in sequenza per garantire varietà e non ripetizione dei contenuti nella stessa sessione.
+
+\subsection{State Management}
+
+Lo stato globale è gestito con Zustand, suddiviso in tre store indipendenti persistiti in \texttt{localStorage}:
+
+\begin{itemize}
+    \item \texttt{game-store} --- stato della partita in corso: istanza serializzata di \texttt{Game}, risultato del dado, tipo di azione corrente, stato delle finestre modali;
+    \item \texttt{config-store} --- configurazione della partita: nomi e numero dei giocatori, numero di caselle, tipologie e percentuale di caselle speciali;
+    \item \texttt{sound-store} --- preferenza dell'utente riguardo agli effetti sonori.
+\end{itemize}
+
+\subsection{Presentation Layer}
+
+Il presentation layer comprende sia le pagine che i componenti React.
+In Next.js le pagine (\texttt{page.tsx}) sono esse stesse componenti: la distinzione è strutturale --- determinano il routing --- ma non concettuale.
+
+Le pagine dell'applicazione sono:
+
+\begin{itemize}
+    \item \texttt{app/page.tsx} --- schermata di configurazione della partita;
+    \item \texttt{app/game/page.tsx} --- schermata principale di gioco;
+    \item \texttt{app/instructions/page.tsx} --- istruzioni di gioco con video dimostrativi;
+    \item \texttt{app/advanced-mode/page.tsx} --- configurazione avanzata del tabellone;
+    \item \texttt{app/restore-game/page.tsx} --- ripristino partita da file;
+    \item \texttt{app/feedback/page.tsx} --- modulo di feedback.
+\end{itemize}
+
+I componenti principali dell'interfaccia sono:
+
+\begin{itemize}
+    \item \texttt{board.tsx} --- tabellone come griglia CSS con numero di colonne variabile in base alla dimensione;
+    \item \texttt{square.tsx} --- singola casella con numero, tipo visivo e pedine presenti;
+    \item \texttt{pawn.tsx} --- pedina con colore assegnato e animazione al momento dello spostamento;
+    \item \texttt{dice.tsx} --- dado con animazione al momento del lancio;
+    \item \texttt{left-bar.tsx} --- barra laterale con turno attivo, round corrente e classifica;
+    \item \texttt{turn-result-modal.tsx} --- finestra modale delegata a un sottocomponente specifico per ogni tipo di sfida.
+\end{itemize}
+
+I componenti primitivi riutilizzabili (\texttt{Button}, \texttt{Input}, \texttt{Label}, \texttt{Select}) sono sviluppati e documentati in isolamento tramite Storybook.
+
+\section{Scelte implementative rilevanti}
+
+\subsection{Il tipo \texttt{GameActionResult} e il Command Pattern}
+\label{sec:command}
+
+La comunicazione tra il domain model e il layer di stato avviene tramite il tipo \texttt{GameActionResult}, un oggetto TypeScript che \texttt{playTurn()} restituisce al termine di ogni turno.
+Questa scelta riflette il \textit{Command Pattern}: invece di eseguire direttamente un'azione sull'interfaccia, il domain model produce un oggetto che \textit{descrive} l'azione da compiere, lasciando al chiamante la responsabilità di decidere come gestirla.
+
+Il campo \texttt{type} è un'unione discriminata di stringhe letterali --- una per ogni tipologia di sfida più il valore \texttt{"none"} per i turni senza azione speciale. Il campo \texttt{data} trasporta i dati specifici dell'azione (ad esempio la carta estratta o i giocatori coinvolti in una battaglia). Lo store legge \texttt{type} per determinare quale finestra modale aprire, e \texttt{data} per popolarla con il contenuto corretto, senza che il domain model abbia alcuna dipendenza dall'interfaccia.
+Il ciclo si chiude quando l'educatore registra l'esito della sfida: lo store chiama il corrispondente metodo \texttt{resolve*()} su \texttt{Game}, che applica le conseguenze sul tabellone e aggiorna lo stato della partita.
+
+\begin{lstlisting}[language=TypeScript, caption={Tipo di ritorno di \texttt{playTurn()} (src/model/managers/types.ts)}]
+export type GameActionResult = {
+  type:
+    | "battle" | "mime"    | "quiz"
+    | "backwrite"          | "face-emotion"
+    | "music-emotion"      | "physical-test"
+    | "what-would-you-do"  | "dictation-draw"
+    | "none";
+  data?: Battle | Mime | Quiz | BackWrite | FaceEmotion
+       | MusicEmotion | PhysicalTest | WhatWouldYouDo
+       | DictationDraw;
+  diceResult: number;
+  actionType: string | null;
+};
+\end{lstlisting}
+
+Il metodo \texttt{playTurn()} in \texttt{Game} sfrutta questo tipo per incapsulare l'intera logica del turno --- gestione del turno saltato, lancio del dado, movimento, rilevamento collisioni ed elaborazione della casella speciale --- restituendo un valore strutturato che il layer di stato consuma senza dover conoscere i dettagli interni.
+
+\begin{lstlisting}[language=TypeScript, caption={Metodo \texttt{playTurn()} (src/model/game.ts)}]
+playTurn(): GameActionResult {
+  const currentPlayer = this.turnManager.getCurrentPlayer();
+
+  if (currentPlayer.mustSkipTurn()) {
+    this.turnManager.advanceTurn();
+    return { type: "none", diceResult: 0, actionType: null };
+  }
+
+  const diceValue = this.dice.roll();
+  const result = this.executePlayerTurn(currentPlayer, diceValue);
+  this.turnManager.advanceTurn();
+
+  return { ...result, diceResult: diceValue };
+}
+\end{lstlisting}
+
+\subsection{Gestione dello stato con Zustand e persistenza}
+
+Lo store \texttt{useGameStore} è il punto di raccordo tra il domain model e l'interfaccia utente.
+È definito tramite \texttt{create()} di Zustand, avvolto nel middleware \texttt{persist}, e si articola in due sezioni distinte: lo \textit{stato} e le \textit{azioni}.
+
+La sezione di stato contiene due categorie di campi: quelli che riflettono la partita in corso (\texttt{game}, istanza della classe \texttt{Game}, e \texttt{gameData}, la sua rappresentazione JSON) e quelli che descrivono la situazione dell'interfaccia (\texttt{isModalOpen}, \texttt{isDiceModalOpen}, \texttt{diceResult}, \texttt{actionType}, \texttt{actionData} e altri).
+
+Le azioni sono funzioni che i componenti React chiamano in risposta agli eventi dell'utente. La più importante è \texttt{playTurn()}: recupera l'istanza di \texttt{Game} dallo store, invoca il metodo omonimo del domain model, riceve il \texttt{GameActionResult} e aggiorna lo stato dell'interfaccia di conseguenza --- impostando il risultato del dado, il tipo di azione attiva e aprendo la finestra modale appropriata. Analogamente, ciascuna azione \texttt{resolve*()} delega la risoluzione al metodo corrispondente di \texttt{Game} e, al termine, aggiorna la serializzazione JSON della partita tramite \texttt{toJSON()}.
+
+Il middleware \texttt{persist} sincronizza automaticamente lo store con il \texttt{localStorage} del browser. L'opzione \texttt{partialize} limita la persistenza al solo campo \texttt{gameData}: in questo modo lo stato della partita sopravvive al ricaricamento della pagina, mentre i campi transitori dell'interfaccia vengono reinizializzati ai valori di default.
+
+\begin{lstlisting}[language=TypeScript, caption={Store di gioco con persistenza selettiva (src/store/game-store.ts)}]
+export const useGameStore = create<GameStore>()(
+  persist(
+    (set, get) => ({
+      game: null,
+      gameData: null,
+      isModalOpen: false,
+      // ...altri campi UI...
+
+      actions: {
+        playTurn: () => {
+          const { game } = get();
+          if (!game) return;
+
+          const { diceResult, actionType, data } = game.playTurn();
+          // aggiorna lo stato UI in base al risultato...
+        },
+        // ...altri metodi...
+      },
+    }),
+    {
+      name: "game-store",
+      partialize: (state) => ({
+        gameData: state.gameData,
+        hasSavedGame: !!state.gameData,
+      }),
+    },
+  ),
+);
+\end{lstlisting}
+
+\section{Design pattern utilizzati}
+
+La progettazione dell'applicazione ha fatto uso di diversi design pattern consolidati \cite{gof1994}, applicati in modo coerente con le responsabilità dei moduli descritti nelle sezioni precedenti.
+
+\subsection{Command Pattern}
+Il pattern Command è applicato nella comunicazione tra il domain model e il layer di stato tramite il tipo \texttt{GameActionResult} (si veda la sezione~\ref{sec:command}): ogni turno produce un oggetto che \textit{descrive} l'azione da eseguire, disaccoppiando il mittente (il domain model) dal ricevente (lo store e l'interfaccia).
+
+\subsection{Facade Pattern}
+La classe \texttt{Game} agisce da \textit{Facade}: espone un'interfaccia semplice e coerente (\texttt{playTurn()}, \texttt{resolve*()}, \texttt{toJSON()}) nascondendo la complessità interna dei manager, dei mazzi e del tabellone. I componenti React e lo store non interagiscono mai direttamente con i sottosistemi interni.
+
+\subsection{Builder Pattern}
+Il modulo \texttt{square-builder.ts} implementa il pattern Builder per ricostruire le istanze delle caselle a partire dalla loro rappresentazione JSON durante il ripristino di una partita salvata. Poiché ogni tipologia di casella è una classe distinta, il Builder centralizza la logica di selezione del costruttore corretto in base al campo \texttt{type}.
+
+\subsection{Observer Pattern}
+Zustand adotta implicitamente il pattern Observer: i componenti React si \textit{sottoscrivono} a porzioni specifiche dello store tramite selettori, e vengono ri-renderizzati automaticamente solo quando i campi osservati cambiano. Questo evita aggiornamenti superflui dell'interfaccia e mantiene i componenti disaccoppiati dalla logica di aggiornamento dello stato.
+
+\subsection{Manager Pattern}
+La classe \texttt{Game} non implementa da sola tutta la logica di gioco, ma delega ciascuna responsabilità a un manager specializzato: \texttt{TurnManager} per la gestione dei turni, \texttt{MovementManager} per gli spostamenti e le collisioni, \texttt{GameStateManager} per la verifica della vittoria, \texttt{SpecialSquareProcessor} per l'attivazione delle sfide, e un manager dedicato per ogni tipologia di sfida (es.\ \texttt{MimeManager}, \texttt{QuizManager}).
+Questo approccio --- talvolta chiamato \textit{Manager Pattern} o \textit{Specialist Pattern} --- consente di mantenere la classe \texttt{Game} snella e leggibile, concentrando ciascuna regola di gioco nel modulo che ne è responsabile, con benefici diretti sulla testabilità e sulla manutenibilità del codice.
+
+\subsection{Model-View-Controller}
+L'architettura a tre strati dell'applicazione rispecchia il pattern architetturale \textit{Model-View-Controller} (MVC): il Domain Model (\texttt{src/model/}) corrisponde al \textit{Model}, i componenti React (\texttt{src/app/}) alla \textit{View} e gli store Zustand (\texttt{src/store/}) al \textit{Controller}, che media le interazioni dell'utente verso il modello e propaga gli aggiornamenti di stato verso l'interfaccia.
+
+%
 %			CAPITOLO 5: Test
-% 
+%
 
 \chapter{Test}
 \label{chap:test}
 
-Ogni lavoro scientifico richiede una validazione dei risultati ottenuti. Questo si può fare confrontando in modo sistematico il proprio lavoro con lavori concorrenti o misurando l'efficacia del lavoro mediante test con gli utenti. \`E fondamentale che questi test siano ripetibili, dovrete dunque fornire tutti i dettagli necessari nel testo per permettere a chi legge la tesi di replicare l'esperimento.
+\section{Raccolta di feedback}
 
-Progettare e condurre un test soggettivo con utenti \`e un lavoro complesso e lungo, che richiede pianificazione e competenza. Il bel libro di Lazar {\em et al.}~\cite{lazar2017methods} illustra in dettaglio i concetti principali della ricerca sperimentale e le metodologie correlate: ipotesi di ricerca, design sperimentale, analisi dei risultati sperimentali. Quelli che seguono sono alcuni consigli specifici sugli aspetti pi\`u importanti.
-
-\section{Protocollo}
-
-Uno degli errori più comuni è sottovalutare lo studio di un \textit{protocollo} sperimentale. Affinché i risultati dei test siano significativi è necessario non trascurare i seguenti aspetti:
+Al termine delle sessioni di utilizzo, i partecipanti del CFPIL di Varese sono stati invitati a compilare il modulo di feedback integrato nell'applicazione. Il modulo raccoglie:
 
 \begin{itemize}
-	\item eliminare distorsioni sistematiche involontarie;
-	\item isolare le variabili oggetto dello studio;
-	\item garantire una numerosità sufficiente del campione;
-	\item confrontare gli effetti con un gruppo di controllo.
+    \item \textbf{nome};
+    \item \textbf{ruolo} --- docente, alunno o altro;
+    \item \textbf{esperienza pregressa con il gioco} --- versione fisica, digitale o entrambe;
+    \item \textbf{accessibilità} --- valutazione in scala 1--5;
+    \item \textbf{fedeltà della versione digitale rispetto a quella fisica} --- valutazione in scala 1--5;
+    \item \textbf{chiarezza visiva} --- valutazione in scala 1--5;
+    \item \textbf{comfort sonoro} --- valutazione in scala 1--5;
+    \item \textbf{aspetti positivi};
+    \item \textbf{difficoltà riscontrate};
+    \item \textbf{suggerimenti di miglioramento}.
 \end{itemize}
 
-\section{Risultati}
-
-I risultati dei test vanno presentati in modo chiaro e completo, possibilmente indicando la significatività statistica di quanto ottenuto.
-
-\`E buona norma fornire sia i dati numerici (un esempio di come si fanno le tabelle in \LaTeX\  è visibile in Tab.\ \ref{tab:sample}), sia una rappresentazione grafica (a barre, a scatole e baffi, a violino, di dispersione, ecc.).
-
-\`E inoltre consigliato riportare in appendice i dati grezzi completi, in modo da permettere al lettore di ripetere eventuali test statistici.
-
-\begin{table}
-	\centering
-    \begin{tabular}{|l|l|l|}
-	\hline
-	Colonna 1 & Colonna 2 & Colonna 3 \\ \hline
-	5         & 8         & 1         \\
-	6         & 9         & 2         \\
-	7         & 0         & 3         \\ \hline
-\end{tabular}
-	\caption{Tabella di esempio.}
-	\label{tab:sample}
-\end{table}
-
-\section{Osservazioni}
-
-Quando si traggono conclusioni dai dati bisogna prestare attenzione a non confondere la correlazione con un rapporto di causalità. Molto spesso accade che un test suggerisca la presenza di un fenomeno, ma non dica nulla sulla causa. In questo caso bisogna formulare delle ipotesi, calcolare le implicazioni, ed eseguire un test che valuti se e quali di queste implicazioni si verifichino. Se il nuovo test falsifica la teoria, non importa quanto questa sia elegante: è falsa. Se invece il nuovo test non falsifica la teoria, allora la si può dare per ``vera fino a prova contraria''.
-
-Per queste ragioni è necessario esporre le proprie osservazioni in maniera cauta, senza andare oltre ciò che suggeriscono i dati. \`E certamente possibile speculare sulle cause, ma va esplicitato chiaramente, e tali speculazioni vanno supportate dalla bibliografia.
-
-% 
+%
 %			CAPITOLO 6: Conclusioni e sviluppi futuri
 % 
 
 \chapter{Conclusioni}
 \label{cap6}
-
-\section{Conclusioni}
-
-Nelle conclusioni si tirano le somme di quanto realizzato, facendo un riassunto stringato del lavoro svolto. In particolare vanno dichiarati punti di forza e criticità della ricerca effettuata, nonché quali aspetti dello stato dell'arte siano stati superati dal lavoro in oggetto.
-
-\section{Sviluppi futuri}
-
-Tra gli sviluppi futuri in genere trovano posto quelle migliorie non realizzate per mancanza di tempo, la cui necessità è emersa solo dopo i test, e che riguardano il progetto ad un livello di astrazione più alto (nel caso di tesi che si inquadrano in una linea di ricerca).
-
-
-% 
-%			APENDICE: materiali aggiuntivi e dimostrazioni
-% 
-
-\appendix
-
-\chapter{Informazioni generali sull'attività di tirocinio}
-Lo studente che si appresta a svolgere il lavoro di tesi generalmente incontra relatore e correlatore a inizio progetto per definire una tabella di marcia, quindi al completamento di ogni obiettivo fissato si ripresenta per un aggiornamento e un controllo. Questo è molto importante per approcciare il problema in modo organico e per evitare di illudersi di aver raggiunto un risultato sufficiente ritenendo concluso il lavoro.
-
-Durante il lavoro è consigliato di prendere appunti su ciò che si sta facendo, in modo da avere una base per la stesura dell'elaborato.
-
-Infine, è richiesto agli studenti di consegnare la proposta di indice prima di iniziare la stesura, per poi consegnare ogni capitolo a mano a mano che questi vengono completati. La tesi completa va consegnata per la rilettura finale a relatore e correlatore almeno una settimana prima della consegna ufficiale, per permettere un ultimo \textit{proof reading} e l'integrazione delle eventuali modifiche richieste.
-
-Altri dettagli:
-\begin{itemize}
-    \item E' estremamente importante che lo studente comunichi con i relatori per aggiornamenti regolari, in particolare ogni volta che ci sono sviluppi significativi o decisioni da prendere.
-    \item E' altresì fondamentale che ogni comunicazione via mail avvenga mettendo sempre tutti i relatori/correlatori tra i destinatari.
-    \item Di norma non serve venire a lavorare in laboratorio, tuttavia se lo studente lo preferisce è il benvenuto. Per ottenere il badge di accesso si acceda al portale: \url{https://badge.di.unimi.it/}
-\end{itemize}
-
-\section{Aspetti Burocratici (CdL Triennali)}
-Solitamente l'attività di tirocinio interno per la triennale si articola nei seguenti passaggi formali:
-\begin{enumerate}
-    \item Scegliere un argomento su cui lavorare: è possibile partire da una propria idea o scegliere un tema tra quelli proposti dai docenti
-    \item Scegliere relatore e correlatore: il relatore deve essere uno strutturato del Dipartimento (Ricercatore, Professore associato o Professore ordinario)
-    \item Definire insieme ai relatori: titolo (anche provvisorio), obbiettivi e tabella di marcia
-    \item Procedere con l'apertura formale del tirocinio sulla piattaforma\\ \url{https://tirocini.di.unimi.it}
-    \item Il tirocinio deve durare almeno 14 settimane. Durante questo tempo si dovrebbe svolgere il grosso del lavoro
-    \item A tirocinio ultimato, se e solo se il relatore è d'accordo, si procede con la chiusura formale del tirocinio. Questa consiste da un lato nell'iscrizione all'appello apposito sul SIFA/UniMIA a carico dello studente, e dall'altro nell'inoltro della richiesta di chiusura a carico del relatore
-    \item Iscrizione alla sessione di laurea sul sito del Corso di Laurea\\ \texttt{https://<nome\_cdl>.cdl.unimi.it/it/studiare/laurearsi}\\ (es. \url{https://informaticamusicale.cdl.unimi.it/it/studiare/laurearsi})
-    \item Consegna di elaborato e riassunto in formato PDF-A (questo template produce già il formato richiesto) non superiore a 10MB 
-    \item Discussione pubblica, che in quanto tale è aperta a spettatori esterni
-    \item Festeggiamenti (si ricorda che questi devono essere svolti nel rispetto dei luoghi e delle istituzioni rappresentate)
-\end{enumerate}
-
-\section{Aspetti Pratici}
-Relativamente gli aspetti pratici, ogni relatore ha un suo modus operandi per la gestione dei tesisti, quanto riportato di seguito va quindi considerato a solo titolo esemplificativo; in particolare questa è la procedura tipica seguita dagli studenti del Corso di Laurea di Informatica Musicale:
-\begin{enumerate}
-    \item Analisi dello stato dell'arte (Cap.~\ref{chap:stato_arte}).\\E' importante annotare tutto sin da subito usando \LaTeX, perché poi andrà scritto nell'elaborato.
-    \item Definizione del problema, ``design'' del sistema, scelta degli strumenti
-    \item Implementazione
-    \item Definizione ed esecuzione della campagna di test e/o validazione (Cap.~\ref{chap:test})
-    \item Definizione dell'indice dell'elaborato
-    \item Scrittura dell'elaborato e correzione (meglio se in parallelo con gli altri passi)
-    \item Consegna dell'elaborato
-    \item Stesura della presentazione, correzione, suggerimenti
-\end{enumerate}
-
-\section{Gestione del Codice}
-Nella maggior parte dei tirocini dei CdL in Informatica, lo studente si troverà a scrivere del codice. Si consiglia di concordare in fase preliminare il modo di condivisione del codice.
-Per quanto riguarda il LIM, il codice pertinente alle tesi viene generalmente versionato su GitHub (\url{https://github.com/LIMUNIMI}).
-
-Nel caso di utilizzo di git (con qualsiasi remoto, sia esso GitHub, GitLab, Bitbucket, \dots), si consiglia allo studente di avere una infarinatura generale prima di utilizzarlo per il proprio progetto. Un buon tutorial interattivo è \url{https://learngitbranching.js.org}, anche se include argomenti avanzati che possono essere al di là delle necessità contingenti dello studente.
-
-
-\chapter{Documenti da Produrre}
-I membri del LIM in generale non richiedono agli studenti di consegnare una copia cartacea del proprio lavoro. In altri casi, si invita lo studente a concordare questo punto con il proprio relatore.
-In prossimità della discussione viene richiesto loro di condividere in formato digitale:
-\begin{itemize}
-	\item la versione finale dell'elaborato;
-	\item il riassunto caricato in piattaforma;
-	\item il codice sviluppato;
-	\item tutti i materiali di supporto utilizzati e/o prodotti;
-	\item la presentazione predisposta per la discussione.
-\end{itemize}
-
-La consegna può avvenire via chiavetta USB o attraverso i sistemi di condivisione dei file (WeTransfer, Dropbox, Google Drive, ecc.).
-
-\section{Riassunto}
-In prossimità della data di laurea, viene richiesto agli studenti di caricare in piattaforma anche il riassunto. La sua funzione è permettere alla commissione di visionare rapidamente gli argomenti trattati da ciascun elaborato.
-
-L'estensione di tale documento non dovrebbe superare le due pagine, e spesso una pagina è più che adeguata allo scopo. Riguardo i contenuti, il riassunto riprende -- in maniera molto succinta -- lo schema dell'elaborato finale, e quindi, ad esempio, la scaletta proposta in \ref{sec:organizzazione}.
-
-Visto lo scopo del documento, è buona prassi bilanciare il testo in modo da dedicare poche righe allo stato dell'arte, in favore delle parti originali dell'elaborato.
-
-\section{Presentazione}
-Gli studenti delle lauree triennali hanno a disposizione al massimo 10 minuti per presentare il proprio elaborato, che diventano 15 per le lauree magistrali. 
-
-Si raccomanda di provare ripetutamente il discorso cronometrandosi e considerando i tempi morti per l'accensione del PC, l'avvio dei software, il passaggio da un'applicazione a un'altra, e via dicendo. Si segnala inoltre la possibilità di prenotare l'aula della discussione per provare in anticipo i collegamenti e verificare che immagini e audio vengano correttamente riprodotti.
-
-Per via degli stringenti vincoli temporali, difficilmente una presentazione multimediale può superare la soglia di 15 slide. Questo valore è puramente indicativo, perché dipende dalla densità di informazioni della slide e dal tempo dedicato a ciascuna slide mentre si sta presentando.
-
-La scelta tecnologica più comune è Microsoft PowerPoint, ma qualsiasi alternativa (Prezi, Acrobat PDF, \LaTeX, ecc.) è ammissibile. 
-
-Gli errori più comuni da evitare sono:
-\begin{itemize}
-	\item slide dal contenuto testuale troppo ricco;
-	\item slide che verranno lette parola per parola in fase di presentazione.
-\end{itemize}
-
-Entrambi i problemi si risolvono impostando il testo in maniera estremamente schematica, tendenzialmente per elenchi puntati. Si presti attenzione, però, a usare una forma omogenea. 
-Ad esempio, sarebbe poco elegante il seguente elenco, che include aggettivi, sostantivi e frasi di senso compiuto, e non fa un uso corretto di iniziali maiuscole:
-\begin{itemize}
-	\item applicativo esteticamente molto gradevole;
-	\item C'è la possibilità di interagire con altri utenti;
-	\item l'utente può esportare file in formato XML.
-\end{itemize}
-
-Una possibile revisione, basata solo sui sostantivi, è: 
-\begin{itemize}
-	\item qualità estetica;
-	\item interazione tra utenti;
-	\item supporto dell'XML.
-\end{itemize}
-
-Un altro consiglio per rendere la presentazione cognitivamente più gestibile da parte del pubblico è quello di aggiungere in calce ad ogni slide un indicatore dello stato di avanzamento (ad esempio ``Slide 3 di 15''). In questo modo, in caso di esaurimento del tempo concesso la commissione saprà se dare modo di concludere (``Slide 14 di 15'') o se fermare il candidato (``Slide 14 di 138''). In assenza di un indicatore la commissione tende a presupporre il secondo caso.
-
-Per quanto riguarda gli argomenti da trattare durante la discussione, è opportuno esporre brevemente lo stato dell'arte per concentrarsi sul proprio lavoro, sui test e sui risultati. Una tecnica per capire quanto tempo dedicare a ogni argomento consiste nel dare un peso a ciascuna parte di cui si vuole parlare, quindi assegnare un numero di minuti proporzionale a detto peso in modo da raggiungere il tempo massimo a disposizione.
-
-Video dimostrativi e \textit{live demo} sono gradite, ma è sconsigliabile dedicare troppo tempo a questi contributi, a meno che al contenuto multimediale si sovrapponga una spiegazione da parte del candidato.
-
 
 %
 %			BIBLIOGRAFIA
@@ -700,6 +846,6 @@ Video dimostrativi e \textit{live demo} sono gradite, ma è sconsigliabile dedic
 \bibliography{bibliografia}
 
 % Pagina di chiusura
-\closingpage
+% \closingpage
 
 \end{document}
