@@ -803,6 +803,66 @@ Questo approccio --- talvolta chiamato \textit{Manager Pattern} o \textit{Specia
 \subsection{Model-View-Controller}
 L'architettura a tre strati dell'applicazione rispecchia il pattern architetturale \textit{Model-View-Controller} (MVC): il Domain Model (\texttt{src/model/}) corrisponde al \textit{Model}, i componenti React (\texttt{src/app/}) alla \textit{View} e gli store Zustand (\texttt{src/store/}) al \textit{Controller}, che media le interazioni dell'utente verso il modello e propaga gli aggiornamenti di stato verso l'interfaccia.
 
+\section{Modalità multi-dispositivo}
+\label{sec:multi-dispositivo}
+
+La modalità di base dell'applicazione prevede un unico dispositivo condiviso tra tutti i partecipanti. Una seconda modalità, denominata \textit{multi-dispositivo}, estende il gioco consentendo a ogni giocatore di interagire attraverso il proprio smartphone: il lancio del dado avviene sullo schermo personale e le sfide delle caselle speciali vengono distribuite tra i dispositivi in modo da preservare, ove pertinente, l'elemento di segretezza --- ad esempio, nel Mimo o nel Disegno dettato, il giocatore attivo vede il tema da rappresentare sul proprio schermo prima che gli altri lo scoprono.
+
+La modalità è accessibile dalla schermata di configurazione tramite la voce \textbf{Multi-dispositivo}. Una volta selezionata, il flusso di gioco si articola in una fase di \textit{lobby}, in cui i partecipanti si connettono alla sessione, seguita dall'avvio della partita da parte dell'educatore.
+
+\subsection{Architettura delle sessioni}
+
+La modalità multi-dispositivo richiede una componente \textit{server-side} per sincronizzare lo stato della partita tra i dispositivi dei giocatori. A tal fine, l'applicazione fa uso delle \textit{API Routes} di Next.js, che consentono di definire endpoint HTTP direttamente nel progetto senza la necessità di un server separato.
+
+Lo stato di sessione è rappresentato da un oggetto \texttt{SessionState} che include l'elenco dei giocatori connessi, la fase corrente della partita, il turno attivo e gli esiti delle sfide. La persistenza di questo stato è gestita tramite un meccanismo a tre livelli, scelto in cascata in base all'ambiente di esecuzione:
+
+\begin{enumerate}
+    \item \textbf{Vercel KV} --- in produzione, lo stato è memorizzato su Vercel KV, un servizio di \textit{key-value store} basato su Redis ospitato sulla piattaforma Vercel;
+    \item \textbf{ioredis} --- in sviluppo locale con Redis disponibile, si utilizza il client \texttt{ioredis} per connettersi a un'istanza Redis locale;
+    \item \textbf{Map in memoria} --- in assenza di Redis, lo stato è mantenuto in una \texttt{Map} JavaScript in memoria del processo Node.js, sufficiente per lo sviluppo locale su singola istanza.
+\end{enumerate}
+
+Questa struttura garantisce portabilità tra ambienti senza modifiche al codice applicativo: la selezione del livello appropriato avviene in fase di inizializzazione in base alle variabili di ambiente disponibili.
+
+La creazione di una sessione avviene tramite una richiesta \texttt{POST} all'endpoint \texttt{/api/sessions}, che restituisce un identificatore di sessione (\texttt{sessionId}) e un \texttt{hostToken}, un token opaco conservato nel \texttt{localStorage} del dispositivo dell'educatore e allegato alle successive richieste privilegiate per autorizzarle.
+
+\subsection{Connessione dei giocatori tramite QR code}
+
+Una volta creata la sessione, l'applicazione genera un codice QR che i giocatori inquadrano con il proprio smartphone. Il codice QR contiene l'URL della pagina di accesso, che include il \texttt{sessionId} come parametro. Il giocatore inserisce il proprio nome e invia una richiesta \texttt{POST} all'endpoint \texttt{/api/sessions/[id]/join}, che registra il nuovo partecipante nella sessione e restituisce un \texttt{playerId} univoco.
+
+Il giocatore viene quindi reindirizzato alla propria schermata di gioco, raggiungibile all'URL \texttt{/player/[sessionId]/[playerId]}. L'identità del giocatore è interamente codificata nell'URL: anche in caso di chiusura accidentale della scheda o di ricaricamento della pagina, il giocatore recupera il proprio stato semplicemente riaprendo lo stesso indirizzo.
+
+\subsection{Comunicazione in tempo reale tramite \textit{long polling}}
+
+Per notificare i dispositivi dei giocatori degli aggiornamenti di stato senza l'uso di connessioni persistenti, la modalità multi-dispositivo adotta la tecnica del \textit{long polling}. Ogni dispositivo invia periodicamente una richiesta \texttt{GET} all'endpoint \texttt{/api/sessions/[id]}, passando come parametro il valore \texttt{updatedAt} dell'ultimo stato ricevuto. Il server, anziché rispondere immediatamente, mantiene la connessione aperta per un massimo di otto secondi, interrogando lo \textit{store} ogni trecento millisecondi; restituisce la risposta non appena rileva che il campo \texttt{updatedAt} dello stato corrente è più recente di quello del client, oppure allo scadere del \textit{timeout}.
+
+Questo approccio riduce il numero di invocazioni delle \textit{serverless function} di circa cinque volte rispetto al \textit{polling} a intervallo fisso, un aspetto rilevante ai fini della compatibilità con il piano gratuito di Vercel, che impone limiti al numero di esecuzioni mensili. La scelta del \textit{long polling} in luogo dei WebSocket è motivata dalla stessa considerazione: il piano \textit{Hobby} di Vercel non supporta connessioni WebSocket persistenti, mentre le richieste HTTP di lunga durata sono gestite nativamente dalle \textit{serverless function}.
+
+\subsection{Rilevamento dell'inattività}
+
+Per evitare il consumo inutile di risorse in caso di dispositivi lasciati incustoditi, la modalità multi-dispositivo include un meccanismo di rilevamento dell'inattività. Il \textit{polling} viene sospeso automaticamente dopo trenta minuti di inattività del giocatore; sullo schermo compare un \textit{overlay} con il messaggio \textit{``Stai ancora giocando?''}, che invita l'utente a confermare la propria presenza. In assenza di interazione per ulteriori cinque minuti, il \textit{polling} si interrompe definitivamente. Qualsiasi interazione con il dispositivo --- un tocco sullo schermo, un'azione di gioco --- è sufficiente a riprendere il ciclo di aggiornamento.
+
+\subsection{Svolgimento del turno in modalità multi-dispositivo}
+
+Nel corso della partita, il flusso di ogni turno si svolge come segue:
+
+\begin{enumerate}
+    \item L'educatore avvia la partita premendo il pulsante \textbf{Avvia partita} dalla schermata di \textit{lobby}; tutti i dispositivi ricevono l'aggiornamento di stato e passano alla schermata di gioco.
+    \item Quando è il proprio turno, il giocatore attivo lancia il dado dal proprio dispositivo; il risultato viene comunicato al server e propagato agli altri partecipanti.
+    \item Se la casella di arrivo non attiva alcuna sfida speciale, il turno termina e il controllo passa al giocatore successivo.
+    \item Se la casella attiva una sfida, la gestione varia in base alla tipologia:
+    \begin{itemize}
+        \item \textbf{Quiz} --- il testo della domanda è visibile a tutti; l'educatore mostra la risposta corretta premendo il pulsante \textbf{Mostra risposta} e registra l'esito (successo o insuccesso);
+        \item \textbf{Mimo e Disegno dettato} --- il tema da rappresentare compare esclusivamente sul dispositivo del giocatore attivo; gli altri vedono solo il tipo di sfida. Al termine, l'educatore seleziona quale giocatore ha indovinato, e quest'ultimo riceve il beneficio;
+        \item \textbf{Parole alle spalle} --- la parola da tracciare compare sul dispositivo del giocatore attivo; il vincitore è automaticamente il compagno designato come destinatario della comunicazione, senza necessità di selezione aggiuntiva;
+        \item \textbf{Emozione facciale, Emozione musicale, Test fisico, Cosa faresti se\ldots} --- la sfida è visibile a tutti; l'educatore registra l'esito al termine;
+        \item \textbf{Battaglia} --- i due giocatori coinvolti effettuano la sfida sui rispettivi dispositivi; il server determina l'esito e aggiorna le posizioni.
+    \end{itemize}
+    \item Al termine di ogni sfida, l'educatore conferma l'esito sull'interfaccia; il server aggiorna lo stato della sessione e tutti i dispositivi ricevono la notifica dell'avanzamento.
+\end{enumerate}
+
+Al termine della partita, tutti i dispositivi visualizzano la schermata di fine gioco con il vincitore e la classifica finale.
+
 %
 %			CAPITOLO 5: Test
 %
