@@ -620,11 +620,11 @@ In entrambi i casi, al termine del ripristino l'utente viene reindirizzato diret
 \subsection{Schermata Feedback}
 
 Contiene un modulo strutturato per raccogliere valutazioni sull'applicazione da parte di docenti e alunni del CFPIL.
-Il modulo richiede il nome del compilatore, il ruolo (docente, alunno o altro) e il tipo di esperienza maturata con il gioco (versione fisica, digitale o entrambe).
-Una sezione di valutazione numerica (scala 1--5) raccoglie giudizi su accessibilità, fedeltà della versione digitale rispetto a quella fisica, chiarezza visiva e comfort sonoro.
+Il modulo richiede il nome del compilatore, il ruolo (docente, alunno o altro) e il tipo di esperienza con il gioco (versione fisica, digitale o entrambe).
 Segue il questionario standardizzato \textit{System Usability Scale} (SUS)~\cite{brooke1996sus}, composto dalle 10 affermazioni originali tradotte in italiano, ciascuna valutata su scala 1--5.
-Tre campi di testo libero permettono infine di descrivere gli aspetti positivi, le difficoltà riscontrate e i suggerimenti per miglioramenti futuri.
-Le risposte sono inviate all'endpoint interno \texttt{/api/feedback} e archiviate su Redis per analisi successive; un endpoint protetto da chiave segreta consente di esportare le risposte raccolte.
+Una sezione di valutazione numerica (scala 1--5) raccoglie infine giudizi su fedeltà della versione digitale rispetto a quella fisica (facoltativa), chiarezza dei meccanismi di gioco, grafica, gradimento complessivo e divertimento.
+Tre campi di testo libero permettono di descrivere gli aspetti positivi, gli aspetti negativi e i suggerimenti per miglioramenti futuri.
+Le risposte, corredate dal numero di versione dell'applicazione al momento dell'invio, sono trasmesse all'endpoint interno \texttt{/api/feedback} e archiviate su Redis per analisi successive; un endpoint protetto da chiave segreta consente di esportare le risposte raccolte.
 
 \begin{figure}[htbp]
     \centering
@@ -950,14 +950,16 @@ Al termine delle sessioni di utilizzo, i partecipanti del CFPIL di Varese sono s
     \item \textbf{nome};
     \item \textbf{ruolo} --- docente, alunno o altro;
     \item \textbf{esperienza pregressa con il gioco} --- versione fisica, digitale o entrambe;
-    \item \textbf{accessibilità} --- valutazione in scala 1--5;
-    \item \textbf{fedeltà della versione digitale rispetto a quella fisica} --- valutazione in scala 1--5;
-    \item \textbf{chiarezza visiva} --- valutazione in scala 1--5;
-    \item \textbf{comfort sonoro} --- valutazione in scala 1--5;
     \item \textbf{questionario SUS} --- 10 affermazioni standardizzate della \textit{System Usability Scale}~\cite{brooke1996sus}, ciascuna valutata in scala 1--5;
+    \item \textbf{fedeltà della versione digitale rispetto a quella fisica} --- valutazione in scala 1--5, facoltativa;
+    \item \textbf{chiarezza dei meccanismi di gioco} --- valutazione in scala 1--5;
+    \item \textbf{grafica} --- valutazione in scala 1--5;
+    \item \textbf{gradimento complessivo} --- valutazione in scala 1--5;
+    \item \textbf{divertimento} --- valutazione in scala 1--5;
     \item \textbf{aspetti positivi};
-    \item \textbf{difficoltà riscontrate};
-    \item \textbf{suggerimenti di miglioramento}.
+    \item \textbf{aspetti negativi};
+    \item \textbf{suggerimenti di miglioramento};
+    \item \textbf{versione dell'applicazione} --- registrata automaticamente al momento dell'invio.
 \end{itemize}
 
 %
