@@ -673,6 +673,61 @@ Ogni giocatore dispone di una schermata personale sul proprio dispositivo: quand
     \label{fig:player-screens}
 \end{figure}
 
+Le sfide speciali si comportano diversamente a seconda della tipologia: per alcune il contenuto è \textbf{condiviso} e compare identico sul tabellone e sullo smartphone del giocatore attivo; per altre è \textbf{privato} e il tema resta visibile solo sul dispositivo di chi deve eseguirlo, mentre l'host vede unicamente i nomi dei giocatori coinvolti, preservando l'elemento a sorpresa.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}[b]{0.55\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{immagini/screenshots/multiplayer-physical-test-host}
+        \par\smallskip\small Tabellone dell'educatore.
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.35\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{immagini/screenshots/multiplayer-physical-test-player}
+        \par\smallskip\small Smartphone del giocatore.
+    \end{minipage}
+    \caption{Sfida condivisa (Test fisico): il contenuto compare identico su entrambi gli schermi.}
+    \label{fig:multiplayer-physical-test}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}[b]{0.55\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{immagini/screenshots/multiplayer-dictation-draw-host}
+        \par\smallskip\small Tabellone dell'educatore: nessun dettaglio della sfida è visibile, solo i nomi dei giocatori coinvolti.
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.35\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{immagini/screenshots/multiplayer-dictation-draw-player}
+        \par\smallskip\small Smartphone del giocatore che descrive: tema e immagine di riferimento.
+    \end{minipage}
+    \caption{Sfida privata (Disegno dettato): il tema è visibile solo sul dispositivo del giocatore attivo.}
+    \label{fig:multiplayer-dictation-draw}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}[b]{0.55\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{immagini/screenshots/multiplayer-mime-host}
+        \par\smallskip\small Tabellone dell'educatore: il mimo da eseguire è nascosto, pronto per essere rivelato su richiesta.
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.35\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{immagini/screenshots/multiplayer-mime-player}
+        \par\smallskip\small Smartphone del giocatore che mima: la parola o frase da mimare.
+    \end{minipage}
+    \caption{Sfida privata (Mimo) nella modalità multi-dispositivo.}
+    \label{fig:multiplayer-mime}
+\end{figure}
+
+Per le sfide più dinamiche e fisiche (Mimo, Test fisico), la parte digitale si limita a distribuire il tema e a raccogliere l'esito: l'esecuzione vera e propria avviene fisicamente in aula ed è quindi meglio documentata con un video piuttosto che con uno screenshot statico.
+
 L'architettura tecnica che supporta questa modalità è descritta nella sezione~\ref{sec:multi-dispositivo}.
 
 \section{Architettura dei moduli}
