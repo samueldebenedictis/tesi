@@ -386,6 +386,7 @@ Permette di verificare il comportamento completo dell'applicazione simulando le 
 \subsection{Storybook}
 Storybook è uno strumento per lo sviluppo e la documentazione dei componenti UI in isolamento.
 Ogni componente è associato a una o più \textit{stories} che ne mostrano i diversi stati e configurazioni, facilitando lo sviluppo visivo indipendente e costituendo una documentazione interattiva dell'interfaccia.
+Nella pipeline di build viene compilato come sito statico e pubblicato insieme all'applicazione, risultando accessibile pubblicamente; un collegamento diretto è presente nella schermata delle istruzioni.
 
 %
 %			CAPITOLO 4: Il lavoro svolto
@@ -398,7 +399,7 @@ Le tecnologie descritte nel capitolo precedente si riflettono direttamente nelle
 
 \section{Contesto d'uso e scelte progettuali}
 
-L'applicazione è progettata per sessioni di gruppo in presenza, guidate da un educatore. Tutti i partecipanti si trovano nella stessa stanza e condividono un unico dispositivo --- tipicamente un tablet o un PC con schermo sufficientemente grande da essere visibile a tutti i giocatori seduti attorno al tavolo. Non vengono utilizzati dadi fisici: il lancio avviene premendo un pulsante sullo schermo, e il risultato viene animato e visualizzato dall'applicazione. Anche l'avanzamento delle pedine è gestito interamente dal software: dopo ogni lancio, la pedina del giocatore attivo si sposta automaticamente lungo il tabellone fino alla casella di destinazione.
+L'applicazione è progettata per sessioni di gruppo in presenza, guidate da un educatore. Tutti i partecipanti si trovano nella stessa stanza e condividono un unico dispositivo --- tipicamente un tablet o un PC con schermo sufficientemente grande da essere visibile a tutti i giocatori seduti attorno al tavolo. Non vengono utilizzati dadi fisici: il lancio avviene premendo un pulsante sullo schermo, e il risultato viene animato e visualizzato dall'applicazione. Anche l'avanzamento delle pedine è gestito interamente dal software: dopo ogni lancio, la pedina del giocatore attivo si sposta automaticamente lungo il tabellone, casella dopo casella, con un breve balzo animato per ciascun passaggio, fino a raggiungere la casella di destinazione.
 
 L'applicazione supporta due modalità operative. Nella modalità \textbf{schermo singolo}, tutti i partecipanti utilizzano un unico dispositivo condiviso: questa scelta preserva la natura faccia a faccia del gioco da tavolo originale, mantiene l'attenzione del gruppo centrata su un unico punto di riferimento e riduce la complessità infrastrutturale. Nella modalità \textbf{multi-dispositivo}, ogni giocatore utilizza il proprio smartphone come controller personale, mentre il tabellone rimane visibile su un dispositivo separato gestito dall'educatore (descritta nella sezione~\ref{sec:multi-dispositivo}). Il ruolo dell'educatore rimane centrale in entrambe le modalità: è lui a facilitare le sfide delle caselle speciali, a valutare le risposte dei giocatori e a registrare l'esito nell'applicazione, che ne applica gli effetti sul tabellone.
 
@@ -629,7 +630,7 @@ Le risposte, corredate dal numero di versione dell'applicazione al momento dell'
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{immagini/screenshots/end-game}
-    \caption{Schermata di fine partita con classifica finale dei giocatori.}
+    \caption{Schermata di fine partita con il nome del vincitore.}
     \label{fig:end-game}
 \end{figure}
 
@@ -984,7 +985,7 @@ Nel corso della partita, il flusso di ogni turno si svolge come segue:
 
 \begin{enumerate}
     \item L'educatore avvia la partita premendo il pulsante \textbf{Avvia partita} dalla schermata di \textit{lobby}; tutti i dispositivi ricevono l'aggiornamento di stato e passano alla schermata di gioco.
-    \item Quando è il proprio turno, il giocatore attivo lancia il dado dal proprio dispositivo; il risultato viene comunicato al server e propagato agli altri partecipanti.
+    \item Quando è il proprio turno, il giocatore attivo lancia il dado dal proprio dispositivo; il risultato viene comunicato al server e propagato agli altri partecipanti. Sul proprio schermo, il giocatore attivo visualizza prima una schermata intermedia con il valore del dado e la casella raggiunta, e prosegue premendo il pulsante \textbf{Avanti} prima di accedere alla sfida o al turno successivo.
     \item Se la casella di arrivo non attiva alcuna sfida speciale, il turno termina e il controllo passa al giocatore successivo.
     \item Se la casella attiva una sfida, la gestione varia in base alla tipologia:
     \begin{itemize}
@@ -994,10 +995,11 @@ Nel corso della partita, il flusso di ogni turno si svolge come segue:
         \item \textbf{Emozione facciale, Emozione musicale, Test fisico, Cosa faresti se\ldots} --- la sfida è visibile a tutti; l'educatore registra l'esito al termine;
         \item \textbf{Battaglia} --- i due giocatori coinvolti effettuano la sfida sui rispettivi dispositivi; il server determina l'esito e aggiorna le posizioni.
     \end{itemize}
+    Mentre la sfida è in corso, i giocatori non coinvolti visualizzano sul proprio dispositivo un'animazione (un'icona a forma di dado in rotazione) al posto di un semplice messaggio testuale, a indicare l'attesa dello svolgimento dell'azione da parte di un altro giocatore.
     \item Al termine di ogni sfida, l'educatore conferma l'esito sull'interfaccia; il server aggiorna lo stato della sessione e tutti i dispositivi ricevono la notifica dell'avanzamento.
 \end{enumerate}
 
-Al termine della partita, tutti i dispositivi visualizzano la schermata di fine gioco con il vincitore e la classifica finale.
+Al termine della partita, tutti i dispositivi visualizzano la schermata di fine gioco con il nome del vincitore; sui dispositivi dei singoli giocatori la schermata include anche il pulsante \textbf{Dai un feedback!}, che reindirizza alla schermata Feedback.
 
 \subsection{Considerazioni sulla dimensione sociale}
 
