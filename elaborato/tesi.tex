@@ -790,6 +790,8 @@ Le caselle del tabellone sono modellate come classi distinte (es. \texttt{MimeSq
 
 Ogni tipologia di casella speciale dispone di un mazzo di carte dedicato (es. \texttt{MimeDeck}, \texttt{QuizDeck}), mescolato all'inizio della partita e consumato in sequenza per garantire varietà e non ripetizione dei contenuti nella stessa sessione.
 
+Il mazzo della sfida ``Indovina l'emozione'' (\texttt{FaceEmotionDeck}) utilizza fotografie tratte da FACES, un database open di volti che esprimono emozioni di base (felicità, rabbia, tristezza, paura, disgusto, neutralità), sviluppato dal Max Planck Institute for Human Development \cite{ebner2010faces}. A differenza delle illustrazioni disegnate usate per le altre sfide, l'impiego di volti fotografici reali e validati scientificamente rende più realistico e trasferibile l'esercizio di riconoscimento delle espressioni facciali.
+
 \subsection{State Management}
 
 Lo stato globale è gestito con Zustand, suddiviso in tre store indipendenti persistiti in \texttt{localStorage}:
