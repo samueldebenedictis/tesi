@@ -450,10 +450,11 @@ Prima di avviare una partita, il sistema consente di:
     \item impostare il numero di giocatori (da 2 a 10), ciascuno identificato da un nome e un colore assegnato automaticamente;
     \item definire il numero di caselle del tabellone (da 10 a 100);
     \item scegliere quali tipologie di caselle speciali includere tra: Mimo, Quiz, Parole alle spalle, Disegno dettato, Emozioni in musica, Indovina l'emozione, Cosa faresti se\ldots, Test fisico, Caselle movimento;
-    \item regolare la percentuale di caselle speciali rispetto al totale.
+    \item regolare la percentuale di caselle speciali rispetto al totale;
+    \item attivare o disattivare la meccanica di \textbf{Battaglia}.
 \end{itemize}
 
-La tipologia \textbf{Battaglia} non è selezionabile: si attiva automaticamente in caso di collisione tra pedine. Per le \textbf{Caselle movimento}, la modalità avanzata consente di specificare il valore esatto di avanzamento o retrocessione per ogni singola casella.
+Se abilitata, la Battaglia si attiva automaticamente ogni volta che due pedine occupano la stessa casella; se disabilitata, le pedine possono condividere la casella senza alcuna conseguenza.
 
 La configurazione viene persistita in locale tramite il middleware \texttt{persist} di Zustand, così da essere disponibile anche in caso di ricaricamento della pagina.
 
@@ -467,7 +468,7 @@ Il turno di ogni giocatore segue la sequenza:
     \item Se la casella di arrivo è normale, il turno termina e passa al giocatore successivo.
     \item Se la casella è speciale, viene mostrata una finestra modale con la sfida corrispondente.
     \item L'educatore valuta l'esito e registra il risultato; il sistema applica le conseguenze (avanzamento, retrocessione o salto del turno).
-    \item In caso di collisione tra due pedine sulla stessa casella, si attiva automaticamente la meccanica di Battaglia.
+    \item In caso di collisione tra due pedine sulla stessa casella, si attiva automaticamente la meccanica di Battaglia, se abilitata in fase di configurazione.
 \end{enumerate}
 
 \subsection{Salvataggio e ripristino della partita}
@@ -621,10 +622,11 @@ In entrambi i casi, al termine del ripristino l'utente viene reindirizzato diret
 \subsection{Schermata Feedback}
 
 Contiene un modulo strutturato per raccogliere valutazioni sull'applicazione da parte di docenti e alunni del CFPIL.
-Il modulo richiede il nome del compilatore, il ruolo (docente, alunno o altro) e il tipo di esperienza con il gioco (versione fisica, digitale o entrambe).
+Il modulo richiede il nome del compilatore, il ruolo (docente, alunno o altro), il tipo di esperienza con il gioco (versione fisica, digitale o entrambe) e la modalità di gioco utilizzata (schermo singolo o multischermo).
 Segue il questionario standardizzato \textit{System Usability Scale} (SUS)~\cite{brooke1996sus}, composto dalle 10 affermazioni originali tradotte in italiano, ciascuna valutata su scala 1--5.
 Una sezione di valutazione numerica (scala 1--5) raccoglie infine giudizi su fedeltà della versione digitale rispetto a quella fisica (facoltativa), chiarezza dei meccanismi di gioco, grafica, gradimento complessivo e divertimento.
 Tre campi di testo libero permettono di descrivere gli aspetti positivi, gli aspetti negativi e i suggerimenti per miglioramenti futuri.
+Un'ultima domanda facoltativa chiede al compilatore se si riconosce nello spettro autistico, utile per leggere i feedback anche in relazione a eventuali bisogni specifici.
 Le risposte, corredate dal numero di versione dell'applicazione al momento dell'invio, sono trasmesse all'endpoint interno \texttt{/api/feedback} e archiviate su Redis per analisi successive; un endpoint protetto da chiave segreta consente di esportare le risposte raccolte.
 
 \begin{figure}[htbp]
@@ -990,8 +992,8 @@ Nel corso della partita, il flusso di ogni turno si svolge come segue:
     \item Se la casella attiva una sfida, la gestione varia in base alla tipologia:
     \begin{itemize}
         \item \textbf{Quiz} --- il testo della domanda è visibile a tutti; l'educatore mostra la risposta corretta premendo il pulsante \textbf{Mostra risposta} e registra l'esito (successo o insuccesso);
-        \item \textbf{Mimo e Disegno dettato} --- il tema da rappresentare compare esclusivamente sul dispositivo del giocatore attivo; gli altri vedono solo il tipo di sfida. Al termine, l'educatore seleziona quale giocatore ha indovinato, e quest'ultimo riceve il beneficio;
-        \item \textbf{Parole alle spalle} --- la parola da tracciare compare sul dispositivo del giocatore attivo; il vincitore è automaticamente il compagno designato come destinatario della comunicazione, senza necessità di selezione aggiuntiva;
+        \item \textbf{Mimo} --- il tema da rappresentare compare esclusivamente sul dispositivo del giocatore attivo; gli altri vedono solo il tipo di sfida. Al termine, l'educatore seleziona quale giocatore ha indovinato, e quest'ultimo riceve il beneficio;
+        \item \textbf{Parole alle spalle e Disegno dettato} --- il giocatore attivo sceglie il compagno destinatario prima di iniziare; la parola o il disegno compaiono solo sul suo dispositivo. Se la sfida riesce, entrambi avanzano di una casella;
         \item \textbf{Emozione facciale, Emozione musicale, Test fisico, Cosa faresti se\ldots} --- la sfida è visibile a tutti; l'educatore registra l'esito al termine;
         \item \textbf{Battaglia} --- i due giocatori coinvolti effettuano la sfida sui rispettivi dispositivi; il server determina l'esito e aggiorna le posizioni.
     \end{itemize}
