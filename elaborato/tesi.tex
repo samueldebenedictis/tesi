@@ -582,7 +582,7 @@ Il menu espone quattro collegamenti:
     \item \textbf{Dai un feedback!} --- reindirizza alla schermata Feedback.
 \end{itemize}
 
-Una sezione dedicata alle impostazioni audio consente di abilitare o disabilitare gli effetti sonori dell'applicazione tramite una casella di spunta; la modifica è immediata e persistente per tutta la sessione.
+Una sezione dedicata alle impostazioni audio consente di abilitare o disabilitare, tramite due caselle di spunta indipendenti, gli \textbf{effetti sonori} e gli \textbf{annunci vocali} dell'applicazione; la modifica è immediata e persistente per tutta la sessione. Gli annunci vocali --- disattivati di default --- leggono ad alta voce l'esito di ogni turno, il salto turno e la vittoria finale, offrendo un canale uditivo che rinforza le informazioni già mostrate a schermo: un supporto utile in particolare per chi fatica a seguire simultaneamente più stimoli visivi.
 
 \begin{figure}[htbp]
     \centering
@@ -799,7 +799,7 @@ Lo stato globale è gestito con Zustand, suddiviso in tre store indipendenti per
 \begin{itemize}
     \item \texttt{game-store} --- stato della partita in corso: istanza serializzata di \texttt{Game}, risultato del dado, tipo di azione corrente, stato delle finestre modali;
     \item \texttt{config-store} --- configurazione della partita: nomi e numero dei giocatori, numero di caselle, tipologie e percentuale di caselle speciali;
-    \item \texttt{sound-store} --- preferenza dell'utente riguardo agli effetti sonori.
+    \item \texttt{sound-store} --- preferenze dell'utente riguardo agli effetti sonori e agli annunci vocali.
 \end{itemize}
 
 \subsection{Presentation Layer}
