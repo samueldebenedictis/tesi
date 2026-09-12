@@ -636,6 +636,20 @@ Le risposte, corredate dal numero di versione dell'applicazione al momento dell'
     \label{fig:end-game}
 \end{figure}
 
+\subsection{Dashboard di analisi dei feedback}
+\label{sec:desc-feedback-dashboard}
+
+La schermata \texttt{/admin/feedback}, protetta dalla stessa chiave segreta dell'endpoint di esportazione, presenta in forma sintetica le risposte raccolte dal modulo Feedback.
+La pagina interroga \texttt{/api/feedback} e calcola lato client il punteggio SUS medio secondo la formula standard~\cite{brooke1996sus}, mostrandolo insieme a un grado qualitativo.
+Seguono le medie delle valutazioni numeriche e quattro grafici a barre con la distribuzione dei compilatori per ruolo, esperienza di gioco, identificazione neurodivergente e versione dell'applicazione: ciascuna barra è cliccabile e applica un filtro che ricalcola tutte le metriche della pagina sul sottoinsieme selezionato (i filtri sono cumulabili e removibili singolarmente). Il filtro per versione permette, ad esempio, di isolare i feedback raccolti dopo un rilascio specifico. L'elenco dei commenti liberi chiude la pagina.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{immagini/screenshots/feedback-dashboard}
+    \caption{Dashboard di analisi dei feedback: punteggio SUS medio, valutazioni e distribuzione dei compilatori per categoria.}
+    \label{fig:feedback-dashboard}
+\end{figure}
+
 \subsection{Modalità multi-dispositivo}
 \label{sec:desc-multi-dispositivo}
 
@@ -819,7 +833,8 @@ Le pagine dell'applicazione sono:
     \item \texttt{app/instructions/page.tsx} --- istruzioni di gioco con video dimostrativi;
     \item \texttt{app/advanced-mode/page.tsx} --- configurazione avanzata del tabellone;
     \item \texttt{app/restore-game/page.tsx} --- ripristino partita da file;
-    \item \texttt{app/feedback/page.tsx} --- modulo di feedback.
+    \item \texttt{app/feedback/page.tsx} --- modulo di feedback;
+    \item \texttt{app/admin/feedback/page.tsx} --- dashboard di analisi dei feedback raccolti.
 \end{itemize}
 
 I componenti principali dell'interfaccia sono:
@@ -1041,6 +1056,8 @@ Al termine delle sessioni di utilizzo, i partecipanti del CFPIL di Varese sono s
     \item \textbf{identificazione neurodivergente/autistica} --- facoltativa, utile per leggere i feedback anche in relazione a eventuali bisogni specifici;
     \item \textbf{versione dell'applicazione} --- registrata automaticamente al momento dell'invio.
 \end{itemize}
+
+Le risposte raccolte sono state analizzate tramite la dashboard descritta nel paragrafo~\ref{sec:desc-feedback-dashboard} (figura~\ref{fig:feedback-dashboard}), che calcola il punteggio SUS medio e la distribuzione delle valutazioni per categoria senza richiedere l'esportazione manuale dei dati.
 
 %
 %			CAPITOLO 6: Conclusioni e sviluppi futuri
