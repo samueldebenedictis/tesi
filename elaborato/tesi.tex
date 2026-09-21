@@ -279,6 +279,7 @@ Le caselle speciali costituiscono il cuore educativo del gioco e sono progettate
     \item \textbf{Disegno dettato} --- Un giocatore descrive a parole un'immagine che un compagno deve riprodurre graficamente; esercita la comunicazione verbale precisa e la collaborazione.
     \item \textbf{Emozioni in musica} --- Viene proposta un'emozione e il giocatore deve scegliere una canzone che la rappresenti; allena l'espressione emotiva.
     \item \textbf{Indovina l'emozione} --- Viene mostrato un volto e il giocatore deve identificare l'emozione espressa; allena il riconoscimento delle emozioni attraverso il volto.
+    \item \textbf{Film} --- Viene riprodotta una breve scena di un film e il giocatore deve identificare l'emozione che trasmette; allena il riconoscimento delle emozioni a partire da una situazione in movimento, con voce e musica, anziché da un'immagine statica.
     \item \textbf{Cosa faresti se\dots} --- Il giocatore risponde a uno scenario ipotetico e gli altri valutano la risposta; allena la prospettiva altrui, una delle abilità più difficili da sviluppare nell'ASD.
     \item \textbf{Test fisico} --- Viene proposta una prova motoria da eseguire; favorisce la coordinazione e la gestione del corpo nello spazio condiviso.
     \item \textbf{Battaglia} --- A differenza delle altre tipologie, non è legata a una casella specifica: quando due pedine si trovano sulla stessa casella, indipendentemente dal suo tipo, i due giocatori devono sfidarsi a morra cinese (carta-forbice-sasso); introduce la competizione regolamentata e la gestione dell'esito (vittoria e sconfitta).
@@ -449,7 +450,7 @@ Prima di avviare una partita, il sistema consente di:
 \begin{itemize}
     \item impostare il numero di giocatori (da 2 a 10), ciascuno identificato da un nome e un colore assegnato automaticamente;
     \item definire il numero di caselle del tabellone (da 10 a 100);
-    \item scegliere quali tipologie di caselle speciali includere tra: Mimo, Quiz, Parole alle spalle, Disegno dettato, Emozioni in musica, Indovina l'emozione, Cosa faresti se\ldots, Test fisico, Caselle movimento;
+    \item scegliere quali tipologie di caselle speciali includere tra: Mimo, Quiz, Parole alle spalle, Disegno dettato, Emozioni in musica, Indovina l'emozione, Film, Cosa faresti se\ldots, Test fisico, Caselle movimento;
     \item regolare la percentuale di caselle speciali rispetto al totale;
     \item attivare o disattivare la meccanica di \textbf{Battaglia}.
 \end{itemize}
@@ -505,7 +506,7 @@ Una volta completata la configurazione, il sistema genera il tabellone e avvia l
     \label{fig:dice-roll}
 \end{figure}
 
-Le sfide attivabili sono le dieci descritte nella sezione~\ref{sec:lcdi}: Mimo, Quiz, Parole alle spalle, Disegno dettato, Emozioni in musica, Indovina l'emozione, Cosa faresti se\ldots, Test fisico, Battaglia e Caselle movimento. Ciascuna viene presentata attraverso una finestra modale sovrapposta al tabellone al momento dell'attivazione, come mostrato nelle figure~\ref{fig:modali-1} e~\ref{fig:modali-2}.
+Le sfide attivabili sono le undici descritte nella sezione~\ref{sec:lcdi}: Mimo, Quiz, Parole alle spalle, Disegno dettato, Emozioni in musica, Indovina l'emozione, Film, Cosa faresti se\ldots, Test fisico, Battaglia e Caselle movimento. Ciascuna viene presentata attraverso una finestra modale sovrapposta al tabellone al momento dell'attivazione, come mostrato nelle figure~\ref{fig:modali-1} e~\ref{fig:modali-2}.
 
 \begin{figure}[htbp]
     \centering
@@ -806,6 +807,8 @@ Ogni tipologia di casella speciale dispone di un mazzo di carte dedicato (es. \t
 
 Il mazzo della sfida ``Indovina l'emozione'' (\texttt{FaceEmotionDeck}) utilizza fotografie tratte da FACES, un database open di volti che esprimono emozioni di base (felicità, rabbia, tristezza, paura, disgusto, neutralità), sviluppato dal Max Planck Institute for Human Development \cite{ebner2010faces}. A differenza delle illustrazioni disegnate usate per le altre sfide, l'impiego di volti fotografici reali e validati scientificamente rende più realistico e trasferibile l'esercizio di riconoscimento delle espressioni facciali.
 
+Il mazzo della sfida ``Film'' (\texttt{FilmDeck}) contiene cinque scene, una per ciascuna emozione di base della sfida precedente esclusa la neutralità (felicità, rabbia, tristezza, disgusto, paura). Ogni carta associa l'emozione corretta a un file video servito dall'applicazione; a differenza delle immagini, il video viene riprodotto con l'audio e avviato dall'utente tramite i comandi del player.
+
 \subsection{State Management}
 
 Lo stato globale è gestito con Zustand, suddiviso in tre store indipendenti persistiti in \texttt{localStorage}:
@@ -866,12 +869,12 @@ export type GameActionResult = {
   type:
     | "battle" | "mime"    | "quiz"
     | "backwrite"          | "face-emotion"
-    | "music-emotion"      | "physical-test"
-    | "what-would-you-do"  | "dictation-draw"
-    | "none";
+    | "film"               | "music-emotion"
+    | "physical-test"      | "what-would-you-do"
+    | "dictation-draw"     | "none";
   data?: Battle | Mime | Quiz | BackWrite | FaceEmotion
-       | MusicEmotion | PhysicalTest | WhatWouldYouDo
-       | DictationDraw;
+       | Film | MusicEmotion | PhysicalTest
+       | WhatWouldYouDo | DictationDraw;
   diceResult: number;
   actionType: string | null;
 };
@@ -1011,7 +1014,7 @@ Nel corso della partita, il flusso di ogni turno si svolge come segue:
         \item \textbf{Quiz} --- il testo della domanda è visibile a tutti; l'educatore mostra la risposta corretta premendo il pulsante \textbf{Mostra risposta} e registra l'esito (successo o insuccesso);
         \item \textbf{Mimo} --- il tema da rappresentare compare esclusivamente sul dispositivo del giocatore attivo; gli altri vedono solo il tipo di sfida. Al termine, l'educatore seleziona quale giocatore ha indovinato, e quest'ultimo riceve il beneficio;
         \item \textbf{Parole alle spalle e Disegno dettato} --- il giocatore attivo sceglie il compagno destinatario prima di iniziare; la parola o il disegno compaiono solo sul suo dispositivo. Se la sfida riesce, entrambi avanzano di una casella;
-        \item \textbf{Emozione facciale, Emozione musicale, Test fisico, Cosa faresti se\ldots} --- la sfida è visibile a tutti; l'educatore registra l'esito al termine;
+        \item \textbf{Emozione facciale, Film, Emozione musicale, Test fisico, Cosa faresti se\ldots} --- la sfida è visibile a tutti; l'educatore registra l'esito al termine;
         \item \textbf{Battaglia} --- i due giocatori coinvolti effettuano la sfida sui rispettivi dispositivi; il server determina l'esito e aggiorna le posizioni.
     \end{itemize}
     Mentre la sfida è in corso, i giocatori non coinvolti visualizzano sul proprio dispositivo un'animazione (un'icona a forma di dado in rotazione) al posto di un semplice messaggio testuale, a indicare l'attesa dello svolgimento dell'azione da parte di un altro giocatore.
