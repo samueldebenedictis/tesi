@@ -140,9 +140,16 @@
 }
 
 \usepackage{longtable}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, calc}
 
-% Pannello di uno storyboard: schermata con didascalia numerata
+% Pannello di uno storyboard: schermata con didascalia numerata, colonna singola
 \newcommand{\storypanel}[3]{\begin{minipage}[t]{#3}\centering\includegraphics[width=\linewidth]{immagini/screenshots/#1}\par\smallskip\footnotesize #2\end{minipage}}
+% Celle per griglie di screenshot in tabella: riga singola garantita, niente interruzioni impreviste
+\newcommand{\shot}[2]{\centering\includegraphics[width=\linewidth]{immagini/screenshots/#1}\par\smallskip\footnotesize #2}
+\newcommand{\shotS}[2]{\centering\includegraphics[width=\linewidth]{immagini/screenshots/#1}\par\smallskip\small #2}
+% Cella allineata per ALTEZZA (non larghezza): usata per affiancare screenshot desktop e mobile alla stessa altezza visiva
+\newcommand{\shotH}[3]{\centering\includegraphics[height=#3]{immagini/screenshots/#1}\par\smallskip\small #2}
 
 \tolerance=9999
 \hbadness=9999
@@ -262,13 +269,13 @@ A questo si aggiunge un dato non scontato: gli adolescenti autistici esprimono i
 \section{Il gioco da tavolo}
 
 Per i bambini e gli adolescenti con disturbo dello spettro autistico, il gioco riveste un'importanza terapeutica significativa: rappresenta una cornice educativa motivante in cui sperimentare abilità, consolidare comportamenti e relazionarsi con le persone circostanti.
-Qualsiasi gioco, indipendentemente dal suo grado di serietà, insegna implicitamente ai partecipanti come comportarsi in un contesto di gruppo; i meccanismi di avanzamento e ricompensa integrati lo rendono inoltre particolarmente motivante rispetto ad altre forme di intervento educativo \cite{atherton2021}.
+Qualsiasi gioco, indipendentemente dal suo grado di serietà, insegna implicitamente ai partecipanti come comportarsi in un contesto di gruppo, risultando particolarmente motivante rispetto ad altre forme di intervento educativo \cite{atherton2021}.
 Tra le varie forme di gioco, quella che raggiunge il più alto livello di strutturazione è il gioco da tavolo, caratterizzato dall'utilizzo di elementi fisici definiti (pedine, carte, tabelloni, dadi) e da un insieme di regole esplicite che delimitano uno spazio e un tempo di gioco ben determinati.
 Questa struttura chiusa e ben delimitata lo rende particolarmente adatto al contesto autistico. Le analogie con le attività di lavoro indipendente previste dalla metodologia \textit{Treatment and Education of Autistic and related Communication handicapped Children} (TEACCH) non sono casuali: entrambe si svolgono seduti al tavolo, sono strutturate nel tempo e nello spazio, hanno una fine prestabilita e privilegiano il codice visivo rispetto a quello verbale \cite{mari2018, mesibov2005}. Non a caso, tra le attività raccomandate dall'approccio TEACCH per il lavoro sulle competenze sociali di adolescenti figurano esplicitamente giochi da tavolo in gruppo e videogiochi \cite{mesibov2005}.
 
-A differenza delle attività di lavoro individuale, tuttavia, il gioco da tavolo richiede la partecipazione di almeno due soggetti: si configura quindi come un'interazione focalizzata faccia a faccia, offrendo opportunità di interazione sociale più ricche rispetto alle alternative esclusivamente digitali \cite{atherton2021}. Anche nella versione digitale oggetto del presente elaborato, il gioco rimane nella sua modalità di base un'esperienza condivisa che si svolge fisicamente attorno a uno schermo comune.
+A differenza delle attività di lavoro individuale, tuttavia, il gioco da tavolo richiede la partecipazione di almeno due soggetti, offrendo opportunità di interazione sociale più ricche rispetto alle alternative esclusivamente digitali \cite{atherton2021}.
 
-Una revisione sistematica della letteratura ha riscontrato esiti positivi in tutti gli studi analizzati sull'uso dei giochi come strumento di \textit{social skills training} per persone autistiche \cite{walsh2024}. La ricerca in questo ambito ha privilegiato strumenti digitali sviluppati appositamente --- ambienti virtuali, robot, agenti conversazionali --- mentre le implementazioni digitali di giochi da tavolo strutturati rimangono un approccio ancora poco esplorato.
+Come approfondito nel capitolo~\ref{cap:stato-arte}, la letteratura sul gioco come strumento di \textit{social skills training} per persone autistiche riporta esiti costantemente positivi \cite{walsh2024}, ma si è concentrata su strumenti digitali sviluppati appositamente, lasciando le implementazioni digitali di giochi da tavolo strutturati un approccio ancora poco esplorato.
 
 L'implementazione digitale descritta in questo elaborato si colloca in questo spazio. Rispetto alla versione fisica, il formato digitale consente di adattare parametri come il numero di caselle, la tipologia delle sfide o il numero di giocatori direttamente dall'interfaccia --- senza dover riprogettare e ristampare i componenti. L'interazione, però, rimane quella del gioco da tavolo: faccia a faccia, attorno a uno schermo condiviso.
 
@@ -461,15 +468,24 @@ Questa sezione ripercorre passo per passo una sessione tipo dal punto di vista d
 
 \subsection{Fase 1 --- Preparazione della partita}
 
-La preparazione è comune alle due modalità ed è il momento in cui l'educatore adatta il gioco al gruppo (figura~\ref{fig:sb-prep}, tabella~\ref{tab:sb-prep}).
+La preparazione è comune alle due modalità ed è il momento in cui l'educatore adatta il gioco al gruppo (figure~\ref{fig:sb-prep} e~\ref{fig:sb-prep2}, tabella~\ref{tab:sb-prep}).
 
 \begin{figure}[htbp]
     \centering
-    \storypanel{mode-selection}{Passo 1: scelta della modalità.}{0.32\textwidth}\hfill
-    \storypanel{home-single-filled}{Passi 2--5 e 7: configurazione (schermo singolo).}{0.32\textwidth}\hfill
-    \storypanel{home-multi-config}{Passi 3--5 e 7: configurazione (multi-dispositivo).}{0.32\textwidth}
-    \caption{Preparazione della partita.}
+    \storypanel{mode-selection}{Passo 1: scelta della modalità.}{0.7\textwidth}
+
+    \vspace{0.8em}
+
+    \storypanel{home-single-filled}{Passi 2--5 e 7: configurazione (schermo singolo).}{0.7\textwidth}
+    \caption{Preparazione della partita (1/2).}
     \label{fig:sb-prep}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \storypanel{home-multi-config}{Passi 3--5 e 7: configurazione (multi-dispositivo).}{0.7\textwidth}
+    \caption{Preparazione della partita (2/2).}
+    \label{fig:sb-prep2}
 \end{figure}
 
 \begingroup\small
@@ -493,19 +509,26 @@ La preparazione è comune alle due modalità ed è il momento in cui l'educatore
 
 \subsection{Fase 2 --- Sessione a schermo singolo}
 
-Tutti i partecipanti guardano lo stesso schermo. L'educatore conduce la partita e resta il riferimento per la valutazione delle sfide (figura~\ref{fig:sb-single}, tabella~\ref{tab:sb-single}).
+Tutti i partecipanti guardano lo stesso schermo. L'educatore conduce la partita e resta il riferimento per la valutazione delle sfide (figure~\ref{fig:sb-single} e~\ref{fig:sb-single2}, tabella~\ref{tab:sb-single}).
 
 \begin{figure}[htbp]
     \centering
-    \storypanel{dice-roll}{Passo 1: lancio del dado.}{0.48\textwidth}\hfill
-    \storypanel{quiz-modal-answer}{Passi 3--4: sfida (Quiz) e registrazione dell'esito.}{0.48\textwidth}
-
-    \vspace{0.8em}
-
-    \storypanel{skip-turn-modal}{Passo 4: turno saltato.}{0.48\textwidth}\hfill
-    \storypanel{end-game}{Passo 6: fine della partita.}{0.48\textwidth}
-    \caption{Sessione a schermo singolo.}
+    \begin{tabular}{@{}p{0.46\textwidth}@{\hspace{1.5em}}p{0.46\textwidth}@{}}
+    \shot{dice-roll}{Passo 1: lancio del dado.} &
+    \shot{quiz-modal-answer}{Passi 3--4: sfida (Quiz) e registrazione dell'esito.} \\
+    \end{tabular}
+    \caption{Sessione a schermo singolo (1/2).}
     \label{fig:sb-single}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tabular}{@{}p{0.46\textwidth}@{\hspace{1.5em}}p{0.46\textwidth}@{}}
+    \shot{skip-turn-modal}{Passo 4: turno saltato.} &
+    \shot{end-game}{Passo 6: fine della partita.} \\
+    \end{tabular}
+    \caption{Sessione a schermo singolo (2/2).}
+    \label{fig:sb-single2}
 \end{figure}
 
 \begingroup\small
@@ -519,7 +542,7 @@ Tutti i partecipanti guardano lo stesso schermo. L'educatore conduce la partita 
 \endhead
 1 & Invita il giocatore di turno a premere il pulsante del dado. & Anima il lancio e sposta la pedina casella per casella. & Turni condivisi, senza dadi fisici. \\ \hline
 2 & Osserva la casella raggiunta; se è normale il turno passa al giocatore successivo. & Aggiorna barra laterale e turno. & --- \\ \hline
-3 & Se la casella è speciale, conduce la sfida mostrata nella finestra modale (figure~\ref{fig:modali-1} e~\ref{fig:modali-2}). & Estrae la carta dal mazzo corrispondente e la mostra a tutti. & Esercitare la competenza associata alla sfida (tabella~\ref{tab:sfide}). \\ \hline
+3 & Se la casella è speciale, conduce la sfida mostrata nella finestra modale (figure~\ref{fig:modali-1}--\ref{fig:modali-2b}). & Estrae la carta dal mazzo corrispondente e la mostra a tutti. & Esercitare la competenza associata alla sfida (tabella~\ref{tab:sfide}). \\ \hline
 4 & Valuta l'esito e lo registra. & Applica le conseguenze: avanzamento, retrocessione o salto del turno. & L'educatore resta il giudice della sfida. \\ \hline
 5 & Se due pedine occupano la stessa casella e la Battaglia è attiva, guida la sfida a morra cinese. & Attiva la Battaglia e applica l'esito sul tabellone. & Competizione regolamentata. \\ \hline
 6 & Alla partita conclusa proclama il vincitore. & Mostra la schermata di fine partita. & Gestire vittoria e sconfitta. \\ \hline
@@ -528,21 +551,34 @@ Tutti i partecipanti guardano lo stesso schermo. L'educatore conduce la partita 
 
 \subsection{Fase 3 --- Sessione multi-dispositivo}
 
-Ogni giocatore usa il proprio smartphone, mentre il tabellone resta sullo schermo dell'educatore (figura~\ref{fig:sb-multi}, tabella~\ref{tab:sb-multi}). Le scelte tecniche che stanno dietro a questi passi sono descritte nella sezione~\ref{sec:multi-dispositivo}.
+Ogni giocatore usa il proprio smartphone, mentre il tabellone resta sullo schermo dell'educatore (figure~\ref{fig:sb-multi} e~\ref{fig:sb-multi2}, tabella~\ref{tab:sb-multi}). Le scelte tecniche che stanno dietro a questi passi sono descritte nella sezione~\ref{sec:multi-dispositivo}.
 
 \begin{figure}[htbp]
     \centering
-    \storypanel{multiplayer-lobby}{Passo 1: lobby con codice QR.}{0.5\textwidth}\hfill
-    \storypanel{multiplayer-join}{Passo 2: registrazione dal telefono.}{0.2\textwidth}\hfill
-    \storypanel{player-active-turn}{Passo 4: giocatore di turno.}{0.2\textwidth}
+    \storypanel{multiplayer-lobby}{Passo 1: lobby con codice QR.}{0.46\textwidth}
 
     \vspace{0.8em}
 
-    \storypanel{multiplayer-board}{Passi 3--5: tabellone dell'educatore.}{0.5\textwidth}\hfill
-    \storypanel{player-waiting-turn}{Passo 4: gli altri giocatori.}{0.2\textwidth}\hfill
-    \storypanel{player-game-over}{Passo 6: fine partita.}{0.2\textwidth}
-    \caption{Sessione multi-dispositivo.}
+    \begin{tabular}{@{}p{0.22\textwidth}@{\hspace{1.5em}}p{0.22\textwidth}@{}}
+    \shot{multiplayer-join}{Passo 2: registrazione dal telefono.} &
+    \shot{player-active-turn}{Passo 4: giocatore di turno.} \\
+    \end{tabular}
+    \caption{Sessione multi-dispositivo (1/2).}
     \label{fig:sb-multi}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \storypanel{multiplayer-board}{Passi 3--5: tabellone dell'educatore.}{0.46\textwidth}
+
+    \vspace{0.8em}
+
+    \begin{tabular}{@{}p{0.22\textwidth}@{\hspace{1.5em}}p{0.22\textwidth}@{}}
+    \shot{player-waiting-turn}{Passo 4: gli altri giocatori.} &
+    \shot{player-game-over}{Passo 6: fine partita.} \\
+    \end{tabular}
+    \caption{Sessione multi-dispositivo (2/2).}
+    \label{fig:sb-multi2}
 \end{figure}
 
 \begingroup\small
@@ -588,68 +624,46 @@ Questa sezione descrive le singole schermate incontrate nello storyboard. La nav
     \item \textbf{Dado e modali} --- Un pulsante permette al giocatore attivo di lanciare il dado; se la casella di arrivo è speciale, si apre la finestra modale corrispondente alla sfida.
 \end{itemize}
 
-Le sfide attivabili sono quelle descritte nella sezione~\ref{sec:lcdi}. Ciascuna viene presentata attraverso una finestra modale sovrapposta al tabellone al momento dell'attivazione, come mostrato nelle figure~\ref{fig:modali-1} e~\ref{fig:modali-2}; la tabella~\ref{tab:sfide} riassume come è gestita nelle due modalità.
+Le sfide attivabili sono quelle descritte nella sezione~\ref{sec:lcdi}. Ciascuna viene presentata attraverso una finestra modale sovrapposta al tabellone al momento dell'attivazione, come mostrato nelle figure~\ref{fig:modali-1}--\ref{fig:modali-2b}; la tabella~\ref{tab:sfide} riassume come è gestita nelle due modalità.
 
 \begin{figure}[htbp]
     \centering
-    \begin{minipage}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/mime-modal-topic}
-        \par\smallskip\small Mimo.
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/quiz-modal-answer}
-        \par\smallskip\small Quiz.
-    \end{minipage}
-
-    \vspace{0.8em}
-
-    \begin{minipage}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/backwrite-modal-word}
-        \par\smallskip\small Parole alle spalle.
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/dictation-draw-modal-image}
-        \par\smallskip\small Disegno dettato.
-    \end{minipage}
-    \caption{Finestre modali delle sfide (1/2): Mimo, Quiz, Parole alle spalle, Disegno dettato.}
+    \begin{tabular}{@{}p{0.46\textwidth}@{\hspace{1.5em}}p{0.46\textwidth}@{}}
+    \shotS{mime-modal-topic}{Mimo.} &
+    \shotS{quiz-modal-answer}{Quiz.} \\
+    \end{tabular}
+    \caption{Finestre modali delle sfide (1/4): Mimo, Quiz.}
     \label{fig:modali-1}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
-    \begin{minipage}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/music-emotion-modal}
-        \par\smallskip\small Emozioni in musica.
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/face-emotion-modal-answer}
-        \par\smallskip\small Indovina l'emozione.
-    \end{minipage}
+    \begin{tabular}{@{}p{0.46\textwidth}@{\hspace{1.5em}}p{0.46\textwidth}@{}}
+    \shotS{backwrite-modal-word}{Parole alle spalle.} &
+    \shotS{dictation-draw-modal-image}{Disegno dettato.} \\
+    \end{tabular}
+    \caption{Finestre modali delle sfide (2/4): Parole alle spalle, Disegno dettato.}
+    \label{fig:modali-1b}
+\end{figure}
 
-    \vspace{0.8em}
-
-    \begin{minipage}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/what-would-you-do-modal}
-        \par\smallskip\small Cosa faresti se\ldots
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/physical-test-modal}
-        \par\smallskip\small Test fisico.
-    \end{minipage}
-    \caption{Finestre modali delle sfide (2/2): Emozioni in musica, Indovina l'emozione, Cosa faresti se\ldots, Test fisico.}
+\begin{figure}[htbp]
+    \centering
+    \begin{tabular}{@{}p{0.46\textwidth}@{\hspace{1.5em}}p{0.46\textwidth}@{}}
+    \shotS{music-emotion-modal}{Emozioni in musica.} &
+    \shotS{face-emotion-modal-answer}{Indovina l'emozione.} \\
+    \end{tabular}
+    \caption{Finestre modali delle sfide (3/4): Emozioni in musica, Indovina l'emozione.}
     \label{fig:modali-2}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tabular}{@{}p{0.46\textwidth}@{\hspace{1.5em}}p{0.46\textwidth}@{}}
+    \shotS{what-would-you-do-modal}{Cosa faresti se\ldots} &
+    \shotS{physical-test-modal}{Test fisico.} \\
+    \end{tabular}
+    \caption{Finestre modali delle sfide (4/4): Cosa faresti se\ldots, Test fisico.}
+    \label{fig:modali-2b}
 \end{figure}
 
 Nella modalità schermo singolo ogni sfida compare nella finestra modale visibile a tutti e l'educatore ne registra sempre l'esito. Nella modalità multi-dispositivo la visibilità dipende dalla sfida, come riassunto nella tabella~\ref{tab:sfide}.
@@ -746,74 +760,46 @@ Seguono le medie delle valutazioni numeriche e quattro grafici a barre con la di
 \subsection{Modalità multi-dispositivo}
 \label{sec:desc-multi-dispositivo}
 
-Le schermate specifiche di questa modalità --- lobby con codice QR, pagina di registrazione e schermata personale del giocatore --- compaiono nello storyboard (figura~\ref{fig:sb-multi}).
+Le schermate specifiche di questa modalità --- lobby con codice QR, pagina di registrazione e schermata personale del giocatore --- compaiono nello storyboard (figure~\ref{fig:sb-multi} e~\ref{fig:sb-multi2}).
 
 Le sfide speciali si comportano diversamente a seconda della tipologia: per alcune il contenuto è \textbf{condiviso} e compare identico sul tabellone e sullo smartphone del giocatore attivo; per altre è \textbf{privato} e il tema resta visibile solo sul dispositivo di chi deve eseguirlo, mentre l'host vede unicamente i nomi dei giocatori coinvolti, preservando l'elemento a sorpresa.
 
 \begin{figure}[htbp]
     \centering
-    \begin{minipage}[b]{0.62\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/multiplayer-quiz-host}
-        \par\smallskip\small Tabellone dell'educatore: domanda visibile, con pulsante per rivelare la risposta corretta.
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.35\textwidth}
-        \centering
-        \includegraphics[width=0.7\linewidth]{immagini/screenshots/multiplayer-quiz-player}
-        \par\smallskip\small Smartphone del giocatore: stessa domanda, in attesa del giudizio dell'educatore.
-    \end{minipage}
+    \begin{tabular}{@{}p{0.58\textwidth}@{\hspace{1.5em}}p{0.20\textwidth}@{}}
+    \shotH{multiplayer-quiz-host}{Tabellone dell'educatore: domanda visibile, con pulsante per rivelare la risposta corretta.}{133pt} &
+    \shotH{multiplayer-quiz-player}{Smartphone del giocatore: stessa domanda, in attesa del giudizio dell'educatore.}{133pt} \\
+    \end{tabular}
     \caption{Sfida condivisa (Quiz): la domanda compare identica su entrambi gli schermi, ma la risposta resta visibile solo sul tabellone.}
     \label{fig:multiplayer-quiz}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
-    \begin{minipage}[b]{0.62\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/multiplayer-physical-test-host}
-        \par\smallskip\small Tabellone dell'educatore.
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.35\textwidth}
-        \centering
-        \includegraphics[width=0.7\linewidth]{immagini/screenshots/multiplayer-physical-test-player}
-        \par\smallskip\small Smartphone del giocatore.
-    \end{minipage}
+    \begin{tabular}{@{}p{0.58\textwidth}@{\hspace{1.5em}}p{0.20\textwidth}@{}}
+    \shotH{multiplayer-physical-test-host}{Tabellone dell'educatore.}{133pt} &
+    \shotH{multiplayer-physical-test-player}{Smartphone del giocatore.}{133pt} \\
+    \end{tabular}
     \caption{Sfida condivisa (Test fisico): il contenuto compare identico su entrambi gli schermi.}
     \label{fig:multiplayer-physical-test}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
-    \begin{minipage}[b]{0.62\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/multiplayer-dictation-draw-host}
-        \par\smallskip\small Tabellone dell'educatore: nessun dettaglio della sfida è visibile, solo i nomi dei giocatori coinvolti.
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.35\textwidth}
-        \centering
-        \includegraphics[width=0.7\linewidth]{immagini/screenshots/multiplayer-dictation-draw-player}
-        \par\smallskip\small Smartphone del giocatore che descrive: tema e immagine di riferimento.
-    \end{minipage}
+    \begin{tabular}{@{}p{0.58\textwidth}@{\hspace{1.5em}}p{0.20\textwidth}@{}}
+    \shotH{multiplayer-dictation-draw-host}{Tabellone dell'educatore: nessun dettaglio della sfida è visibile, solo i nomi dei giocatori coinvolti.}{133pt} &
+    \shotH{multiplayer-dictation-draw-player}{Smartphone del giocatore che descrive: tema e immagine di riferimento.}{133pt} \\
+    \end{tabular}
     \caption{Sfida privata (Disegno dettato): il tema è visibile solo sul dispositivo del giocatore attivo.}
     \label{fig:multiplayer-dictation-draw}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
-    \begin{minipage}[b]{0.62\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/multiplayer-mime-host}
-        \par\smallskip\small Tabellone dell'educatore: il mimo da eseguire è nascosto, pronto per essere rivelato su richiesta.
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.35\textwidth}
-        \centering
-        \includegraphics[width=0.7\linewidth]{immagini/screenshots/multiplayer-mime-player}
-        \par\smallskip\small Smartphone del giocatore che mima: la parola o frase da mimare.
-    \end{minipage}
+    \begin{tabular}{@{}p{0.58\textwidth}@{\hspace{1.5em}}p{0.20\textwidth}@{}}
+    \shotH{multiplayer-mime-host}{Tabellone dell'educatore: il mimo da eseguire è nascosto, pronto per essere rivelato su richiesta.}{133pt} &
+    \shotH{multiplayer-mime-player}{Smartphone del giocatore che mima: la parola o frase da mimare.}{133pt} \\
+    \end{tabular}
     \caption{Sfida privata (Mimo) nella modalità multi-dispositivo.}
     \label{fig:multiplayer-mime}
 \end{figure}
@@ -824,7 +810,7 @@ L'architettura tecnica che supporta questa modalità è descritta nella sezione~
 
 \section{Architettura dei moduli}
 
-L'applicazione segue un'architettura a tre strati con separazione netta tra logica di dominio, gestione dello stato e presentazione:
+Nella modalità schermo singolo, l'applicazione segue un'architettura a tre strati con separazione netta tra logica di dominio, gestione dello stato e presentazione, interamente eseguita nel browser. La modalità multi-dispositivo, descritta nella sezione~\ref{sec:multi-dispositivo}, sposta l'esecuzione autoritativa del Domain Model lato server e riduce Zustand, sul lato client, a un ruolo più marginale:
 
 \begin{table}[h]
     \centering
@@ -835,7 +821,7 @@ L'applicazione segue un'architettura a tre strati con separazione netta tra logi
     State Management Layer & Store Zustand (\texttt{src/store/}) \\ \hline
     Domain Model Layer     & Logica di gioco (\texttt{src/model/}) \\ \hline
     \end{tabular}
-    \caption{Architettura a strati dell'applicazione.}
+    \caption{Architettura a strati dell'applicazione (modalità schermo singolo).}
     \label{tab:architettura}
 \end{table}
 
@@ -874,6 +860,9 @@ Lo stato globale è gestito con Zustand, suddiviso in tre store indipendenti per
     \item \texttt{config-store} --- configurazione della partita: nomi e numero dei giocatori, numero di caselle, tipologie e percentuale di caselle speciali;
     \item \texttt{sound-store} --- preferenze dell'utente riguardo agli effetti sonori e agli annunci vocali.
 \end{itemize}
+
+Questa descrizione vale per intero nella modalità schermo singolo, dove \texttt{game-store} è l'unica fonte di verità e le sue azioni (\texttt{playTurn()}, \texttt{resolve*()}) sono l'unico punto d'ingresso per far avanzare la partita.
+Nella modalità multi-dispositivo lo stato autoritativo risiede invece sul server (sezione~\ref{sec:multi-dispositivo-stato-client}): sulla pagina host \texttt{game-store} viene reidratato in sola lettura dallo snapshot ricevuto via \textit{polling} (\texttt{Game.fromJSON(session.gameState)}) e serve solo a renderizzare il tabellone, mentre le azioni dell'utente --- avvio partita, risoluzione delle sfide, lancio del dado --- vengono inviate direttamente alle API Routes tramite \texttt{fetch()}, bypassando le azioni dello store. Le pagine del giocatore (\texttt{app/player/}) e di accesso (\texttt{app/join/}) non usano Zustand: si affidano solo a \texttt{useState} locale e all'hook di \textit{polling} \texttt{useSessionPolling}.
 
 \subsection{Presentation Layer}
 
@@ -957,7 +946,7 @@ playTurn(): GameActionResult {
 
 \subsection{Gestione dello stato con Zustand e persistenza}
 
-Lo store \texttt{useGameStore} è il punto di raccordo tra il domain model e l'interfaccia utente.
+Quanto segue descrive il funzionamento di \texttt{useGameStore} nella modalità schermo singolo, dove è l'unico punto di raccordo tra il domain model e l'interfaccia utente; il suo ruolo ridotto nella modalità multi-dispositivo è descritto nella sezione~\ref{sec:multi-dispositivo-stato-client}.
 È definito tramite \texttt{create()} di Zustand, avvolto nel middleware \texttt{persist}, e si articola in due sezioni distinte: lo \textit{stato} e le \textit{azioni}.
 
 La sezione di stato contiene due categorie di campi: quelli che riflettono la partita in corso (\texttt{game}, istanza della classe \texttt{Game}, e \texttt{gameData}, la sua rappresentazione JSON) e quelli che descrivono la situazione dell'interfaccia (\texttt{isModalOpen}, \texttt{isDiceModalOpen}, \texttt{diceResult}, \texttt{actionType}, \texttt{actionData} e altri).
@@ -1018,7 +1007,8 @@ La classe \texttt{Game} delega ciascuna responsabilità a un manager specializza
 Questo approccio --- talvolta chiamato \textit{Manager Pattern} o \textit{Specialist Pattern} --- consente di mantenere la classe \texttt{Game} snella e leggibile, concentrando ciascuna regola di gioco nel modulo che ne è responsabile, con benefici diretti sulla testabilità e sulla manutenibilità del codice.
 
 \subsection{Model-View-Controller}
-L'architettura a tre strati dell'applicazione rispecchia il pattern architetturale \textit{Model-View-Controller} (MVC): il Domain Model (\texttt{src/model/}) corrisponde al \textit{Model}, i componenti React (\texttt{src/app/}) alla \textit{View} e gli store Zustand (\texttt{src/store/}) al \textit{Controller}, che media le interazioni dell'utente verso il modello e propaga gli aggiornamenti di stato verso l'interfaccia.
+\label{sec:mvc}
+Nella modalità schermo singolo, l'architettura a tre strati dell'applicazione rispecchia il pattern architetturale \textit{Model-View-Controller} (MVC): il Domain Model (\texttt{src/model/}) corrisponde al \textit{Model}, i componenti React (\texttt{src/app/}) alla \textit{View} e gli store Zustand (\texttt{src/store/}) al \textit{Controller}, che media le interazioni dell'utente verso il modello e propaga gli aggiornamenti di stato verso l'interfaccia. Nella modalità multi-dispositivo il ruolo di Controller passa alle API Routes, che ricevono le azioni via HTTP e le applicano a un'istanza di \texttt{Game} lato server (sezione~\ref{sec:multi-dispositivo-stato-client}); Zustand vi sopravvive solo come cache di rendering sulla pagina host.
 
 \section{Modalità multi-dispositivo}
 \label{sec:multi-dispositivo}
@@ -1027,7 +1017,31 @@ Di seguito si descrive l'architettura tecnica che supporta la modalità multi-di
 
 \subsection{Architettura delle sessioni}
 
-La modalità multi-dispositivo richiede una componente \textit{server-side} per sincronizzare lo stato della partita tra i dispositivi dei giocatori. A tal fine, l'applicazione fa uso delle \textit{API Routes} di Next.js, che consentono di definire endpoint HTTP direttamente nel progetto senza la necessità di un server separato.
+La modalità multi-dispositivo richiede una componente \textit{server-side} per sincronizzare lo stato della partita tra i dispositivi dei giocatori. A tal fine, l'applicazione fa uso delle \textit{API Routes} di Next.js, che consentono di definire endpoint HTTP direttamente nel progetto senza la necessità di un server separato. La figura~\ref{fig:architettura-multi} riassume i componenti coinvolti e le comunicazioni descritte nel resto della sezione.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[
+        box/.style={draw, rounded corners, align=center, font=\small, minimum height=1.1cm, inner sep=6pt},
+        arr/.style={-{Stealth[length=6pt]}, thick},
+        lbl/.style={font=\scriptsize, align=center},
+        node distance=1.3cm and 1cm
+    ]
+        \node[box, minimum width=3cm] (host) {Host\\(tablet/PC dell'educatore)\\\texttt{/multiplayer/[id]}};
+        \node[box, minimum width=2.8cm, right=1.4cm of host] (player) {Giocatore\\(smartphone)\\\texttt{/player/[id]/[pid]}};
+
+        \node[box, minimum width=7.3cm, below=1.5cm of $(host)!0.5!(player)$] (api) {Vercel --- API Routes\\(funzioni serverless)};
+
+        \node[box, minimum width=5.5cm, below=1.5cm of api] (redis) {Upstash Redis\\\texttt{SessionState}};
+
+        \draw[arr] (host) -- (api) node[lbl, midway, left, xshift=-2pt] {long polling\\\texttt{GET /api/sessions/[id]}};
+        \draw[arr] (player) -- (api) node[lbl, midway, right, xshift=2pt] {long polling\\+ \texttt{POST} azioni};
+        \draw[arr, <->] (api) -- (redis) node[lbl, midway, right, xshift=2pt] {lettura/scrittura\\stato di sessione};
+        \draw[arr, dashed] (host) to[bend left=18] node[lbl, midway, above, sloped] {codice QR / \texttt{join}} (player);
+    \end{tikzpicture}
+    \caption{Architettura della modalità multi-dispositivo: host e giocatori comunicano con le API Routes tramite \textit{long polling}, che leggono e scrivono lo stato di sessione su Redis; il giocatore si unisce inquadrando il codice QR mostrato dall'host.}
+    \label{fig:architettura-multi}
+\end{figure}
 
 Lo stato di sessione è rappresentato da un oggetto \texttt{SessionState} che include l'elenco dei giocatori connessi, la fase corrente della partita, il turno attivo e gli esiti delle sfide. La persistenza di questo stato è gestita tramite un meccanismo a tre livelli, scelto in cascata in base all'ambiente di esecuzione:
 
@@ -1046,6 +1060,20 @@ La creazione di una sessione avviene tramite una richiesta \texttt{POST} all'end
 Una volta creata la sessione, l'applicazione genera un codice QR che i giocatori inquadrano con il proprio smartphone. Il codice QR contiene l'URL della pagina di accesso, che include il \texttt{sessionId} come parametro. Il giocatore inserisce il proprio nome e invia una richiesta \texttt{POST} all'endpoint \texttt{/api/sessions/[id]/join}, che registra il nuovo partecipante nella sessione e restituisce un \texttt{playerId} univoco.
 
 Il giocatore viene quindi reindirizzato alla propria schermata di gioco, raggiungibile all'URL \texttt{/player/[sessionId]/[playerId]}. L'identità del giocatore è interamente codificata nell'URL: anche in caso di chiusura accidentale della scheda o di ricaricamento della pagina, il giocatore recupera il proprio stato semplicemente riaprendo lo stesso indirizzo.
+
+\subsection{Stato lato client: il ruolo ridotto di Zustand}
+\label{sec:multi-dispositivo-stato-client}
+
+A differenza della modalità schermo singolo (sezione~\ref{sec:domain-model}), in modalità multi-dispositivo l'istanza di \texttt{Game} autoritativa vive lato server: le API Routes la ricostruiscono da \texttt{SessionState} tramite \texttt{Game.fromJSON()}, invocano su di essa i metodi del domain model e ne persistono il risultato su Redis. Il client non possiede quindi una copia mutabile della partita, ma solo lo snapshot pubblico ricevuto tramite \textit{long polling}.
+
+Questo capovolge il ruolo di Zustand rispetto alla modalità schermo singolo:
+
+\begin{itemize}
+    \item sulla pagina host (\texttt{app/multiplayer/[sessionId]/page.tsx}), \texttt{game-store} viene reidratato in sola lettura a ogni aggiornamento del \textit{polling} (\texttt{gameStore.setGame(Game.fromJSON(session.gameState))}) e serve esclusivamente a renderizzare il tabellone; le azioni dell'educatore (avvio partita, risoluzione di una sfida, designazione di un vincitore) non passano per le azioni dello store ma vengono inviate come richieste \texttt{POST} dirette agli endpoint \texttt{/api/sessions/[id]/*};
+    \item le pagine \texttt{app/player/[sessionId]/[playerId]/page.tsx} e \texttt{app/join/[sessionId]/page.tsx} non importano né \texttt{useGameStore} né \texttt{useConfigStore}: si basano unicamente su \texttt{useState} locale e sull'hook \texttt{useSessionPolling} (\texttt{src/lib/use-session-polling.ts}), che espone direttamente lo stato pubblico di sessione ricevuto dal server.
+\end{itemize}
+
+In sintesi, la tabella~\ref{tab:architettura} e la lettura MVC della sezione~\ref{sec:mvc} descrivono l'architettura della sola modalità schermo singolo; in modalità multi-dispositivo lo strato di gestione dello stato --- e con esso il ruolo di Controller --- si sposta alle API Routes lato server, mentre Zustand resta attivo, ridotto a cache di presentazione, solo sulla pagina host.
 
 \subsection{Comunicazione in tempo reale tramite \textit{long polling}}
 
