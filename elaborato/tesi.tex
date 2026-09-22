@@ -139,6 +139,18 @@
   commentstyle=\upshape,
 }
 
+\usepackage{longtable}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, calc}
+
+% Pannello di uno storyboard: schermata con didascalia numerata, colonna singola
+\newcommand{\storypanel}[3]{\begin{minipage}[t]{#3}\centering\includegraphics[width=\linewidth]{immagini/screenshots/#1}\par\smallskip\footnotesize #2\end{minipage}}
+% Celle per griglie di screenshot in tabella: riga singola garantita, niente interruzioni impreviste
+\newcommand{\shot}[2]{\centering\includegraphics[width=\linewidth]{immagini/screenshots/#1}\par\smallskip\footnotesize #2}
+\newcommand{\shotS}[2]{\centering\includegraphics[width=\linewidth]{immagini/screenshots/#1}\par\smallskip\small #2}
+% Cella allineata per ALTEZZA (non larghezza): usata per affiancare screenshot desktop e mobile alla stessa altezza visiva
+\newcommand{\shotH}[3]{\centering\includegraphics[height=#3]{immagini/screenshots/#1}\par\smallskip\small #2}
+
 \tolerance=9999
 \hbadness=9999
 
@@ -189,8 +201,10 @@
 %			RINGRAZIAMENTI (facoltativi)
 %
 
-% \prefacesection{Ringraziamenti}
-% Questa sezione, facoltativa, contiene i ringraziamenti.
+\prefacesection{Ringraziamenti}
+Ringrazio la dottoressa Daverio e tutta l'équipe di psicologi ed educatori del CFPIL di Varese per la fiducia, il tempo e il confronto costante che hanno accompagnato questo lavoro.
+
+Un ringraziamento particolare va ai ragazzi del gruppo, ideatori de \textit{La Città degli Imprevisti}: il loro entusiasmo e le loro idee sono alla base di questo progetto.
 
 %
 %			Creazione automatica dell'indice
@@ -241,6 +255,8 @@ Il centro promuove relazioni sistemiche con il tessuto sociale, scolastico, prod
 
 Il potenziamento delle competenze sociali degli utenti del CFPIL costituisce uno degli obiettivi primari dell'istituto, riconosciuto come condizione imprescindibile per favorire l'inserimento lavorativo e la partecipazione attiva alla vita comunitaria.
 
+Il presente lavoro si rivolge in particolare a un gruppo di adolescenti di età compresa tra i 15 e i 19 anni, con un funzionamento cognitivo caratterizzato da un deficit di entità lieve, associato alle difficoltà socio-relazionali tipiche dello spettro autistico. Questa combinazione si traduce spesso in incertezza nell'affrontare i problemi della vita quotidiana e in una complessa gestione dell'adattamento sociale.
+
 Per molti adolescenti con disturbo dello spettro autistico le competenze sociali rappresentano un'area di significativa difficoltà. Con questo termine si fa riferimento alla capacità di interagire in modo adeguato al contesto, di comunicare bisogni e intenzioni, di rispettare turni e ruoli e di gestire situazioni di conflitto: abilità che risultano spesso più determinanti delle competenze tecniche ai fini dell'integrazione lavorativa.
 
 Sul piano neuropsicologico, queste difficoltà derivano da una combinazione di fattori tra loro correlati: bassa motivazione spontanea a iniziare interazioni sociali; tendenza a interazioni routinizzate anziché reciproche; difficoltà nella lettura di regole sociali implicite, come il linguaggio del corpo, il tono della voce o i segnali di disinteresse dell'interlocutore; deficit di teoria della mente, ovvero la capacità di inferire pensieri e intenzioni altrui \cite{mesibov2005}. Quest'ultimo deficit può portare, ad esempio, a prolungare una conversazione su un argomento di interesse personale senza percepire il disinteresse del proprio interlocutore, o a non cogliere il significato di un commento sarcastico.
@@ -253,22 +269,41 @@ A questo si aggiunge un dato non scontato: gli adolescenti autistici esprimono i
 \section{Il gioco da tavolo}
 
 Per i bambini e gli adolescenti con disturbo dello spettro autistico, il gioco riveste un'importanza terapeutica significativa: rappresenta una cornice educativa motivante in cui sperimentare abilità, consolidare comportamenti e relazionarsi con le persone circostanti.
-Qualsiasi gioco, indipendentemente dal suo grado di serietà, insegna implicitamente ai partecipanti come comportarsi in un contesto di gruppo; i meccanismi di avanzamento e ricompensa integrati lo rendono inoltre particolarmente motivante rispetto ad altre forme di intervento educativo \cite{atherton2021}.
+Qualsiasi gioco, indipendentemente dal suo grado di serietà, insegna implicitamente ai partecipanti come comportarsi in un contesto di gruppo, risultando particolarmente motivante rispetto ad altre forme di intervento educativo \cite{atherton2021}.
 Tra le varie forme di gioco, quella che raggiunge il più alto livello di strutturazione è il gioco da tavolo, caratterizzato dall'utilizzo di elementi fisici definiti (pedine, carte, tabelloni, dadi) e da un insieme di regole esplicite che delimitano uno spazio e un tempo di gioco ben determinati.
 Questa struttura chiusa e ben delimitata lo rende particolarmente adatto al contesto autistico. Le analogie con le attività di lavoro indipendente previste dalla metodologia \textit{Treatment and Education of Autistic and related Communication handicapped Children} (TEACCH) non sono casuali: entrambe si svolgono seduti al tavolo, sono strutturate nel tempo e nello spazio, hanno una fine prestabilita e privilegiano il codice visivo rispetto a quello verbale \cite{mari2018, mesibov2005}. Non a caso, tra le attività raccomandate dall'approccio TEACCH per il lavoro sulle competenze sociali di adolescenti figurano esplicitamente giochi da tavolo in gruppo e videogiochi \cite{mesibov2005}.
 
-A differenza delle attività di lavoro individuale, tuttavia, il gioco da tavolo richiede la partecipazione di almeno due soggetti: si configura quindi come un'interazione focalizzata faccia a faccia, offrendo opportunità di interazione sociale più ricche rispetto alle alternative esclusivamente digitali \cite{atherton2021}. Anche nella versione digitale oggetto del presente elaborato, il gioco rimane nella sua modalità di base un'esperienza condivisa che si svolge fisicamente attorno a uno schermo comune.
+A differenza delle attività di lavoro individuale, tuttavia, il gioco da tavolo richiede la partecipazione di almeno due soggetti, offrendo opportunità di interazione sociale più ricche rispetto alle alternative esclusivamente digitali \cite{atherton2021}.
 
-Una revisione sistematica della letteratura ha riscontrato esiti positivi in tutti gli studi analizzati sull'uso dei giochi come strumento di \textit{social skills training} per persone autistiche \cite{walsh2024}. La ricerca in questo ambito ha privilegiato strumenti digitali sviluppati appositamente --- ambienti virtuali, robot, agenti conversazionali --- mentre le implementazioni digitali di giochi da tavolo strutturati rimangono un approccio ancora poco esplorato.
+Come approfondito nel capitolo~\ref{cap:stato-arte}, la letteratura sul gioco come strumento di \textit{social skills training} per persone autistiche riporta esiti costantemente positivi \cite{walsh2024}, ma si è concentrata su strumenti digitali sviluppati appositamente, lasciando le implementazioni digitali di giochi da tavolo strutturati un approccio ancora poco esplorato.
 
 L'implementazione digitale descritta in questo elaborato si colloca in questo spazio. Rispetto alla versione fisica, il formato digitale consente di adattare parametri come il numero di caselle, la tipologia delle sfide o il numero di giocatori direttamente dall'interfaccia --- senza dover riprogettare e ristampare i componenti. L'interazione, però, rimane quella del gioco da tavolo: faccia a faccia, attorno a uno schermo condiviso.
 
 \section{\textit{La Città degli Imprevisti}}
 \label{sec:lcdi}
 
-\textit{La Città degli Imprevisti} nasce da una collaborazione diretta tra utenti e docenti del CFPIL di Varese, che hanno progettato insieme un gioco centrato sulle competenze sociali.
-La struttura di base è quella del Gioco dell'Oca --- un percorso lineare, un dado, le pedine --- arricchita con caselle speciali che attivano minigiochi a carattere sociale ed emotivo.
+\subsection{Origine del progetto}
+
+\textit{La Città degli Imprevisti} nasce all'interno dei percorsi del CFPIL come risposta strutturata ai bisogni evolutivi e relazionali del gruppo descritto nella sezione precedente. Il lavoro è partito da un modulo dedicato alla consapevolezza personale e di gruppo, che ha permesso ai partecipanti di esaminare le proprie caratteristiche individuali e di confrontarsi in un ambiente protetto. L'esito più significativo di questa fase è stato il ridimensionamento del concetto di ``malattia'' a favore della presa di coscienza del proprio specifico tipo di funzionamento, con benefici sull'autoaccettazione e sul confronto tra pari.
+
+Dalla maturazione del gruppo è emersa l'esigenza di lavorare sull'adattamento quotidiano, in particolare sul \textit{problem solving} e sulla decodifica delle emozioni altrui. L'intervento si è articolato nell'approfondimento della comunicazione verbale e di quella analogica (mimica, prossemica e gestualità) e in esercitazioni pratiche per individuare soluzioni rapide ed efficaci di fronte a ostacoli e imprevisti personali e sociali.
+
+Per sintetizzare ed esercitare l'insieme di queste competenze, il gruppo ha ideato, insieme all'équipe di psicologi ed educatori, una modalità ludica strutturata. Con strumenti semplici --- cartellone, pennarelli e ritagli di carta --- è nato il prototipo da tavolo, una piattaforma di simulazione in cui applicare le strategie comunicative e risolutive apprese. La struttura di base è quella del Gioco dell'Oca --- un percorso lineare, un dado, le pedine --- arricchita con caselle speciali che attivano minigiochi a carattere sociale ed emotivo.
 L'obiettivo è arrivare per primi all'ultima casella, ma lungo il percorso i giocatori si trovano a dover comunicare, collaborare, riconoscere emozioni --- non come esercizio isolato, ma come parte del gioco stesso.
+
+\subsection{Dal prototipo cartaceo al videogioco}
+
+Dalla volontà del gruppo di condividere lo strumento all'esterno, e dall'iniziativa di uno dei partecipanti, che aveva appreso in autonomia le basi della programmazione, è nata l'idea di trasformare il tabellone cartaceo in un videogioco. La scelta del canale digitale risponde a due considerazioni segnalate dall'équipe: l'interesse che molte persone nello spettro dimostrano per l'informatica e l'età dei partecipanti, per i quali il gaming è un linguaggio naturale e un primario strumento di mediazione relazionale.
+
+Il presente elaborato descrive la traduzione di quel prototipo in un'applicazione web interattiva, fruibile online e tramite smartphone, sviluppata a partire dall'ascolto dei bisogni dei partecipanti e dalle loro idee.
+
+La digitalizzazione ha avuto un impatto positivo di valorizzazione personale: i partecipanti hanno visto il proprio lavoro riconosciuto e trasformato in un prodotto tecnologico reale e fruibile. Il gioco è stato presentato e condiviso con gli altri studenti del CFPIL, diventando uno strumento relazionale esteso e rispondendo al linguaggio espressivo tipico della loro fascia d'età.
+
+\subsection{Un gruppo in evoluzione}
+
+Nel corso del tempo la composizione del gruppo è cambiata: alcuni dei membri originali hanno concluso il percorso formativo per inserirsi nel mondo del lavoro, lasciando il posto a nuovi ingressi. I partecipanti ``veterani'' hanno assunto spontaneamente il ruolo di \textit{mentor}, affiancando i nuovi compagni nel percorso sulla consapevolezza dell'autismo e introducendoli alle dinamiche del gioco. Secondo l'équipe, questo passaggio di testimone ha rafforzato l'efficacia del modello, rendendo il gruppo stesso un ambiente formativo in grado di sostenersi autonomamente. Si tratta di un'osservazione qualitativa, non misurata nel presente lavoro.
+
+\subsection{Le caselle speciali}
 
 Le caselle speciali costituiscono il cuore educativo del gioco e sono progettate per sollecitare competenze diverse:
 
@@ -288,6 +323,10 @@ Le caselle speciali costituiscono il cuore educativo del gioco e sono progettate
 Alcune di queste tipologie trovano riscontro nella letteratura empirica: come riportato da Atherton e Cross \cite{atherton2021}, giochi di riconoscimento delle espressioni facciali hanno prodotto miglioramenti significativi in bambini con disturbo dello spettro autistico (Tanaka et al., 2010, citato in \cite{atherton2021}); attività di mimica con contenuto emotivo hanno dimostrato di allenare la decodifica del linguaggio non verbale (Dell'Angela et al., 2020, citato in \cite{atherton2021}); il gioco di ruolo da tavolo con adolescenti autistici ha prodotto miglioramenti nel benessere emotivo e nelle amicizie (Katō, 2019, citato in \cite{atherton2021}).
 
 Le caselle speciali non sono scelte in modo arbitrario: nel loro insieme, coprono le aree di difficoltà strutturale che la letteratura individua come caratteristiche dell'ASD --- lettura delle espressioni facciali e del linguaggio non verbale, decodifica dei gesti, assunzione della prospettiva altrui, comunicazione verbale precisa, gestione delle emozioni, collaborazione e competizione regolamentata \cite{mesibov2005}. La varietà delle sfide garantisce che durante la partita vengano esercitate competenze eterogenee, mantenendo alto il coinvolgimento dei partecipanti.
+
+\subsection{Sviluppi previsti}
+
+La collaborazione tra équipe e gruppo prosegue con una nuova fase, non ancora implementata, dedicata alla prevenzione dei pericoli sociali, come bullismo e tentativi di raggiro; è descritta tra gli sviluppi futuri (sezione~\ref{sec:sviluppi-futuri}).
 
 % 
 %			CAPITOLO 2: Stato dell'arte
@@ -316,6 +355,8 @@ La revisione segnala tuttavia alcune limitazioni: campioni ridotti, eterogeneit�
 
 La letteratura si è concentrata quasi esclusivamente su strumenti di questo tipo, lasciando inesplorato il gioco da tavolo in versione digitale. A differenza dei serious games recensiti da Carneiro et al. \cite{carneiro2024}, progettati per uso individuale o mediato dallo schermo, \textit{La Città degli Imprevisti} --- nella sua modalità di base con schermo singolo condiviso --- mantiene l'interazione faccia a faccia attorno a un tavolo condiviso e richiede la mediazione di un educatore. La modalità multi-dispositivo, introdotta nella versione corrente, modifica parzialmente questa dinamica consentendo a ogni giocatore di usare il proprio smartphone; le implicazioni di questa scelta sulla qualità dell'interazione sociale sono discusse nella sezione~\ref{sec:multi-dispositivo}. I domini esercitati --- riconoscimento delle emozioni, comunicazione non verbale, prospettiva altrui, collaborazione, gestione della competizione --- coincidono con le aree di intervento prioritarie nell'ASD identificate dalla letteratura.
 
+Due ulteriori elementi distinguono il lavoro. Il primo riguarda i destinatari: la revisione di Carneiro et al. \cite{carneiro2024} copre quasi esclusivamente la fascia 7--10 anni, mentre il gruppo coinvolto è composto da adolescenti di 15--19 anni con funzionamento cognitivo lievemente compromesso. Il secondo riguarda il processo di progettazione: il gioco non è stato ideato da un gruppo di ricerca, ma dai partecipanti stessi insieme all'équipe di psicologi ed educatori, e la sua versione digitale nasce su loro richiesta.
+
 %
 %			CAPITOLO 3: Tecnologie utilizzate
 %			(omettere questo capitolo se non necessario)
@@ -324,11 +365,7 @@ La letteratura si è concentrata quasi esclusivamente su strumenti di questo tip
 \chapter{Tecnologie utilizzate}
 \label{cap:tecnologie}
 
-L'applicazione ha attraversato due fasi di sviluppo distinte che hanno influenzato le scelte tecnologiche adottate.
-
-La \textbf{versione 1} (v1, ultima release 1.4.6) è un'applicazione puramente client-side: Next.js veniva utilizzato in modalità di esportazione statica, producendo un insieme di file HTML, JavaScript e CSS distribuiti su GitHub Pages. Non era richiesto alcun server; la logica di gioco risiedeva interamente nel browser.
-
-La \textbf{versione 2} (v2, versione corrente) introduce la modalità multi-dispositivo, che richiede stato condiviso tra dispositivi diversi. Per supportarla sono stati aggiunti un livello server-side con API Routes, un database Redis per la persistenza delle sessioni e una piattaforma di hosting compatibile con le funzioni serverless: Vercel con Upstash Redis. Le tecnologie client-side della v1 --- Next.js, TypeScript, React, Zustand, Tailwind --- rimangono invariate.
+L'applicazione ha attraversato due fasi di sviluppo: una versione \textbf{v1} puramente client-side e una versione \textbf{v2} con una componente server-side per la modalità multi-dispositivo (si veda la sezione~\ref{sec:evoluzione-architettura}). Le tecnologie client-side --- Next.js, TypeScript, React, Zustand, Tailwind --- sono rimaste invariate; alla v2 si aggiungono le API Routes, un database Redis (Upstash) e l'hosting su Vercel.
 
 Gli strumenti adottati in entrambe le versioni sono stati scelti per garantire qualità del codice, efficienza di sviluppo e manutenibilità nel lungo periodo.
 
@@ -336,7 +373,7 @@ Gli strumenti adottati in entrambe le versioni sono stati scelti per garantire q
 
 \subsection{Next.js}
 Next.js è un framework React per applicazioni web che integra nativamente routing basato su file, rendering lato server (SSR), generazione di siti statici (SSG) e API Routes per la definizione di endpoint HTTP nel medesimo progetto.
-È stato scelto come framework principale per la sua flessibilità: nella versione iniziale dell'applicazione (v1) era utilizzato in modalità di esportazione statica, distribuendo i file su GitHub Pages senza necessità di un server; nella versione corrente (v2) le API Routes sono abilitate per supportare la modalità multi-dispositivo e il deploy avviene su Vercel.
+È stato scelto come framework principale per la sua flessibilità: la stessa base di codice ha supportato sia l'esportazione statica della v1 sia le API Routes della v2 (sezione~\ref{sec:evoluzione-architettura}).
 
 \subsection{TypeScript}
 TypeScript è un superset di JavaScript che aggiunge tipizzazione statica al linguaggio, consentendo di individuare errori a tempo di compilazione anziché a runtime.
@@ -398,10 +435,11 @@ Nella pipeline di build viene compilato come sito statico e pubblicato insieme a
 Le tecnologie descritte nel capitolo precedente si riflettono direttamente nelle scelte architetturali dell'applicazione. Questo capitolo descrive come sono state combinate per realizzare il sistema, a partire dal contesto d'uso fino ai dettagli implementativi.
 
 \section{Contesto d'uso e scelte progettuali}
+\label{sec:contesto}
 
 L'applicazione è progettata per sessioni di gruppo in presenza, guidate da un educatore. Tutti i partecipanti si trovano nella stessa stanza e condividono un unico dispositivo --- tipicamente un tablet o un PC con schermo sufficientemente grande da essere visibile a tutti i giocatori seduti attorno al tavolo. Non vengono utilizzati dadi fisici: il lancio avviene premendo un pulsante sullo schermo, e il risultato viene animato e visualizzato dall'applicazione. Anche l'avanzamento delle pedine è gestito interamente dal software: dopo ogni lancio, la pedina del giocatore attivo si sposta automaticamente lungo il tabellone, casella dopo casella, con un breve balzo animato per ciascun passaggio, fino a raggiungere la casella di destinazione.
 
-L'applicazione supporta due modalità operative. Nella modalità \textbf{schermo singolo}, tutti i partecipanti utilizzano un unico dispositivo condiviso: questa scelta preserva la natura faccia a faccia del gioco da tavolo originale, mantiene l'attenzione del gruppo centrata su un unico punto di riferimento e riduce la complessità infrastrutturale. Nella modalità \textbf{multi-dispositivo}, ogni giocatore utilizza il proprio smartphone come controller personale, mentre il tabellone rimane visibile su un dispositivo separato gestito dall'educatore (descritta nella sezione~\ref{sec:multi-dispositivo}). Il ruolo dell'educatore rimane centrale in entrambe le modalità: è lui a facilitare le sfide delle caselle speciali, a valutare le risposte dei giocatori e a registrare l'esito nell'applicazione, che ne applica gli effetti sul tabellone.
+L'applicazione supporta due modalità operative. Nella modalità \textbf{schermo singolo}, tutti i partecipanti utilizzano un unico dispositivo condiviso: questa scelta preserva la natura faccia a faccia del gioco da tavolo originale, mantiene l'attenzione del gruppo centrata su un unico punto di riferimento e riduce la complessità infrastrutturale. Nella modalità \textbf{multi-dispositivo}, ogni giocatore utilizza il proprio smartphone come controller personale, mentre il tabellone rimane visibile su un dispositivo separato gestito dall'educatore (descritta nella sezione~\ref{sec:multi-dispositivo}). Il ruolo dell'educatore rimane centrale in entrambe le modalità: è lui a facilitare le sfide delle caselle speciali, a valutare le risposte dei giocatori e a registrare l'esito nell'applicazione, che ne applica gli effetti sul tabellone. Con ``educatore'' si intende chi conduce la sessione, figura che può essere un educatore o uno psicologo; il suo percorso d'uso è descritto nella sezione~\ref{sec:storyboard}.
 
 \begin{figure}[htbp]
     \centering
@@ -423,70 +461,158 @@ La prima versione dell'applicazione (\textbf{v1}, ultima release: 1.4.6) adottav
 
 La versione corrente (\textbf{v2}) abbandona l'esportazione statica e adotta Vercel come piattaforma di hosting. Le API Routes di Next.js sono ora abilitate e vengono eseguite come funzioni serverless al momento della richiesta. Lo stato delle sessioni è persistito su Upstash Redis, un servizio di key-value store accessibile tramite API HTTP, compatibile con l'ambiente serverless di Vercel. La versione v1 rimane accessibile all'indirizzo storico su GitHub Pages; la versione v2 è disponibile su Vercel all'indirizzo \texttt{https://tesi-nine.vercel.app/}.
 
-\section{Struttura ad alto livello}
+\section{Storyboard: l'uso dell'applicazione da parte dell'educatore}
+\label{sec:storyboard}
 
-L'applicazione si articola in due moduli funzionali principali, corrispondenti alle due fasi distinte dell'esperienza d'uso.
+Questa sezione ripercorre passo per passo una sessione tipo dal punto di vista dell'educatore (o dello psicologo) che la conduce, dalla preparazione della partita alla chiusura. Per ogni fase si indicano che cosa fa l'educatore, che cosa fa l'applicazione e a quale scopo. Le singole schermate sono descritte nella sezione~\ref{sec:schermate}.
 
-Il modulo di \textbf{configurazione} permette di definire i parametri della partita e genera il tabellone al termine.
+\subsection{Fase 1 --- Preparazione della partita}
 
-Il modulo di \textbf{gioco} gestisce lo svolgimento turno per turno fino a quando un giocatore raggiunge l'ultima casella.
+La preparazione è comune alle due modalità ed è il momento in cui l'educatore adatta il gioco al gruppo (figure~\ref{fig:sb-prep} e~\ref{fig:sb-prep2}, tabella~\ref{tab:sb-prep}).
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\textwidth]{immagini/screenshots/home-filled}
-    \caption{Modulo di configurazione: impostazione del numero di giocatori, lunghezza del percorso e tipologie di caselle.}
-    \label{fig:home}
+    \storypanel{mode-selection}{Passo 1: scelta della modalità.}{0.7\textwidth}
+
+    \vspace{0.8em}
+
+    \storypanel{home-single-filled}{Passi 2--5 e 7: configurazione (schermo singolo).}{0.7\textwidth}
+    \caption{Preparazione della partita (1/2).}
+    \label{fig:sb-prep}
 \end{figure}
 
-\section{Specifiche funzionali}
+\begin{figure}[htbp]
+    \centering
+    \storypanel{home-multi-config}{Passi 3--5 e 7: configurazione (multi-dispositivo).}{0.7\textwidth}
+    \caption{Preparazione della partita (2/2).}
+    \label{fig:sb-prep2}
+\end{figure}
 
-Di seguito sono descritte le funzionalità implementate, organizzate per fase d'uso.
+\begingroup\small
+\begin{longtable}{@{}c p{3.9cm} p{3.9cm} p{3.4cm}@{}}
+\caption{Fase 1: preparazione della partita.}\label{tab:sb-prep}\\
+\hline
+\textbf{N.} & \textbf{L'educatore} & \textbf{L'applicazione} & \textbf{Finalità} \\ \hline
+\endfirsthead
+\hline
+\textbf{N.} & \textbf{L'educatore} & \textbf{L'applicazione} & \textbf{Finalità} \\ \hline
+\endhead
+1 & Sceglie la modalità: schermo singolo o multi-dispositivo. & Mostra la selezione; ``Cambia modalità'' permette di tornare indietro. & Adattare la sessione agli spazi e al gruppo (sezione~\ref{sec:contesto}). \\ \hline
+2 & Solo in schermo singolo: imposta numero di giocatori (2--10) e nomi. In multi-dispositivo i giocatori si registrano dallo smartphone. & Assegna un colore a ciascun giocatore. & Rendere ogni giocatore riconoscibile sul tabellone. \\ \hline
+3 & Definisce la lunghezza del percorso (10--100 caselle). & Adegua la griglia del tabellone. & Regolare la durata della sessione. \\ \hline
+4 & Sceglie le tipologie di caselle speciali e la loro percentuale. & Genera il tabellone con le sole tipologie scelte. & Orientare la sessione verso le competenze da esercitare, o escludere sfide non adatte al gruppo. \\ \hline
+5 & Attiva o disattiva la Battaglia. & Se attiva, gestisce le collisioni tra pedine. & Dosare la componente competitiva. \\ \hline
+6 & Facoltativo: apre la modalità avanzata e assegna a mano il tipo di ogni casella (figura~\ref{fig:advanced-mode}). & Sostituisce la distribuzione casuale. & Costruire un percorso su misura. \\ \hline
+7 & Preme ``Inizia gioco''. & Mescola i mazzi e salva la configurazione nel \texttt{localStorage}. & Avviare la partita; la configurazione resta disponibile dopo un ricaricamento. \\ \hline
+\end{longtable}
+\endgroup
 
-\subsection{Configurazione della partita}
+\subsection{Fase 2 --- Sessione a schermo singolo}
 
-Prima di avviare una partita, il sistema consente di:
+Tutti i partecipanti guardano lo stesso schermo. L'educatore conduce la partita e resta il riferimento per la valutazione delle sfide (figure~\ref{fig:sb-single} e~\ref{fig:sb-single2}, tabella~\ref{tab:sb-single}).
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tabular}{@{}p{0.46\textwidth}@{\hspace{1.5em}}p{0.46\textwidth}@{}}
+    \shot{dice-roll}{Passo 1: lancio del dado.} &
+    \shot{quiz-modal-answer}{Passi 3--4: sfida (Quiz) e registrazione dell'esito.} \\
+    \end{tabular}
+    \caption{Sessione a schermo singolo (1/2).}
+    \label{fig:sb-single}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tabular}{@{}p{0.46\textwidth}@{\hspace{1.5em}}p{0.46\textwidth}@{}}
+    \shot{skip-turn-modal}{Passo 4: turno saltato.} &
+    \shot{end-game}{Passo 6: fine della partita.} \\
+    \end{tabular}
+    \caption{Sessione a schermo singolo (2/2).}
+    \label{fig:sb-single2}
+\end{figure}
+
+\begingroup\small
+\begin{longtable}{@{}c p{3.9cm} p{3.9cm} p{3.4cm}@{}}
+\caption{Fase 2: sessione a schermo singolo.}\label{tab:sb-single}\\
+\hline
+\textbf{N.} & \textbf{L'educatore} & \textbf{L'applicazione} & \textbf{Finalità} \\ \hline
+\endfirsthead
+\hline
+\textbf{N.} & \textbf{L'educatore} & \textbf{L'applicazione} & \textbf{Finalità} \\ \hline
+\endhead
+1 & Invita il giocatore di turno a premere il pulsante del dado. & Anima il lancio e sposta la pedina casella per casella. & Turni condivisi, senza dadi fisici. \\ \hline
+2 & Osserva la casella raggiunta; se è normale il turno passa al giocatore successivo. & Aggiorna barra laterale e turno. & --- \\ \hline
+3 & Se la casella è speciale, conduce la sfida mostrata nella finestra modale (figure~\ref{fig:modali-1}--\ref{fig:modali-2b}). & Estrae la carta dal mazzo corrispondente e la mostra a tutti. & Esercitare la competenza associata alla sfida (tabella~\ref{tab:sfide}). \\ \hline
+4 & Valuta l'esito e lo registra. & Applica le conseguenze: avanzamento, retrocessione o salto del turno. & L'educatore resta il giudice della sfida. \\ \hline
+5 & Se due pedine occupano la stessa casella e la Battaglia è attiva, guida la sfida a morra cinese. & Attiva la Battaglia e applica l'esito sul tabellone. & Competizione regolamentata. \\ \hline
+6 & Alla partita conclusa proclama il vincitore. & Mostra la schermata di fine partita. & Gestire vittoria e sconfitta. \\ \hline
+\end{longtable}
+\endgroup
+
+\subsection{Fase 3 --- Sessione multi-dispositivo}
+
+Ogni giocatore usa il proprio smartphone, mentre il tabellone resta sullo schermo dell'educatore (figure~\ref{fig:sb-multi} e~\ref{fig:sb-multi2}, tabella~\ref{tab:sb-multi}). Le scelte tecniche che stanno dietro a questi passi sono descritte nella sezione~\ref{sec:multi-dispositivo}.
+
+\begin{figure}[htbp]
+    \centering
+    \storypanel{multiplayer-lobby}{Passo 1: lobby con codice QR.}{0.46\textwidth}
+
+    \vspace{0.8em}
+
+    \begin{tabular}{@{}p{0.22\textwidth}@{\hspace{1.5em}}p{0.22\textwidth}@{}}
+    \shot{multiplayer-join}{Passo 2: registrazione dal telefono.} &
+    \shot{player-active-turn}{Passo 4: giocatore di turno.} \\
+    \end{tabular}
+    \caption{Sessione multi-dispositivo (1/2).}
+    \label{fig:sb-multi}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \storypanel{multiplayer-board}{Passi 3--5: tabellone dell'educatore.}{0.46\textwidth}
+
+    \vspace{0.8em}
+
+    \begin{tabular}{@{}p{0.22\textwidth}@{\hspace{1.5em}}p{0.22\textwidth}@{}}
+    \shot{player-waiting-turn}{Passo 4: gli altri giocatori.} &
+    \shot{player-game-over}{Passo 6: fine partita.} \\
+    \end{tabular}
+    \caption{Sessione multi-dispositivo (2/2).}
+    \label{fig:sb-multi2}
+\end{figure}
+
+\begingroup\small
+\begin{longtable}{@{}c p{3.9cm} p{3.9cm} p{3.4cm}@{}}
+\caption{Fase 3: sessione multi-dispositivo.}\label{tab:sb-multi}\\
+\hline
+\textbf{N.} & \textbf{L'educatore} & \textbf{L'applicazione} & \textbf{Finalità} \\ \hline
+\endfirsthead
+\hline
+\textbf{N.} & \textbf{L'educatore} & \textbf{L'applicazione} & \textbf{Finalità} \\ \hline
+\endhead
+1 & Crea la sessione dalla configurazione e mostra il codice QR ai partecipanti. & Genera l'identificativo di sessione e il token dell'educatore; mostra la lobby. & Accesso dei giocatori senza digitare indirizzi. \\ \hline
+2 & Attende che i giocatori inquadrino il QR e inseriscano il proprio nome. & Assegna a ciascuno un identificativo e aggiorna la lobby. & Ogni partecipante gioca dal proprio dispositivo. \\ \hline
+3 & Preme ``Avvia partita''. & Porta tutti i dispositivi alla schermata di gioco. & --- \\ \hline
+4 & Segue il tabellone; il giocatore di turno lancia il dado dal proprio smartphone. & Propaga il risultato a tutti; gli altri vedono chi è di turno. & Il tabellone resta il riferimento comune. \\ \hline
+5 & Sulle caselle speciali supervisiona la sfida: mostra la risposta (Quiz), indica chi ha indovinato (Mimo) o registra l'esito. & Distribuisce la sfida ai dispositivi, in forma condivisa o privata (tabella~\ref{tab:sfide}). & Preservare l'elemento di sorpresa nelle sfide private. \\ \hline
+6 & Conclude la partita. & Mostra il vincitore e il pulsante ``Dai un feedback!''. & Passare alla raccolta di feedback. \\ \hline
+\end{longtable}
+\endgroup
+
+\subsection{Fase 4 --- Chiusura}
+
+Al termine, o in caso di interruzione, l'educatore può:
 
 \begin{itemize}
-    \item impostare il numero di giocatori (da 2 a 10), ciascuno identificato da un nome e un colore assegnato automaticamente;
-    \item definire il numero di caselle del tabellone (da 10 a 100);
-    \item scegliere quali tipologie di caselle speciali includere tra: Mimo, Quiz, Parole alle spalle, Disegno dettato, Emozioni in musica, Indovina l'emozione, Cosa faresti se\ldots, Test fisico, Caselle movimento;
-    \item regolare la percentuale di caselle speciali rispetto al totale;
-    \item attivare o disattivare la meccanica di \textbf{Battaglia}.
+    \item riprendere la sessione in un secondo momento: la partita è conservata nel browser e può essere esportata come file JSON e ricaricata (sezione~\ref{sec:ripristino});
+    \item invitare i partecipanti a compilare il modulo di feedback (sezione~\ref{sec:raccolta-feedback});
+    \item consultare le risposte aggregate nella dashboard di analisi (sezione~\ref{sec:desc-feedback-dashboard}).
 \end{itemize}
 
-Se abilitata, la Battaglia si attiva automaticamente ogni volta che due pedine occupano la stessa casella; se disabilitata, le pedine possono condividere la casella senza alcuna conseguenza.
+\section{Le schermate dell'applicazione}
+\label{sec:schermate}
 
-La configurazione viene persistita in locale tramite il middleware \texttt{persist} di Zustand, così da essere disponibile anche in caso di ricaricamento della pagina.
-
-\subsection{Svolgimento del turno}
-
-Il turno di ogni giocatore segue la sequenza:
-
-\begin{enumerate}
-    \item Il giocatore attivo lancia il dado (valore casuale 1--6).
-    \item La pedina si sposta lungo il tabellone del numero di caselle corrispondente al risultato del lancio.
-    \item Se la casella di arrivo è normale, il turno termina e passa al giocatore successivo.
-    \item Se la casella è speciale, viene mostrata una finestra modale con la sfida corrispondente.
-    \item L'educatore valuta l'esito e registra il risultato; il sistema applica le conseguenze (avanzamento, retrocessione o salto del turno).
-    \item In caso di collisione tra due pedine sulla stessa casella, si attiva automaticamente la meccanica di Battaglia, se abilitata in fase di configurazione.
-\end{enumerate}
-
-\subsection{Salvataggio e ripristino della partita}
-
-Lo stato completo della partita (posizioni delle pedine, turno corrente, stato dei mazzi) è serializzabile in formato JSON ed esportabile come file.
-Una partita interrotta può essere ripristinata caricando il file salvato dalla schermata dedicata.
-
-\section{Descrizione funzionale}
-
-L'applicazione si articola in più schermate, organizzate attorno a due modalità operative: schermo singolo e multi-dispositivo. La navigazione avviene tramite un header persistente che espone due elementi: un link diretto alla schermata delle istruzioni e un pulsante Menu che apre una finestra modale con i collegamenti a Nuova partita, Continua partita, Carica partita e Feedback.
-
-\subsection{Schermata Home --- Configurazione della partita}
-
-La schermata iniziale permette di configurare una nuova partita: numero e nomi dei giocatori, lunghezza del percorso, tipologie di caselle speciali da includere e relativa percentuale di distribuzione.
-
-È disponibile anche una \textbf{modalità avanzata} che consente di definire manualmente la disposizione delle caselle (descritta nella sezione successiva).
-
-Una volta completata la configurazione, il sistema genera il tabellone e avvia la partita.
+Questa sezione descrive le singole schermate incontrate nello storyboard. La navigazione avviene tramite un header persistente che espone due elementi: un link diretto alla schermata delle istruzioni e un pulsante Menu che apre una finestra modale con i collegamenti a Nuova partita, Continua partita, Carica partita e Feedback.
 
 \subsection{Schermata di gioco}
 
@@ -498,76 +624,68 @@ Una volta completata la configurazione, il sistema genera il tabellone e avvia l
     \item \textbf{Dado e modali} --- Un pulsante permette al giocatore attivo di lanciare il dado; se la casella di arrivo è speciale, si apre la finestra modale corrispondente alla sfida.
 \end{itemize}
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\textwidth]{immagini/screenshots/dice-roll}
-    \caption{Animazione del lancio del dado durante il turno del giocatore attivo.}
-    \label{fig:dice-roll}
-\end{figure}
-
-Le sfide attivabili sono le dieci descritte nella sezione~\ref{sec:lcdi}: Mimo, Quiz, Parole alle spalle, Disegno dettato, Emozioni in musica, Indovina l'emozione, Cosa faresti se\ldots, Test fisico, Battaglia e Caselle movimento. Ciascuna viene presentata attraverso una finestra modale sovrapposta al tabellone al momento dell'attivazione, come mostrato nelle figure~\ref{fig:modali-1} e~\ref{fig:modali-2}.
+Le sfide attivabili sono quelle descritte nella sezione~\ref{sec:lcdi}. Ciascuna viene presentata attraverso una finestra modale sovrapposta al tabellone al momento dell'attivazione, come mostrato nelle figure~\ref{fig:modali-1}--\ref{fig:modali-2b}; la tabella~\ref{tab:sfide} riassume come è gestita nelle due modalità.
 
 \begin{figure}[htbp]
     \centering
-    \begin{minipage}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/mime-modal-topic}
-        \par\smallskip\small Mimo.
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/quiz-modal-answer}
-        \par\smallskip\small Quiz.
-    \end{minipage}
-
-    \vspace{0.8em}
-
-    \begin{minipage}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/backwrite-modal-word}
-        \par\smallskip\small Parole alle spalle.
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/dictation-draw-modal-image}
-        \par\smallskip\small Disegno dettato.
-    \end{minipage}
-    \caption{Finestre modali delle sfide (1/2): Mimo, Quiz, Parole alle spalle, Disegno dettato.}
+    \begin{tabular}{@{}p{0.46\textwidth}@{\hspace{1.5em}}p{0.46\textwidth}@{}}
+    \shotS{mime-modal-topic}{Mimo.} &
+    \shotS{quiz-modal-answer}{Quiz.} \\
+    \end{tabular}
+    \caption{Finestre modali delle sfide (1/4): Mimo, Quiz.}
     \label{fig:modali-1}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
-    \begin{minipage}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/music-emotion-modal}
-        \par\smallskip\small Emozioni in musica.
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/face-emotion-modal-answer}
-        \par\smallskip\small Indovina l'emozione.
-    \end{minipage}
+    \begin{tabular}{@{}p{0.46\textwidth}@{\hspace{1.5em}}p{0.46\textwidth}@{}}
+    \shotS{backwrite-modal-word}{Parole alle spalle.} &
+    \shotS{dictation-draw-modal-image}{Disegno dettato.} \\
+    \end{tabular}
+    \caption{Finestre modali delle sfide (2/4): Parole alle spalle, Disegno dettato.}
+    \label{fig:modali-1b}
+\end{figure}
 
-    \vspace{0.8em}
-
-    \begin{minipage}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/what-would-you-do-modal}
-        \par\smallskip\small Cosa faresti se\ldots
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/physical-test-modal}
-        \par\smallskip\small Test fisico.
-    \end{minipage}
-    \caption{Finestre modali delle sfide (2/2): Emozioni in musica, Indovina l'emozione, Cosa faresti se\ldots, Test fisico.}
+\begin{figure}[htbp]
+    \centering
+    \begin{tabular}{@{}p{0.46\textwidth}@{\hspace{1.5em}}p{0.46\textwidth}@{}}
+    \shotS{music-emotion-modal}{Emozioni in musica.} &
+    \shotS{face-emotion-modal-answer}{Indovina l'emozione.} \\
+    \end{tabular}
+    \caption{Finestre modali delle sfide (3/4): Emozioni in musica, Indovina l'emozione.}
     \label{fig:modali-2}
 \end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tabular}{@{}p{0.46\textwidth}@{\hspace{1.5em}}p{0.46\textwidth}@{}}
+    \shotS{what-would-you-do-modal}{Cosa faresti se\ldots} &
+    \shotS{physical-test-modal}{Test fisico.} \\
+    \end{tabular}
+    \caption{Finestre modali delle sfide (4/4): Cosa faresti se\ldots, Test fisico.}
+    \label{fig:modali-2b}
+\end{figure}
+
+Nella modalità schermo singolo ogni sfida compare nella finestra modale visibile a tutti e l'educatore ne registra sempre l'esito. Nella modalità multi-dispositivo la visibilità dipende dalla sfida, come riassunto nella tabella~\ref{tab:sfide}.
+
+\begingroup\small
+\begin{longtable}{@{}p{3.6cm} p{4.4cm} p{5.0cm}@{}}
+\caption{Gestione delle sfide nella modalità multi-dispositivo.}\label{tab:sfide}\\
+\hline
+\textbf{Sfida} & \textbf{Visibilità del contenuto} & \textbf{Esito} \\ \hline
+\endfirsthead
+\hline
+\textbf{Sfida} & \textbf{Visibilità del contenuto} & \textbf{Esito} \\ \hline
+\endhead
+Quiz & Condivisa: la domanda è visibile a tutti, la risposta solo sul tabellone. & L'educatore mostra la risposta e registra successo o insuccesso. \\ \hline
+Mimo & Privata: il tema compare solo sul telefono del giocatore attivo. & L'educatore indica quale giocatore ha indovinato, che riceve il beneficio. \\ \hline
+Parole alle spalle, Disegno dettato & Privata: la parola o il disegno compaiono solo sul telefono del giocatore attivo, che sceglie il compagno destinatario. & Se la sfida riesce, entrambi avanzano di una casella. \\ \hline
+Indovina l'emozione, Emozioni in musica, Test fisico, Cosa faresti se\ldots & Condivisa: visibile a tutti. & L'educatore registra l'esito al termine. \\ \hline
+Battaglia & I due giocatori coinvolti sfidano dai rispettivi dispositivi. & Il server determina l'esito e aggiorna le posizioni. \\ \hline
+Caselle movimento & Nessuna sfida. & Applicate in automatico. \\ \hline
+\end{longtable}
+\endgroup
+
 
 \subsection{Menu di navigazione}
 
@@ -612,29 +730,18 @@ I pulsanti in fondo alla schermata permettono di azzerare la configurazione, app
     \label{fig:advanced-mode}
 \end{figure}
 
-\subsection{Schermata Ripristina partita}
+\subsection{Salvataggio e ripristino della partita}
+\label{sec:ripristino}
 
-Consente di riprendere una sessione interrotta attraverso due modalità distinte.
+Lo stato completo della partita (posizioni delle pedine, turno corrente, stato dei mazzi) è serializzabile in formato JSON ed esportabile come file. La schermata di ripristino consente di riprendere una sessione interrotta attraverso due modalità distinte.
 La prima permette di caricare un file JSON esportato in precedenza: l'utente seleziona il file dal proprio dispositivo e avvia il ripristino; il sistema valida il contenuto e, in caso di file non valido, mostra un messaggio di errore.
 La seconda modalità è disponibile quando il browser ha conservato automaticamente una partita nel \texttt{localStorage}: in tal caso compare un pulsante aggiuntivo per riprendere la sessione senza bisogno di alcun file.
 In entrambi i casi, al termine del ripristino l'utente viene reindirizzato direttamente alla schermata di gioco.
 
 \subsection{Schermata Feedback}
 
-Contiene un modulo strutturato per raccogliere valutazioni sull'applicazione da parte di docenti e alunni del CFPIL.
-Il modulo richiede il nome del compilatore, il ruolo (docente, alunno o altro), il tipo di esperienza con il gioco (versione fisica, digitale o entrambe) e la modalità di gioco utilizzata (schermo singolo o multischermo).
-Segue il questionario standardizzato \textit{System Usability Scale} (SUS)~\cite{brooke1996sus}, composto dalle 10 affermazioni originali tradotte in italiano, ciascuna valutata su scala 1--5.
-Una sezione di valutazione numerica (scala 1--5) raccoglie infine giudizi su fedeltà della versione digitale rispetto a quella fisica (facoltativa), chiarezza dei meccanismi di gioco, grafica, gradimento complessivo e divertimento.
-Tre campi di testo libero permettono di descrivere gli aspetti positivi, gli aspetti negativi e i suggerimenti per miglioramenti futuri.
-Un'ultima domanda facoltativa chiede al compilatore se si riconosce nello spettro autistico, utile per leggere i feedback anche in relazione a eventuali bisogni specifici.
+Il modulo, compilato al termine delle sessioni da docenti e alunni del CFPIL, raccoglie i dati di base del compilatore, il questionario standardizzato \textit{System Usability Scale} (SUS)~\cite{brooke1996sus}, alcune valutazioni numeriche e tre campi di testo libero; i campi sono elencati nella sezione~\ref{sec:raccolta-feedback}.
 Le risposte, corredate dal numero di versione dell'applicazione al momento dell'invio, sono trasmesse all'endpoint interno \texttt{/api/feedback} e archiviate su Redis per analisi successive; un endpoint protetto da chiave segreta consente di esportare le risposte raccolte.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\textwidth]{immagini/screenshots/end-game}
-    \caption{Schermata di fine partita con il nome del vincitore.}
-    \label{fig:end-game}
-\end{figure}
 
 \subsection{Dashboard di analisi dei feedback}
 \label{sec:desc-feedback-dashboard}
@@ -653,109 +760,46 @@ Seguono le medie delle valutazioni numeriche e quattro grafici a barre con la di
 \subsection{Modalità multi-dispositivo}
 \label{sec:desc-multi-dispositivo}
 
-La modalità \textbf{multi-dispositivo} è accessibile dalla schermata iniziale scegliendo la voce \textbf{Multi-dispositivo} al posto di \textbf{Schermo singolo}. L'educatore configura la partita e crea la sessione; sullo schermo compare la \textit{lobby} con un codice QR (figura~\ref{fig:multiplayer-lobby}).
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\textwidth]{immagini/screenshots/multiplayer-lobby}
-    \caption{Schermata di \textit{lobby}: giocatori connessi e codice QR per l'accesso alla sessione.}
-    \label{fig:multiplayer-lobby}
-\end{figure}
-
-Ogni giocatore scansiona il codice con il proprio smartphone, accede alla pagina di registrazione (figura~\ref{fig:multiplayer-join}) e inserisce il proprio nome. Una volta presenti tutti i partecipanti, l'educatore avvia la partita.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.4\textwidth]{immagini/screenshots/multiplayer-join}
-    \caption{Pagina di accesso tramite QR code: il giocatore inserisce il proprio nome per unirsi alla sessione.}
-    \label{fig:multiplayer-join}
-\end{figure}
-
-Ogni giocatore dispone di una schermata personale sul proprio dispositivo: quando è il suo turno, un pulsante permette di lanciare il dado; negli altri turni la schermata mostra il nome del giocatore attivo. Le sfide vengono distribuite tra i dispositivi preservando, ove pertinente, l'elemento di segretezza (figura~\ref{fig:player-screens}).
-
-\begin{figure}[htbp]
-    \centering
-    \begin{minipage}[b]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/player-active-turn}
-        \par\smallskip\small Turno attivo.
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/player-waiting-turn}
-        \par\smallskip\small Turno degli altri.
-    \end{minipage}
-    \caption{Schermata del giocatore nella modalità multi-dispositivo.}
-    \label{fig:player-screens}
-\end{figure}
+Le schermate specifiche di questa modalità --- lobby con codice QR, pagina di registrazione e schermata personale del giocatore --- compaiono nello storyboard (figure~\ref{fig:sb-multi} e~\ref{fig:sb-multi2}).
 
 Le sfide speciali si comportano diversamente a seconda della tipologia: per alcune il contenuto è \textbf{condiviso} e compare identico sul tabellone e sullo smartphone del giocatore attivo; per altre è \textbf{privato} e il tema resta visibile solo sul dispositivo di chi deve eseguirlo, mentre l'host vede unicamente i nomi dei giocatori coinvolti, preservando l'elemento a sorpresa.
 
 \begin{figure}[htbp]
     \centering
-    \begin{minipage}[b]{0.62\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/multiplayer-quiz-host}
-        \par\smallskip\small Tabellone dell'educatore: domanda visibile, con pulsante per rivelare la risposta corretta.
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.35\textwidth}
-        \centering
-        \includegraphics[width=0.7\linewidth]{immagini/screenshots/multiplayer-quiz-player}
-        \par\smallskip\small Smartphone del giocatore: stessa domanda, in attesa del giudizio dell'educatore.
-    \end{minipage}
+    \begin{tabular}{@{}p{0.58\textwidth}@{\hspace{1.5em}}p{0.20\textwidth}@{}}
+    \shotH{multiplayer-quiz-host}{Tabellone dell'educatore: domanda visibile, con pulsante per rivelare la risposta corretta.}{133pt} &
+    \shotH{multiplayer-quiz-player}{Smartphone del giocatore: stessa domanda, in attesa del giudizio dell'educatore.}{133pt} \\
+    \end{tabular}
     \caption{Sfida condivisa (Quiz): la domanda compare identica su entrambi gli schermi, ma la risposta resta visibile solo sul tabellone.}
     \label{fig:multiplayer-quiz}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
-    \begin{minipage}[b]{0.62\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/multiplayer-physical-test-host}
-        \par\smallskip\small Tabellone dell'educatore.
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.35\textwidth}
-        \centering
-        \includegraphics[width=0.7\linewidth]{immagini/screenshots/multiplayer-physical-test-player}
-        \par\smallskip\small Smartphone del giocatore.
-    \end{minipage}
+    \begin{tabular}{@{}p{0.58\textwidth}@{\hspace{1.5em}}p{0.20\textwidth}@{}}
+    \shotH{multiplayer-physical-test-host}{Tabellone dell'educatore.}{133pt} &
+    \shotH{multiplayer-physical-test-player}{Smartphone del giocatore.}{133pt} \\
+    \end{tabular}
     \caption{Sfida condivisa (Test fisico): il contenuto compare identico su entrambi gli schermi.}
     \label{fig:multiplayer-physical-test}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
-    \begin{minipage}[b]{0.62\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/multiplayer-dictation-draw-host}
-        \par\smallskip\small Tabellone dell'educatore: nessun dettaglio della sfida è visibile, solo i nomi dei giocatori coinvolti.
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.35\textwidth}
-        \centering
-        \includegraphics[width=0.7\linewidth]{immagini/screenshots/multiplayer-dictation-draw-player}
-        \par\smallskip\small Smartphone del giocatore che descrive: tema e immagine di riferimento.
-    \end{minipage}
+    \begin{tabular}{@{}p{0.58\textwidth}@{\hspace{1.5em}}p{0.20\textwidth}@{}}
+    \shotH{multiplayer-dictation-draw-host}{Tabellone dell'educatore: nessun dettaglio della sfida è visibile, solo i nomi dei giocatori coinvolti.}{133pt} &
+    \shotH{multiplayer-dictation-draw-player}{Smartphone del giocatore che descrive: tema e immagine di riferimento.}{133pt} \\
+    \end{tabular}
     \caption{Sfida privata (Disegno dettato): il tema è visibile solo sul dispositivo del giocatore attivo.}
     \label{fig:multiplayer-dictation-draw}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
-    \begin{minipage}[b]{0.62\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{immagini/screenshots/multiplayer-mime-host}
-        \par\smallskip\small Tabellone dell'educatore: il mimo da eseguire è nascosto, pronto per essere rivelato su richiesta.
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.35\textwidth}
-        \centering
-        \includegraphics[width=0.7\linewidth]{immagini/screenshots/multiplayer-mime-player}
-        \par\smallskip\small Smartphone del giocatore che mima: la parola o frase da mimare.
-    \end{minipage}
+    \begin{tabular}{@{}p{0.58\textwidth}@{\hspace{1.5em}}p{0.20\textwidth}@{}}
+    \shotH{multiplayer-mime-host}{Tabellone dell'educatore: il mimo da eseguire è nascosto, pronto per essere rivelato su richiesta.}{133pt} &
+    \shotH{multiplayer-mime-player}{Smartphone del giocatore che mima: la parola o frase da mimare.}{133pt} \\
+    \end{tabular}
     \caption{Sfida privata (Mimo) nella modalità multi-dispositivo.}
     \label{fig:multiplayer-mime}
 \end{figure}
@@ -766,7 +810,7 @@ L'architettura tecnica che supporta questa modalità è descritta nella sezione~
 
 \section{Architettura dei moduli}
 
-L'applicazione segue un'architettura a tre strati con separazione netta tra logica di dominio, gestione dello stato e presentazione:
+Nella modalità schermo singolo, l'applicazione segue un'architettura a tre strati con separazione netta tra logica di dominio, gestione dello stato e presentazione, interamente eseguita nel browser. La modalità multi-dispositivo, descritta nella sezione~\ref{sec:multi-dispositivo}, sposta l'esecuzione autoritativa del Domain Model lato server e riduce Zustand, sul lato client, a un ruolo più marginale:
 
 \begin{table}[h]
     \centering
@@ -777,13 +821,14 @@ L'applicazione segue un'architettura a tre strati con separazione netta tra logi
     State Management Layer & Store Zustand (\texttt{src/store/}) \\ \hline
     Domain Model Layer     & Logica di gioco (\texttt{src/model/}) \\ \hline
     \end{tabular}
-    \caption{Architettura a strati dell'applicazione.}
+    \caption{Architettura a strati dell'applicazione (modalità schermo singolo).}
     \label{tab:architettura}
 \end{table}
 
 Questa separazione consente di testare la logica di gioco indipendentemente dall'interfaccia e di aggiornare i componenti visivi senza modificare le regole di gioco.
 
 \subsection{Domain Model}
+\label{sec:domain-model}
 
 Il domain model contiene tutta la logica di gioco, completamente slegata da React e dal browser.
 La classe \texttt{Game} è l'orchestratore principale: mantiene i riferimenti a tutti i sottocomponenti (tabellone, giocatori, dado, mazzi, manager) ed espone i metodi pubblici che il layer di stato chiama per far avanzare la partita.
@@ -815,6 +860,9 @@ Lo stato globale è gestito con Zustand, suddiviso in tre store indipendenti per
     \item \texttt{config-store} --- configurazione della partita: nomi e numero dei giocatori, numero di caselle, tipologie e percentuale di caselle speciali;
     \item \texttt{sound-store} --- preferenze dell'utente riguardo agli effetti sonori e agli annunci vocali.
 \end{itemize}
+
+Questa descrizione vale per intero nella modalità schermo singolo, dove \texttt{game-store} è l'unica fonte di verità e le sue azioni (\texttt{playTurn()}, \texttt{resolve*()}) sono l'unico punto d'ingresso per far avanzare la partita.
+Nella modalità multi-dispositivo lo stato autoritativo risiede invece sul server (sezione~\ref{sec:multi-dispositivo-stato-client}): sulla pagina host \texttt{game-store} viene reidratato in sola lettura dallo snapshot ricevuto via \textit{polling} (\texttt{Game.fromJSON(session.gameState)}) e serve solo a renderizzare il tabellone, mentre le azioni dell'utente --- avvio partita, risoluzione delle sfide, lancio del dado --- vengono inviate direttamente alle API Routes tramite \texttt{fetch()}, bypassando le azioni dello store. Le pagine del giocatore (\texttt{app/player/}) e di accesso (\texttt{app/join/}) non usano Zustand: si affidano solo a \texttt{useState} locale e all'hook di \textit{polling} \texttt{useSessionPolling}.
 
 \subsection{Presentation Layer}
 
@@ -898,7 +946,7 @@ playTurn(): GameActionResult {
 
 \subsection{Gestione dello stato con Zustand e persistenza}
 
-Lo store \texttt{useGameStore} è il punto di raccordo tra il domain model e l'interfaccia utente.
+Quanto segue descrive il funzionamento di \texttt{useGameStore} nella modalità schermo singolo, dove è l'unico punto di raccordo tra il domain model e l'interfaccia utente; il suo ruolo ridotto nella modalità multi-dispositivo è descritto nella sezione~\ref{sec:multi-dispositivo-stato-client}.
 È definito tramite \texttt{create()} di Zustand, avvolto nel middleware \texttt{persist}, e si articola in due sezioni distinte: lo \textit{stato} e le \textit{azioni}.
 
 La sezione di stato contiene due categorie di campi: quelli che riflettono la partita in corso (\texttt{game}, istanza della classe \texttt{Game}, e \texttt{gameData}, la sua rappresentazione JSON) e quelli che descrivono la situazione dell'interfaccia (\texttt{isModalOpen}, \texttt{isDiceModalOpen}, \texttt{diceResult}, \texttt{actionType}, \texttt{actionData} e altri).
@@ -955,11 +1003,12 @@ Il modulo \texttt{square-builder.ts} implementa il pattern Builder per ricostrui
 Zustand adotta implicitamente il pattern Observer: i componenti React si \textit{sottoscrivono} a porzioni specifiche dello store tramite selettori, e vengono ri-renderizzati automaticamente solo quando i campi osservati cambiano. Questo evita aggiornamenti superflui dell'interfaccia e mantiene i componenti disaccoppiati dalla logica di aggiornamento dello stato.
 
 \subsection{Manager Pattern}
-La classe \texttt{Game} non implementa da sola tutta la logica di gioco, ma delega ciascuna responsabilità a un manager specializzato: \texttt{TurnManager} per la gestione dei turni, \texttt{MovementManager} per gli spostamenti e le collisioni, \texttt{GameStateManager} per la verifica della vittoria, \texttt{SpecialSquareProcessor} per l'attivazione delle sfide, e un manager dedicato per ogni tipologia di sfida (es.\ \texttt{MimeManager}, \texttt{QuizManager}).
+La classe \texttt{Game} delega ciascuna responsabilità a un manager specializzato (sezione~\ref{sec:domain-model}).
 Questo approccio --- talvolta chiamato \textit{Manager Pattern} o \textit{Specialist Pattern} --- consente di mantenere la classe \texttt{Game} snella e leggibile, concentrando ciascuna regola di gioco nel modulo che ne è responsabile, con benefici diretti sulla testabilità e sulla manutenibilità del codice.
 
 \subsection{Model-View-Controller}
-L'architettura a tre strati dell'applicazione rispecchia il pattern architetturale \textit{Model-View-Controller} (MVC): il Domain Model (\texttt{src/model/}) corrisponde al \textit{Model}, i componenti React (\texttt{src/app/}) alla \textit{View} e gli store Zustand (\texttt{src/store/}) al \textit{Controller}, che media le interazioni dell'utente verso il modello e propaga gli aggiornamenti di stato verso l'interfaccia.
+\label{sec:mvc}
+Nella modalità schermo singolo, l'architettura a tre strati dell'applicazione rispecchia il pattern architetturale \textit{Model-View-Controller} (MVC): il Domain Model (\texttt{src/model/}) corrisponde al \textit{Model}, i componenti React (\texttt{src/app/}) alla \textit{View} e gli store Zustand (\texttt{src/store/}) al \textit{Controller}, che media le interazioni dell'utente verso il modello e propaga gli aggiornamenti di stato verso l'interfaccia. Nella modalità multi-dispositivo il ruolo di Controller passa alle API Routes, che ricevono le azioni via HTTP e le applicano a un'istanza di \texttt{Game} lato server (sezione~\ref{sec:multi-dispositivo-stato-client}); Zustand vi sopravvive solo come cache di rendering sulla pagina host.
 
 \section{Modalità multi-dispositivo}
 \label{sec:multi-dispositivo}
@@ -968,12 +1017,36 @@ Di seguito si descrive l'architettura tecnica che supporta la modalità multi-di
 
 \subsection{Architettura delle sessioni}
 
-La modalità multi-dispositivo richiede una componente \textit{server-side} per sincronizzare lo stato della partita tra i dispositivi dei giocatori. A tal fine, l'applicazione fa uso delle \textit{API Routes} di Next.js, che consentono di definire endpoint HTTP direttamente nel progetto senza la necessità di un server separato.
+La modalità multi-dispositivo richiede una componente \textit{server-side} per sincronizzare lo stato della partita tra i dispositivi dei giocatori. A tal fine, l'applicazione fa uso delle \textit{API Routes} di Next.js, che consentono di definire endpoint HTTP direttamente nel progetto senza la necessità di un server separato. La figura~\ref{fig:architettura-multi} riassume i componenti coinvolti e le comunicazioni descritte nel resto della sezione.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[
+        box/.style={draw, rounded corners, align=center, font=\small, minimum height=1.1cm, inner sep=6pt},
+        arr/.style={-{Stealth[length=6pt]}, thick},
+        lbl/.style={font=\scriptsize, align=center},
+        node distance=1.3cm and 1cm
+    ]
+        \node[box, minimum width=3cm] (host) {Host\\(tablet/PC dell'educatore)\\\texttt{/multiplayer/[id]}};
+        \node[box, minimum width=2.8cm, right=1.4cm of host] (player) {Giocatore\\(smartphone)\\\texttt{/player/[id]/[pid]}};
+
+        \node[box, minimum width=7.3cm, below=1.5cm of $(host)!0.5!(player)$] (api) {Vercel --- API Routes\\(funzioni serverless)};
+
+        \node[box, minimum width=5.5cm, below=1.5cm of api] (redis) {Upstash Redis\\\texttt{SessionState}};
+
+        \draw[arr] (host) -- (api) node[lbl, midway, left, xshift=-2pt] {long polling\\\texttt{GET /api/sessions/[id]}};
+        \draw[arr] (player) -- (api) node[lbl, midway, right, xshift=2pt] {long polling\\+ \texttt{POST} azioni};
+        \draw[arr, <->] (api) -- (redis) node[lbl, midway, right, xshift=2pt] {lettura/scrittura\\stato di sessione};
+        \draw[arr, dashed] (host) to[bend left=18] node[lbl, midway, above, sloped] {codice QR / \texttt{join}} (player);
+    \end{tikzpicture}
+    \caption{Architettura della modalità multi-dispositivo: host e giocatori comunicano con le API Routes tramite \textit{long polling}, che leggono e scrivono lo stato di sessione su Redis; il giocatore si unisce inquadrando il codice QR mostrato dall'host.}
+    \label{fig:architettura-multi}
+\end{figure}
 
 Lo stato di sessione è rappresentato da un oggetto \texttt{SessionState} che include l'elenco dei giocatori connessi, la fase corrente della partita, il turno attivo e gli esiti delle sfide. La persistenza di questo stato è gestita tramite un meccanismo a tre livelli, scelto in cascata in base all'ambiente di esecuzione:
 
 \begin{enumerate}
-    \item \textbf{Vercel KV} --- in produzione, lo stato è memorizzato su Vercel KV, un servizio di \textit{key-value store} basato su Redis ospitato sulla piattaforma Vercel;
+    \item \textbf{Upstash Redis} --- in produzione, lo stato è memorizzato su Upstash Redis (descritto nel capitolo~\ref{cap:tecnologie}), tramite il client \texttt{@upstash/redis} configurato con le variabili di ambiente della piattaforma;
     \item \textbf{ioredis} --- in sviluppo locale con Redis disponibile, si utilizza il client \texttt{ioredis} per connettersi a un'istanza Redis locale;
     \item \textbf{Map in memoria} --- in assenza di Redis, lo stato è mantenuto in una \texttt{Map} JavaScript in memoria del processo Node.js, sufficiente per lo sviluppo locale su singola istanza.
 \end{enumerate}
@@ -987,6 +1060,20 @@ La creazione di una sessione avviene tramite una richiesta \texttt{POST} all'end
 Una volta creata la sessione, l'applicazione genera un codice QR che i giocatori inquadrano con il proprio smartphone. Il codice QR contiene l'URL della pagina di accesso, che include il \texttt{sessionId} come parametro. Il giocatore inserisce il proprio nome e invia una richiesta \texttt{POST} all'endpoint \texttt{/api/sessions/[id]/join}, che registra il nuovo partecipante nella sessione e restituisce un \texttt{playerId} univoco.
 
 Il giocatore viene quindi reindirizzato alla propria schermata di gioco, raggiungibile all'URL \texttt{/player/[sessionId]/[playerId]}. L'identità del giocatore è interamente codificata nell'URL: anche in caso di chiusura accidentale della scheda o di ricaricamento della pagina, il giocatore recupera il proprio stato semplicemente riaprendo lo stesso indirizzo.
+
+\subsection{Stato lato client: il ruolo ridotto di Zustand}
+\label{sec:multi-dispositivo-stato-client}
+
+A differenza della modalità schermo singolo (sezione~\ref{sec:domain-model}), in modalità multi-dispositivo l'istanza di \texttt{Game} autoritativa vive lato server: le API Routes la ricostruiscono da \texttt{SessionState} tramite \texttt{Game.fromJSON()}, invocano su di essa i metodi del domain model e ne persistono il risultato su Redis. Il client non possiede quindi una copia mutabile della partita, ma solo lo snapshot pubblico ricevuto tramite \textit{long polling}.
+
+Questo capovolge il ruolo di Zustand rispetto alla modalità schermo singolo:
+
+\begin{itemize}
+    \item sulla pagina host (\texttt{app/multiplayer/[sessionId]/page.tsx}), \texttt{game-store} viene reidratato in sola lettura a ogni aggiornamento del \textit{polling} (\texttt{gameStore.setGame(Game.fromJSON(session.gameState))}) e serve esclusivamente a renderizzare il tabellone; le azioni dell'educatore (avvio partita, risoluzione di una sfida, designazione di un vincitore) non passano per le azioni dello store ma vengono inviate come richieste \texttt{POST} dirette agli endpoint \texttt{/api/sessions/[id]/*};
+    \item le pagine \texttt{app/player/[sessionId]/[playerId]/page.tsx} e \texttt{app/join/[sessionId]/page.tsx} non importano né \texttt{useGameStore} né \texttt{useConfigStore}: si basano unicamente su \texttt{useState} locale e sull'hook \texttt{useSessionPolling} (\texttt{src/lib/use-session-polling.ts}), che espone direttamente lo stato pubblico di sessione ricevuto dal server.
+\end{itemize}
+
+In sintesi, la tabella~\ref{tab:architettura} e la lettura MVC della sezione~\ref{sec:mvc} descrivono l'architettura della sola modalità schermo singolo; in modalità multi-dispositivo lo strato di gestione dello stato --- e con esso il ruolo di Controller --- si sposta alle API Routes lato server, mentre Zustand resta attivo, ridotto a cache di presentazione, solo sulla pagina host.
 
 \subsection{Comunicazione in tempo reale tramite \textit{long polling}}
 
@@ -1006,15 +1093,7 @@ Nel corso della partita, il flusso di ogni turno si svolge come segue:
     \item L'educatore avvia la partita premendo il pulsante \textbf{Avvia partita} dalla schermata di \textit{lobby}; tutti i dispositivi ricevono l'aggiornamento di stato e passano alla schermata di gioco.
     \item Quando è il proprio turno, il giocatore attivo lancia il dado dal proprio dispositivo; il risultato viene comunicato al server e propagato agli altri partecipanti. Sul proprio schermo, il giocatore attivo visualizza prima una schermata intermedia con il valore del dado e la casella raggiunta, e prosegue premendo il pulsante \textbf{Avanti} prima di accedere alla sfida o al turno successivo.
     \item Se la casella di arrivo non attiva alcuna sfida speciale, il turno termina e il controllo passa al giocatore successivo.
-    \item Se la casella attiva una sfida, la gestione varia in base alla tipologia:
-    \begin{itemize}
-        \item \textbf{Quiz} --- il testo della domanda è visibile a tutti; l'educatore mostra la risposta corretta premendo il pulsante \textbf{Mostra risposta} e registra l'esito (successo o insuccesso);
-        \item \textbf{Mimo} --- il tema da rappresentare compare esclusivamente sul dispositivo del giocatore attivo; gli altri vedono solo il tipo di sfida. Al termine, l'educatore seleziona quale giocatore ha indovinato, e quest'ultimo riceve il beneficio;
-        \item \textbf{Parole alle spalle e Disegno dettato} --- il giocatore attivo sceglie il compagno destinatario prima di iniziare; la parola o il disegno compaiono solo sul suo dispositivo. Se la sfida riesce, entrambi avanzano di una casella;
-        \item \textbf{Emozione facciale, Emozione musicale, Test fisico, Cosa faresti se\ldots} --- la sfida è visibile a tutti; l'educatore registra l'esito al termine;
-        \item \textbf{Battaglia} --- i due giocatori coinvolti effettuano la sfida sui rispettivi dispositivi; il server determina l'esito e aggiorna le posizioni.
-    \end{itemize}
-    Mentre la sfida è in corso, i giocatori non coinvolti visualizzano sul proprio dispositivo un'animazione (un'icona a forma di dado in rotazione) al posto di un semplice messaggio testuale, a indicare l'attesa dello svolgimento dell'azione da parte di un altro giocatore.
+    \item Se la casella attiva una sfida, la gestione varia in base alla tipologia (tabella~\ref{tab:sfide}). Mentre la sfida è in corso, i giocatori non coinvolti visualizzano sul proprio dispositivo un'animazione (un'icona a forma di dado in rotazione) al posto di un semplice messaggio testuale, a indicare l'attesa dello svolgimento dell'azione da parte di un altro giocatore.
     \item Al termine di ogni sfida, l'educatore conferma l'esito sull'interfaccia; il server aggiorna lo stato della sessione e tutti i dispositivi ricevono la notifica dell'avanzamento.
 \end{enumerate}
 
@@ -1036,6 +1115,7 @@ Il vantaggio specifico della modalità multi-dispositivo risiede nell'accessibil
 \label{cap:test}
 
 \section{Raccolta di feedback}
+\label{sec:raccolta-feedback}
 
 Al termine delle sessioni di utilizzo, i partecipanti del CFPIL di Varese sono stati invitati a compilare il modulo di feedback integrato nell'applicazione. Per ridurre il carico percettivo delle numerose domande, il modulo è organizzato come un percorso guidato a step (\emph{wizard}) suddiviso in quattro fasi --- informazioni di base, questionario SUS, valutazioni e domande aperte --- con avanzamento vincolato alla compilazione dei campi obbligatori di ciascuna fase. Il modulo raccoglie:
 
@@ -1068,9 +1148,9 @@ Le risposte raccolte sono state analizzate tramite la dashboard descritta nel pa
 
 \section{Riepilogo del lavoro}
 
-Questo elaborato ha descritto la progettazione e lo sviluppo di una versione digitale del gioco da tavolo \textit{La Città degli Imprevisti}, creato dagli alunni e dai docenti del CFPIL di Varese come strumento di potenziamento delle competenze sociali per adolescenti con disturbo dello spettro autistico.
+Questo elaborato ha descritto la progettazione e lo sviluppo di una versione digitale del gioco da tavolo \textit{La Città degli Imprevisti}, ideato dai partecipanti insieme all'équipe di educatori e psicologi del CFPIL di Varese come strumento di potenziamento delle competenze sociali per adolescenti con disturbo dello spettro autistico.
 
-L'implementazione ha preso come punto di partenza un gioco fisico esistente --- strutturato attorno a un percorso con caselle speciali che attivano sfide di natura sociale ed emotiva --- e lo ha tradotto in un'applicazione web accessibile da qualsiasi browser moderno. Il lavoro si è sviluppato in due fasi: una prima versione (v1) puramente client-side, distribuita su GitHub Pages, e una versione corrente (v2) che introduce la modalità multi-dispositivo tramite API Routes, long polling e un database Redis ospitato su Vercel.
+L'implementazione ha preso come punto di partenza un gioco fisico esistente --- strutturato attorno a un percorso con caselle speciali che attivano sfide di natura sociale ed emotiva --- e lo ha tradotto in un'applicazione web accessibile da qualsiasi browser moderno. Il lavoro si è sviluppato in due fasi: una prima versione (v1) puramente client-side, distribuita su GitHub Pages, e una versione corrente (v2) che introduce la modalità multi-dispositivo tramite API Routes, long polling e un database Redis.
 
 \section{Contributi}
 
@@ -1079,10 +1159,12 @@ Il contributo principale del lavoro è la realizzazione di uno strumento pronto 
 \begin{itemize}
     \item la \textbf{modalità schermo singolo} riproduce fedelmente la dinamica del gioco da tavolo fisico, mantenendo l'interazione faccia a faccia e la mediazione dell'educatore;
     \item la \textbf{modalità multi-dispositivo} estende il gioco a contesti in cui non è disponibile un unico schermo condiviso, introducendo la gestione server-side delle sessioni e la distribuzione delle sfide tra dispositivi;
-    \item l'\textbf{architettura evolutiva} dimostra come un'applicazione inizialmente statica possa essere estesa con funzionalità server-side senza riscrivere la logica di gioco, grazie alla separazione netta tra domain model, state management e presentation layer.
+    \item l'\textbf{architettura evolutiva} dimostra come un'applicazione inizialmente statica possa essere estesa con funzionalità server-side senza riscrivere la logica di gioco, grazie alla separazione netta tra domain model, state management e presentation layer;
+    \item la \textbf{valorizzazione dei partecipanti}: trasformare il prototipo cartaceo ideato dal gruppo in un prodotto tecnologico reale, presentato agli altri studenti del CFPIL, ha dato riconoscimento al lavoro dei ragazzi e ha reso lo strumento un mezzo relazionale condiviso;
+    \item un \textbf{modello di gruppo che si sostiene autonomamente}: lo strumento è inserito in un contesto in cui i partecipanti più esperti fanno da \textit{mentor} ai nuovi ingressi (osservazione qualitativa dell'équipe, non misurata).
 \end{itemize}
 
-Dal punto di vista del contesto applicativo, l'elaborato contribuisce a esplorare un approccio alla digitalizzazione del social skills training ancora poco studiato in letteratura: non un serious game sviluppato ex novo, ma la versione digitale di un gioco da tavolo già validato empiricamente all'interno di una comunità educativa specifica.
+Dal punto di vista del contesto applicativo, l'elaborato contribuisce a esplorare un approccio alla digitalizzazione del social skills training ancora poco studiato in letteratura: non un serious game sviluppato ex novo, ma la versione digitale di un gioco da tavolo nato e già utilizzato all'interno di una comunità educativa specifica, ideato dai suoi stessi destinatari.
 
 \section{Limitazioni}
 
@@ -1092,17 +1174,21 @@ I dati di feedback raccolti durante le sessioni al CFPIL non sono stati ancora a
 
 Sul piano della validità esterna, il testing è avvenuto in un singolo istituto, con un numero limitato di sessioni e senza un gruppo di controllo né una misurazione delle competenze sociali prima e dopo l'intervento. I risultati non sono generalizzabili senza ulteriori studi.
 
-Infine, come discusso nella sezione~\ref{sec:multi-dispositivo}, la modalità multi-dispositivo introduce una tensione tra accessibilità e qualità dell'interazione sociale che non è stata misurata empiricamente.
+Come discusso nella sezione~\ref{sec:multi-dispositivo}, la modalità multi-dispositivo introduce una tensione tra accessibilità e qualità dell'interazione sociale che non è stata misurata empiricamente.
+
+Infine, la fase dedicata alla prevenzione del rischio sociale (sezione~\ref{sec:sviluppi-futuri}) è solo progettata: gli scenari e la sosta di discussione non sono implementati nell'applicazione né sperimentati. Anche gli effetti di valorizzazione personale e di \textit{mentoring} descritti nel capitolo introduttivo sono osservazioni qualitative dell'équipe e non sono stati misurati.
 
 \section{Sviluppi futuri}
+\label{sec:sviluppi-futuri}
 
-Le direzioni di sviluppo più immediate riguardano la chiusura delle lacune identificate:
+Le direzioni di sviluppo più immediate riguardano la chiusura delle lacune identificate e l'ampliamento dei contenuti:
 
 \begin{itemize}
     \item \textbf{Analisi dei feedback} --- raccogliere un numero sufficiente di risposte dal CFPIL e analizzarle per identificare punti di forza e aree di miglioramento dell'applicazione;
     \item \textbf{Confronto tra modalità} --- progettare una sessione sperimentale che confronti direttamente la modalità schermo singolo e la modalità multi-dispositivo in termini di qualità dell'interazione sociale osservata;
     \item \textbf{Estensione a più istituti} --- coinvolgere altri centri che operano con utenza ASD per ampliare la base di test e valutare la portabilità dello strumento;
-    \item \textbf{Accessibilità} --- migliorare il supporto per screen reader e per dispositivi con capacità motorie ridotte, così da ampliare l'utenza potenziale.
+    \item \textbf{Accessibilità} --- migliorare il supporto per screen reader e per dispositivi con capacità motorie ridotte, così da ampliare l'utenza potenziale;
+    \item \textbf{Prevenzione del rischio sociale} --- ampliare i contenuti del gioco con scenari di riconoscimento dei rischi sociali (bullismo, aggressioni verbali o fisiche, tentativi di raggiro e truffa) e di individuazione di strategie di tutela, mantenendo la struttura a caselle e scelte multiple. Un elemento centrale sarà la \textbf{sosta di discussione}: di fronte a una scelta complessa o a una divergenza di opinione, il gioco richiede ai giocatori di fermarsi a confrontarsi, stimolando il pensiero critico e costruendo un archivio di esperienze simulate a cui attingere nella vita reale. Il tema è rilevante: circa il 44\% dei giovani con ASD subisce bullismo scolastico \cite{maiano2016}. La fase, progettata con l'équipe e il gruppo, non è ancora implementata né sperimentata.
 \end{itemize}
 
 %
