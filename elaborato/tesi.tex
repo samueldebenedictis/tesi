@@ -314,6 +314,7 @@ Le caselle speciali costituiscono il cuore educativo del gioco e sono progettate
     \item \textbf{Disegno dettato} --- Un giocatore descrive a parole un'immagine che un compagno deve riprodurre graficamente; esercita la comunicazione verbale precisa e la collaborazione.
     \item \textbf{Emozioni in musica} --- Viene proposta un'emozione e il giocatore deve scegliere una canzone che la rappresenti; allena l'espressione emotiva.
     \item \textbf{Indovina l'emozione} --- Viene mostrato un volto e il giocatore deve identificare l'emozione espressa; allena il riconoscimento delle emozioni attraverso il volto.
+    \item \textbf{Film} --- Viene riprodotta una breve scena di un film e il giocatore deve identificare l'emozione che trasmette; allena il riconoscimento delle emozioni a partire da una situazione in movimento, con voce e musica, anziché da un'immagine statica.
     \item \textbf{Cosa faresti se\dots} --- Il giocatore risponde a uno scenario ipotetico e gli altri valutano la risposta; allena la prospettiva altrui, una delle abilità più difficili da sviluppare nell'ASD.
     \item \textbf{Test fisico} --- Viene proposta una prova motoria da eseguire; favorisce la coordinazione e la gestione del corpo nello spazio condiviso.
     \item \textbf{Battaglia} --- A differenza delle altre tipologie, non è legata a una casella specifica: quando due pedine si trovano sulla stessa casella, indipendentemente dal suo tipo, i due giocatori devono sfidarsi a morra cinese (carta-forbice-sasso); introduce la competizione regolamentata e la gestione dell'esito (vittoria e sconfitta).
@@ -424,6 +425,16 @@ Permette di verificare il comportamento completo dell'applicazione simulando le 
 Storybook è uno strumento per lo sviluppo e la documentazione dei componenti UI in isolamento.
 Ogni componente è associato a una o più \textit{stories} che ne mostrano i diversi stati e configurazioni, facilitando lo sviluppo visivo indipendente e costituendo una documentazione interattiva dell'interfaccia.
 Nella pipeline di build viene compilato come sito statico e pubblicato insieme all'applicazione, risultando accessibile pubblicamente; un collegamento diretto è presente nella schermata delle istruzioni.
+
+\section{Strumenti per la generazione dei contenuti}
+
+Le animazioni di transizione del mazzo ``Indovina l'emozione'' non sono realizzate a mano ma prodotte da uno script Python, separato dall'applicazione web e non eseguito a \textit{runtime}: le gif vengono generate una volta e distribuite come file statici insieme all'applicazione.
+
+\subsection{MediaPipe}
+MediaPipe è una libreria di Google per la percezione basata su modelli di apprendimento automatico. Il modello \textit{Face Landmarker} restituisce, per un volto in un'immagine, 478 punti di riferimento (contorno del viso, sopracciglia, occhi, naso, labbra, iridi). Il modello è distribuito come singolo file (\texttt{face\_landmarker.task}, circa 3,7~MB) ed è eseguito in locale: le fotografie non vengono inviate a servizi esterni.
+
+\subsection{OpenCV, SciPy e imageio}
+OpenCV fornisce le operazioni sulle immagini (ridimensionamento, deformazione affine dei singoli triangoli, maschere sfumate); SciPy calcola la triangolazione di Delaunay dei punti di riferimento; imageio assembla i fotogrammi nella gif finale. L'ambiente è isolato in un ambiente virtuale Python, creato dal comando \texttt{make face-morph-setup}.
 
 %
 %			CAPITOLO 4: Il lavoro svolto
@@ -612,7 +623,7 @@ Al termine, o in caso di interruzione, l'educatore può:
 \section{Le schermate dell'applicazione}
 \label{sec:schermate}
 
-Questa sezione descrive le singole schermate incontrate nello storyboard. La navigazione avviene tramite un header persistente che espone due elementi: un link diretto alla schermata delle istruzioni e un pulsante Menu che apre una finestra modale con i collegamenti a Nuova partita, Continua partita, Carica partita e Feedback.
+Questa sezione descrive le singole schermate incontrate nello storyboard. Se non diversamente indicato, gli screenshot riportati si riferiscono alla modalità a schermo singolo; le schermate proprie della modalità multi-dispositivo sono descritte nella sezione~\ref{sec:desc-multi-dispositivo}. La navigazione avviene tramite un header persistente che espone due elementi: un link diretto alla schermata delle istruzioni e un pulsante Menu che apre una finestra modale con i collegamenti a Nuova partita, Continua partita, Carica partita e Feedback.
 
 \subsection{Schermata di gioco}
 
@@ -624,7 +635,7 @@ Questa sezione descrive le singole schermate incontrate nello storyboard. La nav
     \item \textbf{Dado e modali} --- Un pulsante permette al giocatore attivo di lanciare il dado; se la casella di arrivo è speciale, si apre la finestra modale corrispondente alla sfida.
 \end{itemize}
 
-Le sfide attivabili sono quelle descritte nella sezione~\ref{sec:lcdi}. Ciascuna viene presentata attraverso una finestra modale sovrapposta al tabellone al momento dell'attivazione, come mostrato nelle figure~\ref{fig:modali-1}--\ref{fig:modali-2b}; la tabella~\ref{tab:sfide} riassume come è gestita nelle due modalità.
+Le sfide attivabili sono quelle descritte nella sezione~\ref{sec:lcdi}. Ciascuna viene presentata attraverso una finestra modale sovrapposta al tabellone al momento dell'attivazione, come mostrato, per la modalità a schermo singolo, nelle figure~\ref{fig:modali-1}--\ref{fig:modali-2b}; la tabella~\ref{tab:sfide} riassume come è gestita nelle due modalità.
 
 \begin{figure}[htbp]
     \centering
@@ -632,7 +643,7 @@ Le sfide attivabili sono quelle descritte nella sezione~\ref{sec:lcdi}. Ciascuna
     \shotS{mime-modal-topic}{Mimo.} &
     \shotS{quiz-modal-answer}{Quiz.} \\
     \end{tabular}
-    \caption{Finestre modali delle sfide (1/4): Mimo, Quiz.}
+    \caption{Finestre modali delle sfide, modalità a schermo singolo (1/4): Mimo, Quiz.}
     \label{fig:modali-1}
 \end{figure}
 
@@ -642,7 +653,7 @@ Le sfide attivabili sono quelle descritte nella sezione~\ref{sec:lcdi}. Ciascuna
     \shotS{backwrite-modal-word}{Parole alle spalle.} &
     \shotS{dictation-draw-modal-image}{Disegno dettato.} \\
     \end{tabular}
-    \caption{Finestre modali delle sfide (2/4): Parole alle spalle, Disegno dettato.}
+    \caption{Finestre modali delle sfide, modalità a schermo singolo (2/4): Parole alle spalle, Disegno dettato.}
     \label{fig:modali-1b}
 \end{figure}
 
@@ -652,7 +663,7 @@ Le sfide attivabili sono quelle descritte nella sezione~\ref{sec:lcdi}. Ciascuna
     \shotS{music-emotion-modal}{Emozioni in musica.} &
     \shotS{face-emotion-modal-answer}{Indovina l'emozione.} \\
     \end{tabular}
-    \caption{Finestre modali delle sfide (3/4): Emozioni in musica, Indovina l'emozione.}
+    \caption{Finestre modali delle sfide, modalità a schermo singolo (3/4): Emozioni in musica, Indovina l'emozione.}
     \label{fig:modali-2}
 \end{figure}
 
@@ -662,7 +673,7 @@ Le sfide attivabili sono quelle descritte nella sezione~\ref{sec:lcdi}. Ciascuna
     \shotS{what-would-you-do-modal}{Cosa faresti se\ldots} &
     \shotS{physical-test-modal}{Test fisico.} \\
     \end{tabular}
-    \caption{Finestre modali delle sfide (4/4): Cosa faresti se\ldots, Test fisico.}
+    \caption{Finestre modali delle sfide, modalità a schermo singolo (4/4): Cosa faresti se\ldots, Test fisico.}
     \label{fig:modali-2b}
 \end{figure}
 
@@ -680,8 +691,8 @@ Nella modalità schermo singolo ogni sfida compare nella finestra modale visibil
 Quiz & Condivisa: la domanda è visibile a tutti, la risposta solo sul tabellone. & L'educatore mostra la risposta e registra successo o insuccesso. \\ \hline
 Mimo & Privata: il tema compare solo sul telefono del giocatore attivo. & L'educatore indica quale giocatore ha indovinato, che riceve il beneficio. \\ \hline
 Parole alle spalle, Disegno dettato & Privata: la parola o il disegno compaiono solo sul telefono del giocatore attivo, che sceglie il compagno destinatario. & Se la sfida riesce, entrambi avanzano di una casella. \\ \hline
-Indovina l'emozione, Emozioni in musica, Test fisico, Cosa faresti se\ldots & Condivisa: visibile a tutti. & L'educatore registra l'esito al termine. \\ \hline
-Battaglia & I due giocatori coinvolti sfidano dai rispettivi dispositivi. & Il server determina l'esito e aggiorna le posizioni. \\ \hline
+Indovina l'emozione, Film, Emozioni in musica, Test fisico, Cosa faresti se\ldots & Condivisa: visibile a tutti. & L'educatore registra l'esito al termine. \\ \hline
+Battaglia & Nessun contenuto: la morra cinese si svolge dal vivo e sul tabellone compaiono solo i nomi dei due giocatori. & L'educatore indica il vincitore; il server aggiorna le posizioni. \\ \hline
 Caselle movimento & Nessuna sfida. & Applicate in automatico. \\ \hline
 \end{longtable}
 \endgroup
@@ -851,6 +862,22 @@ Ogni tipologia di casella speciale dispone di un mazzo di carte dedicato (es. \t
 
 Il mazzo della sfida ``Indovina l'emozione'' (\texttt{FaceEmotionDeck}) utilizza fotografie tratte da FACES, un database open di volti che esprimono emozioni di base (felicità, rabbia, tristezza, paura, disgusto, neutralità), sviluppato dal Max Planck Institute for Human Development \cite{ebner2010faces}. A differenza delle illustrazioni disegnate usate per le altre sfide, l'impiego di volti fotografici reali e validati scientificamente rende più realistico e trasferibile l'esercizio di riconoscimento delle espressioni facciali.
 
+Per ciascuna espressione non neutra è disponibile anche un'animazione di transizione (\textit{face morphing}) dall'espressione neutra a quella emotiva, generata automaticamente a partire dalle coppie di fotografie dello stesso soggetto. Uno script Python (\texttt{scripts/face\_morph.py}, eseguibile con \texttt{make face-morph}) rileva i 478 punti di riferimento del volto con il modello \textit{Face Landmarker} di MediaPipe, li triangola con la triangolazione di Delaunay e deforma ciascun triangolo in modo progressivo, miscelando i due scatti con una dissolvenza incrociata. La trasformazione è applicata solo all'interno di una maschera sfumata attorno al volto: sfondo e vestiario si spostano leggermente da uno scatto all'altro e, se deformati, mostrerebbero artefatti evidenti. Il risultato è un insieme di 60 gif (cinque espressioni, sei soggetti, due versioni di scatto), nominate come le fotografie di origine con il suffisso \texttt{\_morph}. Nell'interfaccia l'uso dell'animazione è una scelta esplicita, tramite l'opzione ``Animato''/``Non animato'' (disattivata di default), memorizzata in \texttt{localStorage} da uno store Zustand dedicato (\texttt{useFaceEmotionStore}). Il componente \texttt{FaceEmotionImage} che la gestisce è condiviso dalla finestra modale a schermo singolo, dall'\textit{overlay} dell'educatore e dalla schermata del giocatore di turno; se la gif non è disponibile, ripiega sulla fotografia statica.
+
+La generazione procede, per ciascuna coppia (fotografia neutra, fotografia con espressione) dello stesso soggetto e della stessa versione di scatto, nei passi seguenti:
+\begin{enumerate}
+    \item le due fotografie, di circa 3500~px di larghezza, sono ridimensionate a 480~px di larghezza per contenere il peso della gif;
+    \item su ciascuna sono rilevati i 478 punti di riferimento, ai quali si aggiungono otto punti fissi sul bordo dell'immagine (angoli e punti medi dei lati), in modo che la triangolazione copra l'intero fotogramma;
+    \item la triangolazione di Delaunay è calcolata sulla media delle posizioni dei punti nelle due fotografie e resta la stessa per tutti i fotogrammi;
+    \item per ogni fotogramma intermedio, con un parametro di avanzamento $\alpha$ tra 0 e 1, ciascun punto è portato nella posizione interpolata linearmente tra le due fotografie, i triangoli di entrambe le immagini sono deformati con una trasformazione affine verso tale posizione e i due risultati sono miscelati con pesi $1-\alpha$ e $\alpha$; $\alpha$ segue una curva \textit{ease-in/ease-out}, così che la transizione acceleri e rallenti gradualmente;
+    \item il fotogramma finale è composto dentro la maschera del volto (inviluppo convesso dei punti del viso, sfumato con un filtro gaussiano con nucleo di 31~px), mentre l'esterno è preso invariato dalla fotografia neutra.
+\end{enumerate}
+La sequenza comprende 21 fotogrammi di transizione, una pausa di 6 fotogrammi sul volto neutro e sull'espressione, e il percorso inverso fino al neutro; la riproduzione è a 15 fotogrammi al secondo, in ciclo continuo.
+
+Il mazzo della sfida ``Film'' (\texttt{FilmDeck}) contiene cinque scene, una per ciascuna emozione di base della sfida precedente esclusa la neutralità (felicità, rabbia, tristezza, disgusto, paura). La casella segue la stessa struttura delle altre sfide di riconoscimento delle emozioni: una \texttt{FilmSquare} esegue un comando che pesca una carta dal mazzo e restituisce un oggetto \texttt{Film}, la cui risoluzione è affidata a un \texttt{FilmManager}. Ogni carta associa l'emozione corretta a un file video servito dall'applicazione (cartella \texttt{public/videos}), in formato H.264 con audio AAC, risoluzione 852$\times$480 e durata compresa tra circa 17 e 24 secondi. Poiché il mazzo ha solo cinque carte e viene rimescolato una volta esaurito, nelle partite lunghe le scene si ripetono.
+
+A differenza delle fotografie, la scena è un contenuto con voce e musica. Il componente \texttt{FilmVideo} usa il lettore nativo del browser, con i comandi visibili e senza avvio automatico, così che la riproduzione parta solo per scelta dell'utente e possa essere ripetuta; non sono disponibili sottotitoli. Il giocatore guarda la scena e indica l'emozione; l'educatore mostra la risposta con il pulsante ``Mostra risposta'' e registra l'esito. Se la risposta è corretta il giocatore avanza di una casella, altrimenti salta il turno successivo, come in ``Indovina l'emozione''.
+
 \subsection{State Management}
 
 Lo stato globale è gestito con Zustand, suddiviso in tre store indipendenti persistiti in \texttt{localStorage}:
@@ -875,9 +902,9 @@ Le pagine dell'applicazione sono:
     \item \texttt{app/page.tsx} --- schermata di selezione modalità e configurazione della partita;
     \item \texttt{app/game/page.tsx} --- schermata principale di gioco (modalità schermo singolo);
     \item \texttt{app/multiplayer/page.tsx} --- lobby per la modalità multi-dispositivo (creazione sessione e QR code);
-    \item \texttt{app/multiplayer/[sessionId]/page.tsx} --- tabellone host per la sessione multi-dispositivo;
-    \item \texttt{app/player/[sessionId]/[playerId]/page.tsx} --- schermata del giocatore sullo smartphone;
-    \item \texttt{app/join/[sessionId]/page.tsx} --- pagina di accesso tramite QR code, reindirizza alla registrazione;
+    \item \texttt{app/\allowbreak multiplayer/\allowbreak[sessionId]/\allowbreak page.tsx} --- tabellone host per la sessione multi-dispositivo;
+    \item \texttt{app/\allowbreak player/\allowbreak[sessionId]/\allowbreak[playerId]/\allowbreak page.tsx} --- schermata del giocatore sullo smartphone;
+    \item \texttt{app/\allowbreak join/\allowbreak[sessionId]/\allowbreak page.tsx} --- pagina di accesso tramite QR code, reindirizza alla registrazione;
     \item \texttt{app/instructions/page.tsx} --- istruzioni di gioco con video dimostrativi;
     \item \texttt{app/advanced-mode/page.tsx} --- configurazione avanzata del tabellone;
     \item \texttt{app/restore-game/page.tsx} --- ripristino partita da file;
@@ -914,12 +941,12 @@ export type GameActionResult = {
   type:
     | "battle" | "mime"    | "quiz"
     | "backwrite"          | "face-emotion"
-    | "music-emotion"      | "physical-test"
-    | "what-would-you-do"  | "dictation-draw"
-    | "none";
+    | "film"               | "music-emotion"
+    | "physical-test"      | "what-would-you-do"
+    | "dictation-draw"     | "none";
   data?: Battle | Mime | Quiz | BackWrite | FaceEmotion
-       | MusicEmotion | PhysicalTest | WhatWouldYouDo
-       | DictationDraw;
+       | Film | MusicEmotion | PhysicalTest
+       | WhatWouldYouDo | DictationDraw;
   diceResult: number;
   actionType: string | null;
 };
@@ -1069,8 +1096,8 @@ A differenza della modalità schermo singolo (sezione~\ref{sec:domain-model}), i
 Questo capovolge il ruolo di Zustand rispetto alla modalità schermo singolo:
 
 \begin{itemize}
-    \item sulla pagina host (\texttt{app/multiplayer/[sessionId]/page.tsx}), \texttt{game-store} viene reidratato in sola lettura a ogni aggiornamento del \textit{polling} (\texttt{gameStore.setGame(Game.fromJSON(session.gameState))}) e serve esclusivamente a renderizzare il tabellone; le azioni dell'educatore (avvio partita, risoluzione di una sfida, designazione di un vincitore) non passano per le azioni dello store ma vengono inviate come richieste \texttt{POST} dirette agli endpoint \texttt{/api/sessions/[id]/*};
-    \item le pagine \texttt{app/player/[sessionId]/[playerId]/page.tsx} e \texttt{app/join/[sessionId]/page.tsx} non importano né \texttt{useGameStore} né \texttt{useConfigStore}: si basano unicamente su \texttt{useState} locale e sull'hook \texttt{useSessionPolling} (\texttt{src/lib/use-session-polling.ts}), che espone direttamente lo stato pubblico di sessione ricevuto dal server.
+    \item sulla pagina host (\texttt{app/\allowbreak multiplayer/\allowbreak[sessionId]/\allowbreak page.tsx}), \texttt{game-store} viene reidratato in sola lettura a ogni aggiornamento del \textit{polling} (\texttt{gameStore.\allowbreak setGame(\allowbreak Game.\allowbreak fromJSON(\allowbreak session.\allowbreak gameState))}) e serve esclusivamente a renderizzare il tabellone; le azioni dell'educatore (avvio partita, risoluzione di una sfida, designazione di un vincitore) non passano per le azioni dello store ma vengono inviate come richieste \texttt{POST} dirette agli endpoint \texttt{/api/sessions/[id]/*};
+    \item \emergencystretch=3em le pagine \texttt{app/\allowbreak player/\allowbreak[sessionId]/\allowbreak[playerId]/\allowbreak page.tsx} e \texttt{app/\allowbreak join/\allowbreak[sessionId]/\allowbreak page.tsx} non importano né \texttt{useGameStore} né \texttt{useConfigStore}: si basano unicamente su \texttt{useState} locale e sull'hook \texttt{useSessionPolling} (\texttt{src/\allowbreak lib/\allowbreak use-session-polling.ts}), che espone direttamente lo stato pubblico di sessione ricevuto dal server.
 \end{itemize}
 
 In sintesi, la tabella~\ref{tab:architettura} e la lettura MVC della sezione~\ref{sec:mvc} descrivono l'architettura della sola modalità schermo singolo; in modalità multi-dispositivo lo strato di gestione dello stato --- e con esso il ruolo di Controller --- si sposta alle API Routes lato server, mentre Zustand resta attivo, ridotto a cache di presentazione, solo sulla pagina host.
@@ -1189,7 +1216,8 @@ Le direzioni di sviluppo più immediate riguardano la chiusura delle lacune iden
     \item \textbf{Estensione a più istituti} --- coinvolgere altri centri che operano con utenza ASD per ampliare la base di test e valutare la portabilità dello strumento;
     \item \textbf{Accessibilità} --- migliorare il supporto per screen reader e per dispositivi con capacità motorie ridotte, così da ampliare l'utenza potenziale;
     \item \textbf{Prevenzione del rischio sociale} --- ampliare i contenuti del gioco con scenari di riconoscimento dei rischi sociali (bullismo, aggressioni verbali o fisiche, tentativi di raggiro e truffa) e di individuazione di strategie di tutela, mantenendo la struttura a caselle e scelte multiple. Un elemento centrale sarà la \textbf{sosta di discussione}: di fronte a una scelta complessa o a una divergenza di opinione, il gioco richiede ai giocatori di fermarsi a confrontarsi, stimolando il pensiero critico e costruendo un archivio di esperienze simulate a cui attingere nella vita reale. Il tema è rilevante: circa il 44\% dei giovani con ASD subisce bullismo scolastico \cite{maiano2016}. La fase, progettata con l'équipe e il gruppo, non è ancora implementata né sperimentata.
-    \item \textbf{Animazioni di transizione facciale} --- per il mazzo ``Indovina l'emozione'' è stata sperimentata una pipeline automatica di \textit{face morphing}: a partire dalla coppia di fotografie neutro/espressione dello stesso soggetto del database FACES, un rilevatore di punti di riferimento facciali (\textit{landmark}) individua i tratti del volto, che vengono poi triangolati e deformati progressivamente (\textit{warping}) con dissolvenza incrociata tra i due scatti, generando un'animazione fluida della transizione dall'espressione neutra a quella emotiva. L'idea è rendere più evidente ai giocatori la dinamica dei tratti distintivi di ciascuna emozione, invece della sola foto statica. La pipeline è funzionante ma non ancora integrata nell'interfaccia di gioco né validata con l'utenza.
+    \item \textbf{Validazione e alleggerimento delle animazioni facciali} --- la transizione animata dal volto neutro all'espressione è già disponibile nel gioco, come opzione ``Animato'' disattivata di default, ma non è stata ancora sperimentata con l'utenza: non è noto se l'animazione favorisca il riconoscimento dell'emozione o, al contrario, distragga. Ogni gif pesa circa 7--8~MB (60 file, circa 450~MB complessivi), un costo non trascurabile su reti scolastiche limitate: andranno valutate una riduzione di risoluzione e di durata;
+    \item \textbf{Ampliamento dei contenuti video} --- il mazzo ``Film'' ha cinque scene, una per emozione, che si ripetono nelle partite lunghe; aggiungerne altre, e dotarle di sottotitoli, ne migliorerebbe varietà e accessibilità.
 \end{itemize}
 
 %
