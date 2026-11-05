@@ -139,6 +139,8 @@
   commentstyle=\upshape,
 }
 
+% natbib + unsrtnat: stampa anche doi e url in bibliografia
+\usepackage[numbers,sort]{natbib}
 \usepackage{longtable}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta, positioning, calc}
@@ -275,7 +277,7 @@ Questa struttura chiusa e ben delimitata lo rende particolarmente adatto al cont
 
 A differenza delle attività di lavoro individuale, tuttavia, il gioco da tavolo richiede la partecipazione di almeno due soggetti, offrendo opportunità di interazione sociale più ricche rispetto alle alternative esclusivamente digitali \cite{atherton2021}.
 
-Come approfondito nel capitolo~\ref{cap:stato-arte}, la letteratura sul gioco come strumento di \textit{social skills training} per persone autistiche riporta esiti costantemente positivi \cite{walsh2024}, ma si è concentrata su strumenti digitali sviluppati appositamente, lasciando le implementazioni digitali di giochi da tavolo strutturati un approccio ancora poco esplorato.
+Come approfondito nel capitolo~\ref{cap:stato-arte}, la letteratura sul gioco come strumento di \textit{social skills training} per persone autistiche riporta esiti costantemente positivi \cite{walsh2024}, ma si è concentrata su strumenti digitali sviluppati appositamente: le implementazioni digitali di giochi da tavolo strutturati restano un approccio ancora poco esplorato.
 
 L'implementazione digitale descritta in questo elaborato si colloca in questo spazio. Rispetto alla versione fisica, il formato digitale consente di adattare parametri come il numero di caselle, la tipologia delle sfide o il numero di giocatori direttamente dall'interfaccia --- senza dover riprogettare e ristampare i componenti. L'interazione, però, rimane quella del gioco da tavolo: faccia a faccia, attorno a uno schermo condiviso.
 
@@ -314,7 +316,7 @@ Le caselle speciali costituiscono il cuore educativo del gioco e sono progettate
     \item \textbf{Disegno dettato} --- Un giocatore descrive a parole un'immagine che un compagno deve riprodurre graficamente; esercita la comunicazione verbale precisa e la collaborazione.
     \item \textbf{Emozioni in musica} --- Viene proposta un'emozione e il giocatore deve scegliere una canzone che la rappresenti; allena l'espressione emotiva.
     \item \textbf{Indovina l'emozione} --- Viene mostrato un volto e il giocatore deve identificare l'emozione espressa; allena il riconoscimento delle emozioni attraverso il volto.
-    \item \textbf{Film} --- Viene riprodotta una breve scena di un film e il giocatore deve identificare l'emozione che trasmette; allena il riconoscimento delle emozioni a partire da una situazione in movimento, con voce e musica, anziché da un'immagine statica.
+    \item \textbf{Film} --- Viene riprodotta una breve scena di un film e il giocatore deve identificare l'emozione che trasmette; allena il riconoscimento delle emozioni a partire da una situazione in movimento, con voce e musica, anziché da un'immagine statica. Nella versione attuale la sfida è disattivata, per l'assenza dei diritti di utilizzo sulle scene (sezione~\ref{sec:film}).
     \item \textbf{Cosa faresti se\dots} --- Il giocatore risponde a uno scenario ipotetico e gli altri valutano la risposta; allena la prospettiva altrui, una delle abilità più difficili da sviluppare nell'ASD.
     \item \textbf{Test fisico} --- Viene proposta una prova motoria da eseguire; favorisce la coordinazione e la gestione del corpo nello spazio condiviso.
     \item \textbf{Battaglia} --- A differenza delle altre tipologie, non è legata a una casella specifica: quando due pedine si trovano sulla stessa casella, indipendentemente dal suo tipo, i due giocatori devono sfidarsi a morra cinese (carta-forbice-sasso); introduce la competizione regolamentata e la gestione dell'esito (vittoria e sconfitta).
@@ -354,7 +356,7 @@ La revisione segnala tuttavia alcune limitazioni: campioni ridotti, eterogeneit�
 
 \section{Posizionamento del presente lavoro}
 
-La letteratura si è concentrata quasi esclusivamente su strumenti di questo tipo, lasciando inesplorato il gioco da tavolo in versione digitale. A differenza dei serious games recensiti da Carneiro et al. \cite{carneiro2024}, progettati per uso individuale o mediato dallo schermo, \textit{La Città degli Imprevisti} --- nella sua modalità di base con schermo singolo condiviso --- mantiene l'interazione faccia a faccia attorno a un tavolo condiviso e richiede la mediazione di un educatore. La modalità multi-dispositivo, introdotta nella versione corrente, modifica parzialmente questa dinamica consentendo a ogni giocatore di usare il proprio smartphone; le implicazioni di questa scelta sulla qualità dell'interazione sociale sono discusse nella sezione~\ref{sec:multi-dispositivo}. I domini esercitati --- riconoscimento delle emozioni, comunicazione non verbale, prospettiva altrui, collaborazione, gestione della competizione --- coincidono con le aree di intervento prioritarie nell'ASD identificate dalla letteratura.
+La letteratura si è concentrata quasi esclusivamente su strumenti di questo tipo, lasciando poco esplorato il gioco da tavolo in versione digitale. A differenza dei serious games recensiti da Carneiro et al. \cite{carneiro2024}, progettati per uso individuale o mediato dallo schermo, \textit{La Città degli Imprevisti} --- nella sua modalità di base con schermo singolo condiviso --- mantiene l'interazione faccia a faccia attorno a un tavolo condiviso e richiede la mediazione di un educatore. La modalità multi-dispositivo, introdotta nella versione corrente, modifica parzialmente questa dinamica consentendo a ogni giocatore di usare il proprio smartphone; le implicazioni di questa scelta sulla qualità dell'interazione sociale sono discusse nella sezione~\ref{sec:multi-dispositivo}. I domini esercitati --- riconoscimento delle emozioni, comunicazione non verbale, prospettiva altrui, collaborazione, gestione della competizione --- coincidono con le aree di intervento prioritarie nell'ASD identificate dalla letteratura.
 
 Due ulteriori elementi distinguono il lavoro. Il primo riguarda i destinatari: la revisione di Carneiro et al. \cite{carneiro2024} copre quasi esclusivamente la fascia 7--10 anni, mentre il gruppo coinvolto è composto da adolescenti di 15--19 anni con funzionamento cognitivo lievemente compromesso. Il secondo riguarda il processo di progettazione: il gioco non è stato ideato da un gruppo di ricerca, ma dai partecipanti stessi insieme all'équipe di psicologi ed educatori, e la sua versione digitale nasce su loro richiesta.
 
@@ -450,7 +452,7 @@ Le tecnologie descritte nel capitolo precedente si riflettono direttamente nelle
 
 L'applicazione è progettata per sessioni di gruppo in presenza, guidate da un educatore. Tutti i partecipanti si trovano nella stessa stanza e condividono un unico dispositivo --- tipicamente un tablet o un PC con schermo sufficientemente grande da essere visibile a tutti i giocatori seduti attorno al tavolo. Non vengono utilizzati dadi fisici: il lancio avviene premendo un pulsante sullo schermo, e il risultato viene animato e visualizzato dall'applicazione. Anche l'avanzamento delle pedine è gestito interamente dal software: dopo ogni lancio, la pedina del giocatore attivo si sposta automaticamente lungo il tabellone, casella dopo casella, con un breve balzo animato per ciascun passaggio, fino a raggiungere la casella di destinazione.
 
-L'applicazione supporta due modalità operative. Nella modalità \textbf{schermo singolo}, tutti i partecipanti utilizzano un unico dispositivo condiviso: questa scelta preserva la natura faccia a faccia del gioco da tavolo originale, mantiene l'attenzione del gruppo centrata su un unico punto di riferimento e riduce la complessità infrastrutturale. Nella modalità \textbf{multi-dispositivo}, ogni giocatore utilizza il proprio smartphone come controller personale, mentre il tabellone rimane visibile su un dispositivo separato gestito dall'educatore (descritta nella sezione~\ref{sec:multi-dispositivo}). Il ruolo dell'educatore rimane centrale in entrambe le modalità: è lui a facilitare le sfide delle caselle speciali, a valutare le risposte dei giocatori e a registrare l'esito nell'applicazione, che ne applica gli effetti sul tabellone. Con ``educatore'' si intende chi conduce la sessione, figura che può essere un educatore o uno psicologo; il suo percorso d'uso è descritto nella sezione~\ref{sec:storyboard}.
+L'applicazione supporta due modalità operative. Nella modalità \textbf{schermo singolo}, tutti i partecipanti utilizzano un unico dispositivo condiviso: questa scelta preserva la natura faccia a faccia del gioco da tavolo originale, mantiene l'attenzione del gruppo centrata su un unico punto di riferimento e riduce la complessità infrastrutturale. Nella modalità \textbf{multi-dispositivo}, ogni giocatore utilizza il proprio smartphone come controller personale, mentre il tabellone rimane visibile su un dispositivo separato gestito dall'educatore (descritta nella sezione~\ref{sec:multi-dispositivo}). Il ruolo dell'educatore rimane centrale in entrambe le modalità: è l'educatore a facilitare le sfide delle caselle speciali, a valutare le risposte dei giocatori e a registrare l'esito nell'applicazione, che ne applica gli effetti sul tabellone. Con ``educatore'' si intende chi conduce la sessione, figura che può essere un educatore o uno psicologo; il suo percorso d'uso è descritto nella sezione~\ref{sec:storyboard}.
 
 \begin{figure}[htbp]
     \centering
@@ -461,7 +463,7 @@ L'applicazione supporta due modalità operative. Nella modalità \textbf{schermo
 
 \section{Architettura generale}
 
-L'applicazione è distribuita su Vercel come progetto Next.js a pieno titolo: comprende una parte client-side (componenti React, CSS, JavaScript) e una parte server-side costituita dalle API Routes che supportano la modalità multi-dispositivo. Non è richiesta alcuna installazione: l'applicazione è accessibile da qualsiasi browser moderno su PC, laptop o tablet.
+L'applicazione è distribuita su Vercel come progetto Next.js a pieno titolo: comprende una parte client-side (componenti React, CSS, JavaScript) e una parte server-side costituita dalle API Routes che supportano la modalità multi-dispositivo. Non è richiesta alcuna installazione: l'applicazione è accessibile da qualsiasi browser moderno su PC, laptop, tablet o smartphone.
 
 Nella modalità schermo singolo non vi è comunicazione di rete durante la partita: tutta la logica di gioco --- compresa la gestione dello stato, il salvataggio della partita e la generazione del tabellone --- risiede ed è eseguita nel browser dell'utente, con persistenza tramite \texttt{localStorage}. La modalità multi-dispositivo estende questa architettura con endpoint HTTP e uno store condiviso lato server, descritti nella sezione~\ref{sec:multi-dispositivo}.
 
@@ -470,7 +472,7 @@ Nella modalità schermo singolo non vi è comunicazione di rete durante la parti
 
 La prima versione dell'applicazione (\textbf{v1}, ultima release: 1.4.6) adottava la funzionalità di esportazione statica di Next.js: il processo di build produceva un insieme di file HTML, JavaScript e CSS distribuiti su GitHub Pages senza alcun server. Questa scelta garantiva semplicità di deploy e assenza di costi infrastrutturali, ma era incompatibile con le API Routes, rendendo impossibile implementare funzionalità che richiedessero stato condiviso tra dispositivi diversi.
 
-La versione corrente (\textbf{v2}) abbandona l'esportazione statica e adotta Vercel come piattaforma di hosting. Le API Routes di Next.js sono ora abilitate e vengono eseguite come funzioni serverless al momento della richiesta. Lo stato delle sessioni è persistito su Upstash Redis, un servizio di key-value store accessibile tramite API HTTP, compatibile con l'ambiente serverless di Vercel. La versione v1 rimane accessibile all'indirizzo storico su GitHub Pages; la versione v2 è disponibile su Vercel all'indirizzo \texttt{https://tesi-nine.vercel.app/}.
+La versione corrente (\textbf{v2}) abbandona l'esportazione statica e adotta Vercel come piattaforma di hosting. Le API Routes di Next.js sono ora abilitate e vengono eseguite come funzioni serverless al momento della richiesta. Lo stato delle sessioni è persistito su Upstash Redis, un servizio di key-value store accessibile tramite API HTTP, compatibile con l'ambiente serverless di Vercel. La versione v1 rimane accessibile all'indirizzo storico su GitHub Pages (\url{https://samueldebenedictis.github.io/tesi/}); la versione v2 è disponibile all'indirizzo \url{https://www.imprevisti.app/}\footnote{Indirizzo alternativo su Vercel: \url{https://tesi-nine.vercel.app/}.}. Il codice sorgente è pubblico su GitHub: \url{https://github.com/samueldebenedictis/tesi}.
 
 \section{Storyboard: l'uso dell'applicazione da parte dell'educatore}
 \label{sec:storyboard}
@@ -711,7 +713,7 @@ Il menu espone quattro collegamenti:
     \item \textbf{Dai un feedback!} --- reindirizza alla schermata Feedback.
 \end{itemize}
 
-Una sezione dedicata alle impostazioni audio consente di abilitare o disabilitare, tramite due caselle di spunta indipendenti, gli \textbf{effetti sonori} e gli \textbf{annunci vocali} dell'applicazione; la modifica è immediata e persistente per tutta la sessione. Gli annunci vocali --- disattivati di default --- leggono ad alta voce l'esito di ogni turno, il salto turno e la vittoria finale, offrendo un canale uditivo che rinforza le informazioni già mostrate a schermo: un supporto utile in particolare per chi fatica a seguire simultaneamente più stimoli visivi.
+Una sezione dedicata alle impostazioni audio consente di abilitare o disabilitare, tramite due caselle di spunta indipendenti, gli \textbf{effetti sonori} e gli \textbf{annunci vocali} dell'applicazione; la modifica è immediata e persistente per tutta la sessione. Gli annunci vocali --- disattivati di default --- leggono ad alta voce l'esito di ogni turno, il salto turno e la vittoria finale, offrendo un canale uditivo che rinforza le informazioni già mostrate a schermo: un supporto utile in particolare per chi fatica a seguire simultaneamente più stimoli visivi. Nella modalità multi-dispositivo gli annunci sono riprodotti dal tabellone condiviso.
 
 \begin{figure}[htbp]
     \centering
@@ -759,7 +761,7 @@ Le risposte, corredate dal numero di versione dell'applicazione al momento dell'
 
 La schermata \texttt{/admin/feedback}, protetta dalla stessa chiave segreta dell'endpoint di esportazione, presenta in forma sintetica le risposte raccolte dal modulo Feedback.
 La pagina interroga \texttt{/api/feedback} e calcola lato client il punteggio SUS medio secondo la formula standard~\cite{brooke1996sus}, mostrandolo insieme a un grado qualitativo.
-Seguono le medie delle valutazioni numeriche e quattro grafici a barre con la distribuzione dei compilatori per ruolo, esperienza di gioco, identificazione neurodivergente e versione dell'applicazione: ciascuna barra è cliccabile e applica un filtro che ricalcola tutte le metriche della pagina sul sottoinsieme selezionato (i filtri sono cumulabili e removibili singolarmente). Il filtro per versione permette, ad esempio, di isolare i feedback raccolti dopo un rilascio specifico. L'elenco dei commenti liberi chiude la pagina.
+Seguono le medie delle valutazioni numeriche e quattro grafici a barre con la distribuzione dei compilatori per ruolo, esperienza di gioco, identificazione neurodivergente e versione dell'applicazione: ciascuna barra è cliccabile e applica un filtro che ricalcola tutte le metriche della pagina sul sottoinsieme selezionato (i filtri sono cumulabili e rimovibili singolarmente). Il filtro per versione permette, ad esempio, di isolare i feedback raccolti dopo un rilascio specifico. L'elenco dei commenti liberi chiude la pagina.
 
 \begin{figure}[htbp]
     \centering
@@ -856,11 +858,11 @@ Ogni aspetto della partita è delegato a un manager specializzato:
     \item \texttt{BattleManager} e i manager di ogni tipologia di sfida (es. \texttt{MimeManager}, \texttt{QuizManager}) --- applicano gli effetti dell'esito di ciascuna sfida.
 \end{itemize}
 
-Le caselle del tabellone sono modellate come classi distinte (es. \texttt{MimeSquare}, \texttt{QuizSquare}) che estendono la classe base \texttt{Square} e sono ricostruite tramite il pattern Builder al momento del ripristino di una partita salvata.
+Le caselle del tabellone sono modellate come classi distinte (es. \texttt{MimeSquare}, \texttt{QuizSquare}) che estendono la classe base \texttt{Square} e sono ricostruite tramite una \textit{factory} al momento del ripristino di una partita salvata.
 
 Ogni tipologia di casella speciale dispone di un mazzo di carte dedicato (es. \texttt{MimeDeck}, \texttt{QuizDeck}), mescolato all'inizio della partita e consumato in sequenza per garantire varietà e non ripetizione dei contenuti nella stessa sessione.
 
-Il mazzo della sfida ``Indovina l'emozione'' (\texttt{FaceEmotionDeck}) utilizza fotografie tratte da FACES, un database open di volti che esprimono emozioni di base (felicità, rabbia, tristezza, paura, disgusto, neutralità), sviluppato dal Max Planck Institute for Human Development \cite{ebner2010faces}. A differenza delle illustrazioni disegnate usate per le altre sfide, l'impiego di volti fotografici reali e validati scientificamente rende più realistico e trasferibile l'esercizio di riconoscimento delle espressioni facciali.
+Il mazzo della sfida ``Indovina l'emozione'' (\texttt{FaceEmotionDeck}) utilizza fotografie tratte da FACES, un database di volti che esprimono emozioni di base (felicità, rabbia, tristezza, paura, disgusto, neutralità), sviluppato dal Max Planck Institute for Human Development e concesso gratuitamente per la ricerca scientifica \cite{ebner2010faces}. Sono utilizzati i sei soggetti del sottoinsieme pubblico (004, 066, 079, 116, 140, 168), gli unici le cui fotografie possono essere mostrate per illustrare la metodologia di ricerca. A differenza delle illustrazioni disegnate usate per le altre sfide, l'impiego di volti fotografici reali e validati scientificamente rende più realistico e trasferibile l'esercizio di riconoscimento delle espressioni facciali.
 
 Per ciascuna espressione non neutra è disponibile anche un'animazione di transizione (\textit{face morphing}) dall'espressione neutra a quella emotiva, generata automaticamente a partire dalle coppie di fotografie dello stesso soggetto. Uno script Python (\texttt{scripts/face\_morph.py}, eseguibile con \texttt{make face-morph}) rileva i 478 punti di riferimento del volto con il modello \textit{Face Landmarker} di MediaPipe, li triangola con la triangolazione di Delaunay e deforma ciascun triangolo in modo progressivo, miscelando i due scatti con una dissolvenza incrociata. La trasformazione è applicata solo all'interno di una maschera sfumata attorno al volto: sfondo e vestiario si spostano leggermente da uno scatto all'altro e, se deformati, mostrerebbero artefatti evidenti. Il risultato è un insieme di 60 gif (cinque espressioni, sei soggetti, due versioni di scatto), nominate come le fotografie di origine con il suffisso \texttt{\_morph}. Nell'interfaccia l'uso dell'animazione è una scelta esplicita, tramite l'opzione ``Animato''/``Non animato'' (disattivata di default), memorizzata in \texttt{localStorage} da uno store Zustand dedicato (\texttt{useFaceEmotionStore}). Il componente \texttt{FaceEmotionImage} che la gestisce è condiviso dalla finestra modale a schermo singolo, dall'\textit{overlay} dell'educatore e dalla schermata del giocatore di turno; se la gif non è disponibile, ripiega sulla fotografia statica.
 
@@ -874,18 +876,22 @@ La generazione procede, per ciascuna coppia (fotografia neutra, fotografia con e
 \end{enumerate}
 La sequenza comprende 21 fotogrammi di transizione, una pausa di 6 fotogrammi sul volto neutro e sull'espressione, e il percorso inverso fino al neutro; la riproduzione è a 15 fotogrammi al secondo, in ciclo continuo.
 
+\label{sec:film}
 Il mazzo della sfida ``Film'' (\texttt{FilmDeck}) contiene cinque scene, una per ciascuna emozione di base della sfida precedente esclusa la neutralità (felicità, rabbia, tristezza, disgusto, paura). La casella segue la stessa struttura delle altre sfide di riconoscimento delle emozioni: una \texttt{FilmSquare} esegue un comando che pesca una carta dal mazzo e restituisce un oggetto \texttt{Film}, la cui risoluzione è affidata a un \texttt{FilmManager}. Ogni carta associa l'emozione corretta a un file video servito dall'applicazione (cartella \texttt{public/videos}), in formato H.264 con audio AAC, risoluzione 852$\times$480 e durata compresa tra circa 17 e 24 secondi. Poiché il mazzo ha solo cinque carte e viene rimescolato una volta esaurito, nelle partite lunghe le scene si ripetono.
 
 A differenza delle fotografie, la scena è un contenuto con voce e musica. Il componente \texttt{FilmVideo} usa il lettore nativo del browser, con i comandi visibili e senza avvio automatico, così che la riproduzione parta solo per scelta dell'utente e possa essere ripetuta; non sono disponibili sottotitoli. Il giocatore guarda la scena e indica l'emozione; l'educatore mostra la risposta con il pulsante ``Mostra risposta'' e registra l'esito. Se la risposta è corretta il giocatore avanza di una casella, altrimenti salta il turno successivo, come in ``Indovina l'emozione''.
 
+Le scene erano tratte da film commerciali, per i quali non si dispone dei diritti di utilizzo: nella versione attuale la sfida è quindi disattivata e potrà essere riattivata con scene dotate di licenza adeguata.
+
 \subsection{State Management}
 
-Lo stato globale è gestito con Zustand, suddiviso in tre store indipendenti persistiti in \texttt{localStorage}:
+Lo stato globale è gestito con Zustand, suddiviso in quattro store indipendenti persistiti in \texttt{localStorage}:
 
 \begin{itemize}
     \item \texttt{game-store} --- stato della partita in corso: istanza serializzata di \texttt{Game}, risultato del dado, tipo di azione corrente, stato delle finestre modali;
-    \item \texttt{config-store} --- configurazione della partita: nomi e numero dei giocatori, numero di caselle, tipologie e percentuale di caselle speciali;
-    \item \texttt{sound-store} --- preferenze dell'utente riguardo agli effetti sonori e agli annunci vocali.
+    \item \texttt{config-store} --- configurazione della partita: nomi e numero dei giocatori, numero di caselle, tipologie e percentuale di caselle speciali, attivazione della Battaglia;
+    \item \texttt{sound-store} --- preferenze dell'utente riguardo agli effetti sonori e agli annunci vocali;
+    \item \texttt{face-emotion-store} --- preferenza per la versione animata o statica dei volti di ``Indovina l'emozione''.
 \end{itemize}
 
 Questa descrizione vale per intero nella modalità schermo singolo, dove \texttt{game-store} è l'unica fonte di verità e le sue azioni (\texttt{playTurn()}, \texttt{resolve*()}) sono l'unico punto d'ingresso per far avanzare la partita.
@@ -1023,8 +1029,8 @@ Il pattern Command è applicato nella comunicazione tra il domain model e il lay
 \subsection{Facade Pattern}
 La classe \texttt{Game} agisce da \textit{Facade}: espone un'interfaccia semplice e coerente (\texttt{playTurn()}, \texttt{resolve*()}, \texttt{toJSON()}) nascondendo la complessità interna dei manager, dei mazzi e del tabellone. I componenti React e lo store non interagiscono mai direttamente con i sottosistemi interni.
 
-\subsection{Builder Pattern}
-Il modulo \texttt{square-builder.ts} implementa il pattern Builder per ricostruire le istanze delle caselle a partire dalla loro rappresentazione JSON durante il ripristino di una partita salvata. Poiché ogni tipologia di casella è una classe distinta, il Builder centralizza la logica di selezione del costruttore corretto in base al campo \texttt{type}.
+\subsection{Factory Pattern}
+Il modulo \texttt{square-builder.ts} espone la funzione \texttt{squareFromJSON()}, una \textit{factory} che ricostruisce le istanze delle caselle a partire dalla loro rappresentazione JSON durante il ripristino di una partita salvata. Poiché ogni tipologia di casella è una classe distinta, la factory centralizza la logica di selezione del costruttore corretto in base al campo \texttt{type}.
 
 \subsection{Observer Pattern}
 Zustand adotta implicitamente il pattern Observer: i componenti React si \textit{sottoscrivono} a porzioni specifiche dello store tramite selettori, e vengono ri-renderizzati automaticamente solo quando i campi osservati cambiano. Questo evita aggiornamenti superflui dell'interfaccia e mantiene i componenti disaccoppiati dalla logica di aggiornamento dello stato.
@@ -1104,13 +1110,13 @@ In sintesi, la tabella~\ref{tab:architettura} e la lettura MVC della sezione~\re
 
 \subsection{Comunicazione in tempo reale tramite \textit{long polling}}
 
-Per notificare i dispositivi dei giocatori degli aggiornamenti di stato senza l'uso di connessioni persistenti, la modalità multi-dispositivo adotta la tecnica del \textit{long polling}. Ogni dispositivo invia periodicamente una richiesta \texttt{GET} all'endpoint \texttt{/api/sessions/[id]}, passando come parametro il valore \texttt{updatedAt} dell'ultimo stato ricevuto. Il server, anziché rispondere immediatamente, mantiene la connessione aperta per un massimo di otto secondi, interrogando lo \textit{store} ogni trecento millisecondi; restituisce la risposta non appena rileva che il campo \texttt{updatedAt} dello stato corrente è più recente di quello del client, oppure allo scadere del \textit{timeout}.
+Per notificare i dispositivi dei giocatori degli aggiornamenti di stato senza l'uso di connessioni persistenti, la modalità multi-dispositivo adotta la tecnica del \textit{long polling}. Ogni dispositivo invia una richiesta \texttt{GET} all'endpoint \texttt{/api/sessions/[id]}, passando come parametro il valore \texttt{updatedAt} dell'ultimo stato ricevuto. Il server, anziché rispondere immediatamente, mantiene la connessione aperta per un massimo di otto secondi, interrogando lo \textit{store} ogni trecento millisecondi; restituisce la risposta non appena rileva che il campo \texttt{updatedAt} dello stato corrente è più recente di quello del client, oppure allo scadere del \textit{timeout}. Ricevuta la risposta, il client invia subito la richiesta successiva.
 
-Questo approccio riduce il numero di invocazioni delle \textit{serverless function} di circa cinque volte rispetto al \textit{polling} a intervallo fisso, un aspetto rilevante ai fini della compatibilità con il piano gratuito di Vercel, che impone limiti al numero di esecuzioni mensili. La scelta del \textit{long polling} in luogo dei WebSocket è motivata dalla stessa considerazione: il piano \textit{Hobby} di Vercel non supporta connessioni WebSocket persistenti, mentre le richieste HTTP di lunga durata sono gestite nativamente dalle \textit{serverless function}.
+Questo approccio riduce il numero di invocazioni delle \textit{serverless function} di circa cinque volte rispetto al \textit{polling} a intervallo fisso, un aspetto rilevante ai fini della compatibilità con il piano gratuito di Vercel, che impone limiti al numero di esecuzioni mensili. La scelta del \textit{long polling} in luogo dei WebSocket dipende dalla piattaforma: le \textit{serverless function} di Vercel non supportano connessioni WebSocket persistenti, mentre le richieste HTTP di lunga durata sono gestite nativamente.
 
 \subsection{Rilevamento dell'inattività}
 
-Per evitare il consumo inutile di risorse in caso di dispositivi lasciati incustoditi, la modalità multi-dispositivo include un meccanismo di rilevamento dell'inattività. Il \textit{polling} viene sospeso automaticamente dopo trenta minuti di inattività del giocatore; sullo schermo compare un \textit{overlay} con il messaggio \textit{``Stai ancora giocando?''}, che invita l'utente a confermare la propria presenza. In assenza di interazione per ulteriori cinque minuti, il \textit{polling} si interrompe definitivamente. Qualsiasi interazione con il dispositivo --- un tocco sullo schermo, un'azione di gioco --- è sufficiente a riprendere il ciclo di aggiornamento.
+Per evitare il consumo inutile di risorse in caso di dispositivi lasciati incustoditi, la modalità multi-dispositivo include un meccanismo di rilevamento dell'inattività. Dopo trenta minuti di inattività del giocatore sullo schermo compare un \textit{overlay} con il messaggio \textit{``Stai ancora giocando?''}, che invita l'utente a confermare la propria presenza; in questa fase il \textit{polling} prosegue. Se l'\textit{overlay} resta senza risposta per ulteriori cinque minuti, il \textit{polling} viene interrotto. Qualsiasi interazione con il dispositivo --- un tocco sullo schermo, un'azione di gioco --- chiude l'\textit{overlay} e riavvia il ciclo di aggiornamento.
 
 \subsection{Svolgimento del turno in modalità multi-dispositivo}
 
@@ -1144,7 +1150,7 @@ Il vantaggio specifico della modalità multi-dispositivo risiede nell'accessibil
 \section{Raccolta di feedback}
 \label{sec:raccolta-feedback}
 
-Al termine delle sessioni di utilizzo, i partecipanti del CFPIL di Varese sono stati invitati a compilare il modulo di feedback integrato nell'applicazione. Per ridurre il carico percettivo delle numerose domande, il modulo è organizzato come un percorso guidato a step (\emph{wizard}) suddiviso in quattro fasi --- informazioni di base, questionario SUS, valutazioni e domande aperte --- con avanzamento vincolato alla compilazione dei campi obbligatori di ciascuna fase. Il modulo raccoglie:
+Al termine delle sessioni di utilizzo, i partecipanti del CFPIL di Varese sono stati invitati a compilare il modulo di feedback integrato nell'applicazione. Per ridurre il carico cognitivo delle numerose domande, il modulo è organizzato come un percorso guidato a step (\emph{wizard}) suddiviso in quattro fasi --- informazioni di base, questionario SUS, valutazioni e domande aperte --- con avanzamento vincolato alla compilazione dei campi obbligatori di ciascuna fase. Il modulo raccoglie:
 
 \begin{itemize}
     \item \textbf{nome};
@@ -1164,7 +1170,33 @@ Al termine delle sessioni di utilizzo, i partecipanti del CFPIL di Varese sono s
     \item \textbf{versione dell'applicazione} --- registrata automaticamente al momento dell'invio.
 \end{itemize}
 
-Le risposte raccolte sono state analizzate tramite la dashboard descritta nel paragrafo~\ref{sec:desc-feedback-dashboard} (figura~\ref{fig:feedback-dashboard}), che calcola il punteggio SUS medio e la distribuzione delle valutazioni per categoria senza richiedere l'esportazione manuale dei dati.
+Le risposte raccolte sono state analizzate tramite la dashboard descritta nella sezione~\ref{sec:desc-feedback-dashboard} (figura~\ref{fig:feedback-dashboard}), che calcola il punteggio SUS medio e la distribuzione delle valutazioni per categoria senza richiedere l'esportazione manuale dei dati.
+
+\section{Risultati preliminari}
+\label{sec:risultati-preliminari}
+
+Le risposte raccolte con la versione 2.0.8 dell'applicazione, in una prova svolta in modalità multi-dispositivo, provengono da partecipanti con ruolo ``alunno'' e ``altro'', senza docenti, tutti con esperienza della sola versione digitale. I nomi riportati nel modulo sono stati scelti dai compilatori in modo da garantirne la riservatezza. Trattandosi di un campione ridotto, i valori che seguono hanno valore puramente indicativo.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|c|}
+    \hline
+    \textbf{Misura} & \textbf{Valore} \\ \hline
+    Punteggio SUS medio (scala 0--100) & 90,0 \\ \hline
+    Deviazione standard SUS & 4,6 \\ \hline
+    Punteggio SUS minimo--massimo & 85,0--95,0 \\ \hline
+    Chiarezza dei meccanismi di gioco (1--5) & 4,75 \\ \hline
+    Grafica (1--5) & 4,75 \\ \hline
+    Gradimento complessivo (1--5) & 5,00 \\ \hline
+    Divertimento (1--5) & 5,00 \\ \hline
+    \end{tabular}
+    \caption{Risultati medi delle risposte raccolte con la versione 2.0.8.}
+    \label{tab:risultati-preliminari}
+\end{table}
+
+Tutti i punteggi SUS ricadono nel grado più alto (``Eccellente'') tra quelli mostrati dalla dashboard, e le valutazioni numeriche sono concentrate sui valori massimi della scala. Nei commenti liberi un partecipante indica come punto di forza un sistema di gioco ``facile e comprensibile'', mentre le criticità segnalate convergono su un unico aspetto: la gestione delle sfide, e in particolare della Battaglia, descritta come macchinosa e da ripensare.
+
+Sulla base di questo riscontro la Battaglia, in precedenza sempre attiva, è diventata un'opzione della configurazione iniziale a partire dalla versione 2.0.12 (tabella~\ref{tab:sb-prep}, passo 5).
 
 %
 %			CAPITOLO 6: Conclusioni e sviluppi futuri
@@ -1177,7 +1209,7 @@ Le risposte raccolte sono state analizzate tramite la dashboard descritta nel pa
 
 Questo elaborato ha descritto la progettazione e lo sviluppo di una versione digitale del gioco da tavolo \textit{La Città degli Imprevisti}, ideato dai partecipanti insieme all'équipe di educatori e psicologi del CFPIL di Varese come strumento di potenziamento delle competenze sociali per adolescenti con disturbo dello spettro autistico.
 
-L'implementazione ha preso come punto di partenza un gioco fisico esistente --- strutturato attorno a un percorso con caselle speciali che attivano sfide di natura sociale ed emotiva --- e lo ha tradotto in un'applicazione web accessibile da qualsiasi browser moderno. Il lavoro si è sviluppato in due fasi: una prima versione (v1) puramente client-side, distribuita su GitHub Pages, e una versione corrente (v2) che introduce la modalità multi-dispositivo tramite API Routes, long polling e un database Redis.
+L'implementazione ha preso come punto di partenza un gioco fisico esistente --- strutturato attorno a un percorso con caselle speciali che attivano sfide di natura sociale ed emotiva --- e lo ha tradotto in un'applicazione web accessibile da qualsiasi browser moderno. Il lavoro si è sviluppato in due fasi: una prima versione (v1) puramente client-side, distribuita su GitHub Pages, e una versione corrente (v2) che introduce la modalità multi-dispositivo tramite API Routes, long polling e un database Redis. L'applicazione è in uso e continua a evolvere: le prime analisi dei feedback hanno già portato a modificare la Battaglia, resa configurabile.
 
 \section{Contributi}
 
@@ -1197,7 +1229,7 @@ Dal punto di vista del contesto applicativo, l'elaborato contribuisce a esplorar
 
 Il lavoro presenta alcune limitazioni che è opportuno esplicitare.
 
-I dati di feedback raccolti durante le sessioni al CFPIL non sono stati ancora analizzati sistematicamente: il capitolo dedicato ai test descrive la struttura dello strumento di raccolta, ma non riporta risultati quantitativi o qualitativi. Non è quindi possibile, allo stato attuale, trarre conclusioni sull'efficacia dell'applicazione rispetto agli obiettivi educativi.
+I dati di feedback raccolti sono pochi e riferiti alla sola versione 2.0.8 (sezione~\ref{sec:risultati-preliminari}): riguardano la sola modalità multi-dispositivo e non comprendono docenti, e con un campione ridotto il punteggio SUS medio è poco stabile. Il SUS misura l'usabilità percepita, non l'efficacia formativa: non è quindi possibile, allo stato attuale, trarre conclusioni sull'efficacia dell'applicazione rispetto agli obiettivi educativi.
 
 Sul piano della validità esterna, il testing è avvenuto in un singolo istituto, con un numero limitato di sessioni e senza un gruppo di controllo né una misurazione delle competenze sociali prima e dopo l'intervento. I risultati non sono generalizzabili senza ulteriori studi.
 
@@ -1211,13 +1243,13 @@ Infine, la fase dedicata alla prevenzione del rischio sociale (sezione~\ref{sec:
 Le direzioni di sviluppo più immediate riguardano la chiusura delle lacune identificate e l'ampliamento dei contenuti:
 
 \begin{itemize}
-    \item \textbf{Analisi dei feedback} --- raccogliere un numero sufficiente di risposte dal CFPIL e analizzarle per identificare punti di forza e aree di miglioramento dell'applicazione;
+    \item \textbf{Ampliamento dei feedback} --- raccogliere un numero maggiore di risposte, includendo docenti e sessioni a schermo singolo, e verificare con la dashboard (filtrando per versione) se la Battaglia configurabile ha risolto la criticità emersa nella prima raccolta;
     \item \textbf{Confronto tra modalità} --- progettare una sessione sperimentale che confronti direttamente la modalità schermo singolo e la modalità multi-dispositivo in termini di qualità dell'interazione sociale osservata;
     \item \textbf{Estensione a più istituti} --- coinvolgere altri centri che operano con utenza ASD per ampliare la base di test e valutare la portabilità dello strumento;
     \item \textbf{Accessibilità} --- migliorare il supporto per screen reader e per dispositivi con capacità motorie ridotte, così da ampliare l'utenza potenziale;
     \item \textbf{Prevenzione del rischio sociale} --- ampliare i contenuti del gioco con scenari di riconoscimento dei rischi sociali (bullismo, aggressioni verbali o fisiche, tentativi di raggiro e truffa) e di individuazione di strategie di tutela, mantenendo la struttura a caselle e scelte multiple. Un elemento centrale sarà la \textbf{sosta di discussione}: di fronte a una scelta complessa o a una divergenza di opinione, il gioco richiede ai giocatori di fermarsi a confrontarsi, stimolando il pensiero critico e costruendo un archivio di esperienze simulate a cui attingere nella vita reale. Il tema è rilevante: circa il 44\% dei giovani con ASD subisce bullismo scolastico \cite{maiano2016}. La fase, progettata con l'équipe e il gruppo, non è ancora implementata né sperimentata.
     \item \textbf{Validazione e alleggerimento delle animazioni facciali} --- la transizione animata dal volto neutro all'espressione è già disponibile nel gioco, come opzione ``Animato'' disattivata di default, ma non è stata ancora sperimentata con l'utenza: non è noto se l'animazione favorisca il riconoscimento dell'emozione o, al contrario, distragga. Ogni gif pesa circa 7--8~MB (60 file, circa 450~MB complessivi), un costo non trascurabile su reti scolastiche limitate: andranno valutate una riduzione di risoluzione e di durata;
-    \item \textbf{Ampliamento dei contenuti video} --- il mazzo ``Film'' ha cinque scene, una per emozione, che si ripetono nelle partite lunghe; aggiungerne altre, e dotarle di sottotitoli, ne migliorerebbe varietà e accessibilità.
+    \item \textbf{Riattivazione e ampliamento dei contenuti video} --- la sfida ``Film'' è disattivata per l'assenza dei diritti sulle scene (sezione~\ref{sec:film}); per riattivarla occorre reperire scene con licenza libera o autorizzata, oppure produrle appositamente, ad esempio con il gruppo stesso. In quell'occasione è opportuno andare oltre le cinque scene originali, una per emozione, che si ripetevano nelle partite lunghe, e dotarle di sottotitoli, migliorandone varietà e accessibilità.
 \end{itemize}
 
 %
@@ -1228,7 +1260,7 @@ Le direzioni di sviluppo più immediate riguardano la chiusura delle lacune iden
 % Il default è 'chapter', per 'part' usare
 % \beforebibliography[part]
 \beforebibliography
-\bibliographystyle{unsrt}
+\bibliographystyle{unsrtnat}
 \bibliography{bibliografia}
 
 % Pagina di chiusura
